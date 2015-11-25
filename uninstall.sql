@@ -1,0 +1,1 @@
+DROP TABLE `%TABLE_PREFIX%markitup_profiles`;
