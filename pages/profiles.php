@@ -74,6 +74,16 @@
 			//End - get all languages from the assets-folder
 		//End - add language-field
 		
+		//Start - add type-field
+			$field = $form->addSelectField('type');
+			$field->setLabel($this->i18n('profiles_label_type'));
+			
+			$select = $field->getSelect();
+			$select->setSize(1);
+			$select->addOption('---', 0);
+			$select->addOption('Textile', 'textile');
+		//End - add type-field
+		
 		//Start - add markitup_buttons-field
 			$field = $form->addTextAreaField('markitup_buttons');
 			$field->setLabel($this->i18n('profiles_label_markitupbuttons'));
@@ -92,14 +102,14 @@
 							'<b>deleted</b><br>'.
 							$this->i18n('profiles_buttons_deleted').'<br>'.
 							'<br>'.
+							'<b>formatting</b><br>'.
+							$this->i18n('profiles_buttons_formatting').'<br>'.
+							'<br>'.
 							'<b>italic</b><br>'.
 							$this->i18n('profiles_buttons_italic').'<br>'.
 							'<br>'.
 							'<b>orderedlist</b><br>'.
 							$this->i18n('profiles_buttons_orderedlist').'<br>'.
-							'<br>'.
-							'<b>paragraph</b><br>'.
-							$this->i18n('profiles_buttons_paragraph').'<br>'.
 							'<br>'.
 							'<b>underline</b><br>'.
 							$this->i18n('profiles_buttons_underline').'<br>'.
