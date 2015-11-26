@@ -1,88 +1,134 @@
 <?php
 	if (rex::isBackend()) {
-		function markitupDefineButtons($type, $buttons, $that) {
-			$markitupButtons = [];
+		function markitupDefineButtons($type, $profileButtons, $that) {
+			//Start - define all buttons
+				$buttons = [];
+				
+				//Start - define button 'bold'
+					$btn = [];
+					$btn['name'] = $that->i18n('profiles_buttons_bold');
+					$btn['key'] = 'B';
+					$btn['className'] = 'bold';
+					$btn['openWith']['textile'] = '*';
+					$btn['closeWith']['textile'] = '*';
+					$buttons['bold'] = $btn;
+				//End - define button 'bold'
+				
+				//Start - define button 'deleted'
+					$btn = [];
+					$btn['name'] = $that->i18n('profiles_buttons_deleted');
+					$btn['key'] = 'S';
+					$btn['className'] = 'deleted';
+					$btn['openWith']['textile'] = '-';
+					$btn['closeWith']['textile'] = '-';
+					$buttons['deleted'] = $btn;
+				//End - define button 'deleted'
+				
+				//Start - define button 'formatting'
+					$btn = [];
+					$btn['name'] = $that->i18n('profiles_buttons_formatting');
+					$btn['className'] = 'formatting';
+					$btn['children'] = [];
+					
+					for ($i = 1; $i <= 6; $i++) {
+						$child = [];
+						$child['name'] = $that->i18n('profiles_buttons_formatting_option_h'.$i);
+						$child['openWith']['textile'] = 'h'.$i.'(!(([![Class]!]))!). ';
+						
+						$btn['children']['h'.$i] = $child;
+					}
+					$btn['children']['p'] = ['name' => $that->i18n('profiles_buttons_formatting_option_p'), 'openWith' => ['textile'=>'p(!(([![Class]!]))!). ']];
+					$buttons['formatting'] = $btn;
+				//End - define button 'formatting'
+				
+				//Start - define button 'italic'
+					$btn = [];
+					$btn['name'] = $that->i18n('profiles_buttons_italic');
+					$btn['key'] = 'I';
+					$btn['className'] = 'italic';
+					$btn['openWith']['textile'] = '_';
+					$btn['closeWith']['textile'] = '_';
+					$buttons['italic'] = $btn;
+				//End - define button 'italic'
+				
+				//Start - define button 'orderedlist'
+					$btn = [];
+					$btn['name'] = $that->i18n('profiles_buttons_orderedlist');
+					$btn['className'] = 'orderedlist';
+					$btn['openWith']['textile'] = '(!(* |!|*)!)';
+					$btn['closeWith']['textile'] = '';
+					$buttons['orderedlist'] = $btn;
+				//End - define button 'orderedlist'
+				
+				//Start - define button 'underline'
+					$btn = [];
+					$btn['name'] = $that->i18n('profiles_buttons_underline');
+					$btn['key'] = 'U';
+					$btn['className'] = 'underline';
+					$btn['openWith']['textile'] = '+';
+					$btn['closeWith']['textile'] = '+';
+					$buttons['underline'] = $btn;
+				//End - define button 'underline'
+				
+				//Start - define button 'unorderedlist'
+					$btn = [];
+					$btn['name'] = $that->i18n('profiles_buttons_unorderedlist');
+					$btn['className'] = 'unorderedlist';
+					$btn['openWith']['textile'] = '(!(# |!|#)!)';
+					$btn['closeWith']['textile'] = '';
+					$buttons['unorderedlist'] = $btn;
+				//End - define button 'unorderedlist'
+			//End - define all buttons
 			
-			$buttons = explode(',', $buttons);
-			foreach ($buttons as $button) {
-				switch ($button) {
-					case 'bold':
-						switch($type) {
-							case 'textile':
-								$openWith = '*';
-								$closeWith = '*';
-							break;
-						}
-						
-						$markitupButtons[] = "{name:'".$that->i18n('profiles_buttons_bold')."', key:'B', className:'bold', openWith:'".$openWith."', closeWith: '".$closeWith."'},";
-					break;
-					case 'deleted':
-						switch($type) {
-							case 'textile':
-								$openWith = '-';
-								$closeWith = '-';
-							break;
-						}
-						
-						$markitupButtons[] = "{name:'".$that->i18n('profiles_buttons_deleted')."', key:'S', className:'deleted', openWith:'".$openWith."', closeWith: '".$closeWith."'},";
-					break;
-					case 'italic':
-						switch($type) {
-							case 'textile':
-								$openWith = '_';
-								$closeWith = '_';
-							break;
-						}
-						
-						$markitupButtons[] = "{name:'".$that->i18n('profiles_buttons_italic')."', key:'I', className:'italic', openWith:'".$openWith."', closeWith: '".$closeWith."'},";
-					break;
-					case 'orderedlist':
-						switch($type) {
-							case 'textile':
-								$openWith = '(!(* |!|*)!)';
-								$closeWith = '(!(# |!|#)!)';
-							break;
-						}
-						
-						$markitupButtons[] = "{name:'".$that->i18n('profiles_buttons_orderedlist')."', className:'orderedlist', openWith:'".$openWith."', closeWith: '".$closeWith."'},";
-					break;
-					case 'paragraph':
-						switch($type) {
-							case 'textile':
-								$openWith = 'p(!(([![Class]!]))!). ';
-								$closeWith = '';
-							break;
-						}
-						
-						$markitupButtons[] = "{name:'".$that->i18n('profiles_buttons_paragraph')."', key:'P', className:'paragraph', openWith:'".$openWith."', closeWith: '".$closeWith."'},";
-					break;
-					case 'separator':
-						$markitupButtons[] = "{separator:'---------------' },";
-					break;
-					case 'underline':
-						switch($type) {
-							case 'textile':
-								$openWith = '+';
-								$closeWith = '+';
-							break;
-						}
-						
-						$markitupButtons[] = "{name:'".$that->i18n('profiles_buttons_underline')."', key:'U', className:'underline', openWith:'".$openWith."', closeWith: '".$closeWith."'},";
-					break;
-					case 'unorderedlist':
-						switch($type) {
-							case 'textile':
-								$openWith = '(!(* |!|*)!)';
-								$closeWith = '';
-							break;
-						}
-						
-						$markitupButtons[] = "{name:'".$that->i18n('profiles_buttons_unorderedlist')."', className:'unorderedlist', openWith:'".$openWith."', closeWith: '".$closeWith."'},";
-					break;
+			
+			$buttonString = '';
+			$profileButtons = explode(',', $profileButtons);
+			foreach ($profileButtons as $profileButton) {
+				$options = [];
+				
+				if (preg_match('/(.*)\[(.*)\]/', $profileButton, $matches)) {
+					$profileButton = $matches[1];
+					$options = explode('|', $matches[2]);
 				}
+				
+				$buttonString .= "{";
+				
+				foreach (['name', 'key', 'openWith', 'closeWith', 'className'] as $property) {
+					if (!empty($buttons[$profileButton][$property])) {
+						if (in_array($property, ['openWith', 'closeWith'])) {
+							$buttonString .= "  ".$property.":'".$buttons[$profileButton][$property][$type]."',";
+						} else {
+							$buttonString .= "  ".$property.":'".$buttons[$profileButton][$property]."',";
+						}
+					}
+				}
+				
+				//Start - dropdown
+					if (!empty($options)) {
+						$buttonString .= "  dropMenu: [";
+						
+						foreach ($options as $option) {
+							$buttonString .= "{";
+								foreach (['name', 'key', 'openWith', 'closeWith'] as $property) {
+									if (!empty($buttons[$profileButton]['children'][$option][$property])) {
+										if (in_array($property, ['openWith', 'closeWith'])) {
+											$buttonString .= "  ".$property.":'".$buttons[$profileButton]['children'][$option][$property][$type]."',";
+										} else {
+											$buttonString .= "  ".$property.":'".$buttons[$profileButton]['children'][$option][$property]."',";
+										}
+									}
+								}
+							$buttonString .= "},";
+						}
+						
+						$buttonString .= "  ]";
+					}
+				//End - dropdown
+				
+				$buttonString .= "},";
 			}
 			
-			return implode(PHP_EOL, $markitupButtons);
+			return $buttonString;
 		}
 		
 		rex_view::addJsFile($this->getAssetsUrl('jquery.markitup.js'));
@@ -108,37 +154,6 @@
 				$jsCode[] = '    markupSet: [';
 				$jsCode[] = '      '.markitupDefineButtons($profile['type'], $profile['markitup_buttons'], $this);
 				$jsCode[] = '    ]';
-				
-				
-    
-    
-    /*
-    markupSet: [
-        {name:'Heading 1', key:'1', openWith:'h1(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
-        {name:'Heading 2', key:'2', openWith:'h2(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
-        {name:'Heading 3', key:'3', openWith:'h3(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
-        {name:'Heading 4', key:'4', openWith:'h4(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
-        {name:'Heading 5', key:'5', openWith:'h5(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
-        {name:'Heading 6', key:'6', openWith:'h6(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
-        {name:'Paragraph', key:'P', openWith:'p(!(([![Class]!]))!). '}, 
-        {separator:'---------------' },
-        {name:'Bold', key:'B', closeWith:'*', openWith:'*'}, 
-        {name:'Italic', key:'I', closeWith:'_', openWith:'_'}, 
-        {name:'Stroke through', key:'S', closeWith:'-', openWith:'-'}, 
-        {separator:'---------------' },
-        {name:'Bulleted list', openWith:'(!(* |!|*)!)'}, 
-        {name:'Numeric list', openWith:'(!(# |!|#)!)'}, 
-        {separator:'---------------' },
-        {name:'Picture', replaceWith:'![![Source:!:http://]!]([![Alternative text]!])!'}, 
-        {name:'Link', openWith:'"', closeWith:'([![Title]!])":[![Link:!:http://]!]', placeHolder:'Your text to link here...' },
-        {separator:'---------------' },
-        {name:'Quotes', openWith:'bq(!(([![Class]!]))!). '}, 
-        {name:'Code', openWith:'@', closeWith:'@'}, 
-        {separator:'---------------' },       
-        {name:'Preview', call:'preview', className:'preview'}
-    ]
-';*/
-				
 				$jsCode[] = '  });';
 				
 			}
