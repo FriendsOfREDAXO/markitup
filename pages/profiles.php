@@ -86,35 +86,20 @@
 					<dd>
 						<p><a href="javascript:void(0);" onclick="$(\'#rex-markitup-buttons-help\').toggle(\'fast\');">Zeige/verberge Hilfe</a></p>
 						<div id="rex-markitup-buttons-help" style="display:none">'.
-							'<b>alignment</b><br>'.
-							$this->i18n('profiles_buttons_alignment').'<br>'.
-							'<br>'.
 							'<b>bold</b><br>'.
 							$this->i18n('profiles_buttons_bold').'<br>'.
 							'<br>'.
 							'<b>deleted</b><br>'.
 							$this->i18n('profiles_buttons_deleted').'<br>'.
 							'<br>'.
-							'<b>formatting[h1|p]</b><br>'.
-							$this->i18n('profiles_buttons_formatting').'<br>'.
-							'<br>'.
-							'<b>horizontalrule</b><br>'.
-							$this->i18n('profiles_buttons_horizontalrule').'<br>'.
-							'<br>'.
-							'<b>html</b><br>'.
-							$this->i18n('profiles_buttons_html').'<br>'.
-							'<br>'.
 							'<b>italic</b><br>'.
 							$this->i18n('profiles_buttons_italic').'<br>'.
-							'<br>'.
-							'<b>indent</b><br>'.
-							$this->i18n('profiles_buttons_indent').'<br>'.
 							'<br>'.
 							'<b>orderedlist</b><br>'.
 							$this->i18n('profiles_buttons_orderedlist').'<br>'.
 							'<br>'.
-							'<b>outdent</b><br>'.
-							$this->i18n('profiles_buttons_outdent').'<br>'.
+							'<b>paragraph</b><br>'.
+							$this->i18n('profiles_buttons_paragraph').'<br>'.
 							'<br>'.
 							'<b>underline</b><br>'.
 							$this->i18n('profiles_buttons_underline').'<br>'.
