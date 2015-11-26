@@ -1,7 +1,6 @@
 <?php
 	if (rex::isBackend()) {
 		function markitupDefineButtons($type, $buttons, $that) {
-			
 			$markitupButtons = [];
 			
 			$buttons = explode(',', $buttons);
@@ -37,6 +36,26 @@
 						
 						$markitupButtons[] = "{name:'".$that->i18n('profiles_buttons_italic')."', key:'I', className:'italic', openWith:'".$openWith."', closeWith: '".$closeWith."'},";
 					break;
+					case 'orderedlist':
+						switch($type) {
+							case 'textile':
+								$openWith = '(!(* |!|*)!)';
+								$closeWith = '(!(# |!|#)!)';
+							break;
+						}
+						
+						$markitupButtons[] = "{name:'".$that->i18n('profiles_buttons_orderedlist')."', className:'orderedlist', openWith:'".$openWith."', closeWith: '".$closeWith."'},";
+					break;
+					case 'paragraph':
+						switch($type) {
+							case 'textile':
+								$openWith = 'p(!(([![Class]!]))!). ';
+								$closeWith = '';
+							break;
+						}
+						
+						$markitupButtons[] = "{name:'".$that->i18n('profiles_buttons_paragraph')."', key:'P', className:'paragraph', openWith:'".$openWith."', closeWith: '".$closeWith."'},";
+					break;
 					case 'separator':
 						$markitupButtons[] = "{separator:'---------------' },";
 					break;
@@ -50,6 +69,16 @@
 						
 						$markitupButtons[] = "{name:'".$that->i18n('profiles_buttons_underline')."', key:'U', className:'underline', openWith:'".$openWith."', closeWith: '".$closeWith."'},";
 					break;
+					case 'unorderedlist':
+						switch($type) {
+							case 'textile':
+								$openWith = '(!(* |!|*)!)';
+								$closeWith = '';
+							break;
+						}
+						
+						$markitupButtons[] = "{name:'".$that->i18n('profiles_buttons_unorderedlist')."', className:'unorderedlist', openWith:'".$openWith."', closeWith: '".$closeWith."'},";
+					break;
 				}
 			}
 			
@@ -57,7 +86,7 @@
 		}
 		
 		rex_view::addJsFile($this->getAssetsUrl('jquery.markitup.js'));
-		rex_view::addCssFile($this->getAssetsUrl('skins/custom/style.css'));
+		rex_view::addCssFile($this->getAssetsUrl('style.css'));
 		
 		//Start - get markitup-profiles
 			$sql = rex_sql::factory();
@@ -70,9 +99,13 @@
 				$jsCode[] = '  $(\'.markitupEditor-'.$profile['name'].'\').markItUp({';
 				
 				$jsCode[] = '    nameSpace: "markitup_'.$profile['type'].'",';
-//				$jsCode[] = '    previewParserPath:   "~/sets/textile/preview.php",';
-//				$jsCode[] = '    onShiftEnter: {keepDefault:false, replaceWith:\'\n\n\'},';
-				$jsCode[] = '    markupSet: [,';
+				switch ($profile['type']) {
+					case 'textile':
+						$jsCode[] = '    onShiftEnter: {keepDefault:false, replaceWith:\'\n\n\'},';
+					break;
+				}
+				
+				$jsCode[] = '    markupSet: [';
 				$jsCode[] = '      '.markitupDefineButtons($profile['type'], $profile['markitup_buttons'], $this);
 				$jsCode[] = '    ]';
 				
