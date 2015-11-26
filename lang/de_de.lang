@@ -24,10 +24,18 @@ rex_markitup_profiles_label_markitupbuttons = MarkItUp-Buttons
 
 rex_markitup_profiles_buttons_bold = Fett
 rex_markitup_profiles_buttons_deleted = Durchgestrichen
+rex_markitup_profiles_buttons_formatting = Formatierung
+rex_markitup_profiles_buttons_formatting_option_h1 = Überschrift 1
+rex_markitup_profiles_buttons_formatting_option_h2 = Überschrift 2
+rex_markitup_profiles_buttons_formatting_option_h3 = Überschrift 3
+rex_markitup_profiles_buttons_formatting_option_h4 = Überschrift 4
+rex_markitup_profiles_buttons_formatting_option_h5 = Überschrift 5
+rex_markitup_profiles_buttons_formatting_option_h6 = Überschrift 6
+rex_markitup_profiles_buttons_formatting_option_p = Paragraph
 rex_markitup_profiles_buttons_italic = Kursiv
-rex_markitup_profiles_buttons_orderedlist = Unsortierte Liste
-rex_markitup_profiles_buttons_paragraph = Paragraph
+rex_markitup_profiles_buttons_orderedlist = Sortierte Liste
 rex_markitup_profiles_buttons_underline = Unterstrichen
+rex_markitup_profiles_buttons_unorderedlist = Unsortierte Liste
 
 #permissions
 perm_general_rex_markitup[] = Rechte für MarkItUp-Addon
