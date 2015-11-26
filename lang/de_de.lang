@@ -25,6 +25,8 @@ rex_markitup_profiles_label_markitupbuttons = MarkItUp-Buttons
 rex_markitup_profiles_buttons_bold = Fett
 rex_markitup_profiles_buttons_deleted = Durchgestrichen
 rex_markitup_profiles_buttons_italic = Kursiv
+rex_markitup_profiles_buttons_orderedlist = Unsortierte Liste
+rex_markitup_profiles_buttons_paragraph = Paragraph
 rex_markitup_profiles_buttons_underline = Unterstrichen
 
 #permissions
