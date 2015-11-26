@@ -14,6 +14,17 @@
 	display:inline-block;
 }
 
+.markItUpContainer .markItUpHeader ul li.markItUpDropMenu {
+	position:relative;
+}
+
+.markItUpContainer .markItUpHeader ul li.markItUpDropMenu ul {
+	display:none;
+	position:absolute;
+	left:0px;
+	top:0px;
+}
+
 .markItUpContainer .markItUpHeader ul li a {
 	display:block;
 	height:34px;
@@ -22,7 +33,7 @@
 	width:34px;
 }
 
-.markItUpContainer .markItUpHeader ul li a:before {
+.markItUpContainer .markItUpHeader ul li > a:before {
 	color:#333;
 	font-family: 'FontAwesome';
 	font-size: 14px;
@@ -33,31 +44,31 @@
 	background-color:#4B9AD9;
 }
 
-.markItUpContainer .markItUpHeader ul li.bold a:before {
+.markItUpContainer .markItUpHeader ul li.bold > a:before {
 	content: "\f032";
 }
 
-.markItUpContainer .markItUpHeader ul li.deleted a:before {
+.markItUpContainer .markItUpHeader ul li.deleted > a:before {
 	content: "\f0cc";
 }
 
-.markItUpContainer .markItUpHeader ul li.italic a:before {
-	content: "\f033";
-}
-
-.markItUpContainer .markItUpHeader ul li.orderedlist a:before {
-	content: "\f0cb";
-}
-
-.markItUpContainer .markItUpHeader ul li.paragraph a:before {
+.markItUpContainer .markItUpHeader ul li.formatting > a:before {
 	content: "\f1dd";
 }
 
-.markItUpContainer .markItUpHeader ul li.underline a:before {
+.markItUpContainer .markItUpHeader ul li.italic > a:before {
+	content: "\f033";
+}
+
+.markItUpContainer .markItUpHeader ul li.orderedlist > a:before {
+	content: "\f0cb";
+}
+
+.markItUpContainer .markItUpHeader ul li.underline > a:before {
 	content: "\f0cd";
 }
 
-.markItUpContainer .markItUpHeader ul li.unorderedlist a:before {
+.markItUpContainer .markItUpHeader ul li.unorderedlist > a:before {
 	content: "\f0ca";
 }
 
