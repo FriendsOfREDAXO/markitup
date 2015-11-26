@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS `%TABLE_PREFIX%markitup_profiles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `%TABLE_PREFIX%markitup_profiles` (`id`, `name`, `description`, `language`, `type`, `markitup_buttons`) VALUES
-(1, 'full', 'Standard MarkItUp-Konfiguration', 'de', 'textile', 'alignment,bold,deleted,formatting[h1|p],horizontalrule,html,italic,indent,orderedlist,outdent,underline,unorderedlist');
+(1, 'full', 'Standard MarkItUp-Konfiguration', 'de', 'textile', 'bold,deleted,italic,orderedlist,paragraph,underline,unorderedlist');
 
 ALTER TABLE `%TABLE_PREFIX%markitup_profiles`
  ADD PRIMARY KEY (`id`);
