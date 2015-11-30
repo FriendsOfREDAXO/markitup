@@ -70,6 +70,22 @@ orderedlist:
     openWith:
         textile: "(!(* |!|*)!)"
 
+sub:
+    name: profiles_buttons_sub
+    className: sub
+    closeWith:
+        textile: "~"
+    openWith:
+        textile: "~"
+
+sup:
+    name: profiles_buttons_sup
+    className: sup
+    closeWith:
+        textile: "^"
+    openWith:
+        textile: "^"
+
 table:
     name: profiles_buttons_table
     className: table

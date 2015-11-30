@@ -86,6 +86,14 @@
 	content: "\f0cb";
 }
 
+.markItUpContainer .markItUpHeader > ul > li.sub > a:before {
+	content: "\f12c";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.sup > a:before {
+	content: "\f12b";
+}
+
 .markItUpContainer .markItUpHeader > ul > li.table {
 	margin:0px;
 	max-width:none;
