@@ -87,7 +87,7 @@
 		
 		//Start - get markitup-profiles
 			$sql = rex_sql::factory();
-			$profiles = $sql->setQuery("SELECT `name`, `language`, `type`, `markitup_buttons` FROM `".rex::getTablePrefix()."markitup_profiles` ORDER BY `name` ASC")->getArray();
+			$profiles = $sql->setQuery("SELECT `name`, `type`, `markitup_buttons` FROM `".rex::getTablePrefix()."markitup_profiles` ORDER BY `name` ASC")->getArray();
 			unset($sql);
 			
 			$jsCode = [];
