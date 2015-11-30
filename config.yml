@@ -1,0 +1,94 @@
+bold:
+    name: profiles_buttons_bold
+    key: B
+    className: bold
+    closeWith:
+        textile: "*"
+    openWith:
+        textile: "*"
+
+clips:
+    name: profiles_buttons_clips
+    className: clips
+
+deleted:
+    name: profiles_buttons_deleted
+    key: S
+    className: deleted
+    closeWith:
+        textile: "-"
+    openWith:
+        textile: "-"
+
+formatting:
+    name: profiles_buttons_formatting
+    className: formatting
+    children:
+        h1:
+            name: profiles_buttons_formatting_option_h1
+            openWith:
+                textile: "h1(!(([![Class]!]))!). "
+        h2:
+            name: profiles_buttons_formatting_option_h2
+            openWith:
+                textile: "h2(!(([![Class]!]))!). "
+        h3:
+            name: profiles_buttons_formatting_option_h3
+            openWith:
+                textile: "h3(!(([![Class]!]))!). "
+        h4:
+            name: profiles_buttons_formatting_option_h4
+            openWith:
+                textile: "h4(!(([![Class]!]))!). "
+        h5:
+            name: profiles_buttons_formatting_option_h5
+            openWith:
+                textile: "h5(!(([![Class]!]))!). "
+        h6:
+            name: profiles_buttons_formatting_option_h6
+            openWith:
+                textile: "h6(!(([![Class]!]))!). "
+        p:
+            name: profiles_buttons_formatting_option_p
+            openWith:
+                textile: "p(!(([![Class]!]))!). "
+
+italic:
+    name: profiles_buttons_italic
+    key: I
+    className: italic
+    closeWith:
+        textile: "_"
+    openWith:
+        textile: "_"
+
+orderedlist:
+    name: profiles_buttons_orderedlist
+    className: orderedlist
+    closeWith:
+        textile: ""
+    openWith:
+        textile: "(!(* |!|*)!)"
+
+table:
+    name: profiles_buttons_table
+    className: table
+    replaceWith:
+        textile: "function(h) {cols = prompt('How many cols?');rows = prompt('How many rows?');html = '';for (r = 0; r < rows; r++) {for (c = 0; c < cols; c++) {html += '|ABC';}html += '|\\n';}return html;}"
+
+underline:
+    name: profiles_buttons_underline
+    key: U
+    className: underline
+    closeWith:
+        textile: "+"
+    openWith:
+        textile: "+"
+
+unorderedlist:
+    name: profiles_buttons_unorderedlist
+    className: unorderedlist
+    closeWith:
+        textile: ""
+    openWith:
+        textile: "(!(# |!|#)!)"
