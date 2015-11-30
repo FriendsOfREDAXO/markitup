@@ -2,7 +2,7 @@
 	$func = rex_request('func', 'string');
 	
 	if ($func == '') {
-		$list = rex_list::factory("SELECT `id`, `name`, `description`, `language` FROM `".rex::getTablePrefix()."markitup_profiles` ORDER BY `name` ASC");
+		$list = rex_list::factory("SELECT `id`, `name`, `description`, `type` FROM `".rex::getTablePrefix()."markitup_profiles` ORDER BY `name` ASC");
 		$list->addTableAttribute('class', 'table-striped');
 		$list->setNoRowsMessage($this->i18n('profiles_norowsmessage'));
 		
@@ -14,7 +14,7 @@
 		
 		$list->setColumnLabel('name', $this->i18n('profiles_column_name'));
 		$list->setColumnLabel('description', $this->i18n('profiles_column_description'));
-		$list->setColumnLabel('language', $this->i18n('profiles_column_language'));
+		$list->setColumnLabel('type', $this->i18n('profiles_column_type'));
 		
 		// functions column spans 2 data-columns
 		$funcs = $this->i18n('profiles_column_functions');
@@ -56,24 +56,7 @@
 			$field = $form->addTextField('description');
 			$field->setLabel($this->i18n('profiles_label_description'));
 		//End - add description-field
-		
-		//Start - add language-field
-			$field = $form->addSelectField('language');
-			$field->setLabel($this->i18n('profiles_label_language'));
-			
-			$select = $field->getSelect();
-			$select->setSize(1);
-			$select->addOption('---', 0);
-			
-			//Start - get all languages from the assets-folder
-				$languages = glob(rex_path::addonAssets('rex_markitup', 'langs').'/*.js');
-				foreach ($languages as $language) {
-					$language = substr($language, strlen(rex_path::addonAssets('rex_markitup', 'langs')) +1, -3);
-					$select->addOption($language, $language);
-				}
-			//End - get all languages from the assets-folder
-		//End - add language-field
-		
+
 		//Start - add type-field
 			$field = $form->addSelectField('type');
 			$field->setLabel($this->i18n('profiles_label_type'));
@@ -97,25 +80,29 @@
 						<p><a href="javascript:void(0);" onclick="$(\'#rex-markitup-buttons-help\').toggle(\'fast\');">Zeige/verberge Hilfe</a></p>
 						<div id="rex-markitup-buttons-help" style="display:none">'.
 							'<b>bold</b><br>'.
-							$this->i18n('profiles_buttons_bold').'<br>'.
+							$this->i18n('profiles_buttons_bold_description').'<br>'.
 							'<br>'.
+							'<b>clips</b><br>'.
+							$this->i18n('profiles_buttons_clips_description').'<br>'.
+							'<br>'.
+							'<b>clips</b><br>'.
 							'<b>deleted</b><br>'.
-							$this->i18n('profiles_buttons_deleted').'<br>'.
+							$this->i18n('profiles_buttons_deleted_description').'<br>'.
 							'<br>'.
-							'<b>formatting</b><br>'.
-							$this->i18n('profiles_buttons_formatting').'<br>'.
+							'<b>formatting[h1|h2|h3|h4|h5|h6|p]</b><br>'.
+							$this->i18n('profiles_buttons_formatting_description').'<br>'.
 							'<br>'.
 							'<b>italic</b><br>'.
-							$this->i18n('profiles_buttons_italic').'<br>'.
+							$this->i18n('profiles_buttons_italic_description').'<br>'.
 							'<br>'.
 							'<b>orderedlist</b><br>'.
-							$this->i18n('profiles_buttons_orderedlist').'<br>'.
+							$this->i18n('profiles_buttons_orderedlist_description').'<br>'.
 							'<br>'.
 							'<b>underline</b><br>'.
-							$this->i18n('profiles_buttons_underline').'<br>'.
+							$this->i18n('profiles_buttons_underline_description').'<br>'.
 							'<br>'.
 							'<b>unorderedlist</b><br>'.
-							$this->i18n('profiles_buttons_unorderedlist').'<br>'.
+							$this->i18n('profiles_buttons_unorderedlist_description').'<br>'.
 							'
 						</div>
 					</dd>
