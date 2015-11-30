@@ -10,22 +10,41 @@
 	padding:0px;
 }
 
-.markItUpContainer .markItUpHeader ul li {
+.markItUpContainer .markItUpHeader > ul > li {
 	display:inline-block;
 }
 
-.markItUpContainer .markItUpHeader ul li.markItUpDropMenu {
+.markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu {
 	position:relative;
 }
 
-.markItUpContainer .markItUpHeader ul li.markItUpDropMenu ul {
+.markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu ul {
+	border: 1px solid #eee;
 	display:none;
 	position:absolute;
 	left:0px;
-	top:0px;
+	top:34px;
 }
 
-.markItUpContainer .markItUpHeader ul li a {
+.markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li {
+	background-color: #FFFFFF;
+}
+
+.markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li > a {
+	color:#333;
+	display:block;
+	height: 34px;
+	line-height: 34px;
+	padding: 0px 10px;
+	white-space: nowrap;
+}
+
+.markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li > a:hover {
+	color:#FFFFFF;
+	text-decoration:none;
+}
+
+.markItUpContainer .markItUpHeader > ul > li > a {
 	display:block;
 	height:34px;
 	line-height:34px;
@@ -33,42 +52,55 @@
 	width:34px;
 }
 
-.markItUpContainer .markItUpHeader ul li > a:before {
+.markItUpContainer .markItUpHeader > ul > li > a:before {
 	color:#333;
 	font-family: 'FontAwesome';
 	font-size: 14px;
 	position:relative;
 }
 
-.markItUpContainer .markItUpHeader ul li a:hover {
+.markItUpContainer .markItUpHeader > ul > li a:hover {
 	background-color:#4B9AD9;
 }
 
-.markItUpContainer .markItUpHeader ul li.bold > a:before {
+.markItUpContainer .markItUpHeader > ul > li.bold > a:before {
 	content: "\f032";
 }
+.markItUpContainer .markItUpHeader > ul > li.clips > a:before {
+	content: "\f009";
+}
 
-.markItUpContainer .markItUpHeader ul li.deleted > a:before {
+.markItUpContainer .markItUpHeader > ul > li.deleted > a:before {
 	content: "\f0cc";
 }
 
-.markItUpContainer .markItUpHeader ul li.formatting > a:before {
+.markItUpContainer .markItUpHeader > ul > li.formatting > a:before {
 	content: "\f1dd";
 }
 
-.markItUpContainer .markItUpHeader ul li.italic > a:before {
+.markItUpContainer .markItUpHeader > ul > li.italic > a:before {
 	content: "\f033";
 }
 
-.markItUpContainer .markItUpHeader ul li.orderedlist > a:before {
+.markItUpContainer .markItUpHeader > ul > li.orderedlist > a:before {
 	content: "\f0cb";
 }
 
-.markItUpContainer .markItUpHeader ul li.underline > a:before {
+.markItUpContainer .markItUpHeader > ul > li.table {
+	margin:0px;
+	max-width:none;
+	width:auto;
+}
+
+.markItUpContainer .markItUpHeader > ul > li.table > a:before {
+	content: "\f0ce";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.underline > a:before {
 	content: "\f0cd";
 }
 
-.markItUpContainer .markItUpHeader ul li.unorderedlist > a:before {
+.markItUpContainer .markItUpHeader > ul > li.unorderedlist > a:before {
 	content: "\f0ca";
 }
 
