@@ -1,85 +1,7 @@
 <?php
 	if (rex::isBackend()) {
-		function markitupDefineButtons($type, $profileButtons, $that) {
-			//Start - define all buttons
-				$buttons = [];
-				
-				//Start - define button 'bold'
-					$btn = [];
-					$btn['name'] = $that->i18n('profiles_buttons_bold');
-					$btn['key'] = 'B';
-					$btn['className'] = 'bold';
-					$btn['openWith']['textile'] = '*';
-					$btn['closeWith']['textile'] = '*';
-					$buttons['bold'] = $btn;
-				//End - define button 'bold'
-				
-				//Start - define button 'deleted'
-					$btn = [];
-					$btn['name'] = $that->i18n('profiles_buttons_deleted');
-					$btn['key'] = 'S';
-					$btn['className'] = 'deleted';
-					$btn['openWith']['textile'] = '-';
-					$btn['closeWith']['textile'] = '-';
-					$buttons['deleted'] = $btn;
-				//End - define button 'deleted'
-				
-				//Start - define button 'formatting'
-					$btn = [];
-					$btn['name'] = $that->i18n('profiles_buttons_formatting');
-					$btn['className'] = 'formatting';
-					$btn['children'] = [];
-					
-					for ($i = 1; $i <= 6; $i++) {
-						$child = [];
-						$child['name'] = $that->i18n('profiles_buttons_formatting_option_h'.$i);
-						$child['openWith']['textile'] = 'h'.$i.'(!(([![Class]!]))!). ';
-						
-						$btn['children']['h'.$i] = $child;
-					}
-					$btn['children']['p'] = ['name' => $that->i18n('profiles_buttons_formatting_option_p'), 'openWith' => ['textile'=>'p(!(([![Class]!]))!). ']];
-					$buttons['formatting'] = $btn;
-				//End - define button 'formatting'
-				
-				//Start - define button 'italic'
-					$btn = [];
-					$btn['name'] = $that->i18n('profiles_buttons_italic');
-					$btn['key'] = 'I';
-					$btn['className'] = 'italic';
-					$btn['openWith']['textile'] = '_';
-					$btn['closeWith']['textile'] = '_';
-					$buttons['italic'] = $btn;
-				//End - define button 'italic'
-				
-				//Start - define button 'orderedlist'
-					$btn = [];
-					$btn['name'] = $that->i18n('profiles_buttons_orderedlist');
-					$btn['className'] = 'orderedlist';
-					$btn['openWith']['textile'] = '(!(* |!|*)!)';
-					$btn['closeWith']['textile'] = '';
-					$buttons['orderedlist'] = $btn;
-				//End - define button 'orderedlist'
-				
-				//Start - define button 'underline'
-					$btn = [];
-					$btn['name'] = $that->i18n('profiles_buttons_underline');
-					$btn['key'] = 'U';
-					$btn['className'] = 'underline';
-					$btn['openWith']['textile'] = '+';
-					$btn['closeWith']['textile'] = '+';
-					$buttons['underline'] = $btn;
-				//End - define button 'underline'
-				
-				//Start - define button 'unorderedlist'
-					$btn = [];
-					$btn['name'] = $that->i18n('profiles_buttons_unorderedlist');
-					$btn['className'] = 'unorderedlist';
-					$btn['openWith']['textile'] = '(!(# |!|#)!)';
-					$btn['closeWith']['textile'] = '';
-					$buttons['unorderedlist'] = $btn;
-				//End - define button 'unorderedlist'
-			//End - define all buttons
-			
+		function markitupDefineButtons ($type, $profileButtons, $that) {
+			$markItUpButtons = rex_file::getConfig(rex_path::addon('rex_markitup', 'config.yml'));
 			
 			$buttonString = '';
 			$profileButtons = explode(',', $profileButtons);
@@ -88,17 +10,34 @@
 				
 				if (preg_match('/(.*)\[(.*)\]/', $profileButton, $matches)) {
 					$profileButton = $matches[1];
-					$options = explode('|', $matches[2]);
+					
+					//Start - explode parameters
+						$parameters = explode('|', $matches[2]);
+						$parameterString = '';
+						foreach ($parameters as $parameter) {
+							if (strpos($parameter, '=') !== false) {
+								list($key, $value) = explode('=',$parameter);
+								$options[] = ['name' => addslashes($key), 'openWith' => addslashes($value)];
+							} else {
+								$options[] = $parameter;
+							}
+						}
+						
+					//End - explode parameters
 				}
 				
 				$buttonString .= "{";
 				
-				foreach (['name', 'key', 'openWith', 'closeWith', 'className'] as $property) {
-					if (!empty($buttons[$profileButton][$property])) {
+				foreach (['name', 'key', 'openWith', 'closeWith', 'className', 'replaceWith'] as $property) {
+					if (!empty($markItUpButtons[$profileButton][$property])) {
 						if (in_array($property, ['openWith', 'closeWith'])) {
-							$buttonString .= "  ".$property.":'".$buttons[$profileButton][$property][$type]."',";
+							$buttonString .= "  ".$property.":'".$markItUpButtons[$profileButton][$property][$type]."',".PHP_EOL;
+						} else if ($property == 'replaceWith') {
+							$buttonString .= "  ".$property.":".$markItUpButtons[$profileButton][$property][$type].",".PHP_EOL;
+						} else if ($property == 'name') {
+							$buttonString .= "  ".$property.":'".$that->i18n($markItUpButtons[$profileButton][$property])."',".PHP_EOL;
 						} else {
-							$buttonString .= "  ".$property.":'".$buttons[$profileButton][$property]."',";
+							$buttonString .= "  ".$property.":'".$markItUpButtons[$profileButton][$property]."',".PHP_EOL;
 						}
 					}
 				}
@@ -109,15 +48,25 @@
 						
 						foreach ($options as $option) {
 							$buttonString .= "{";
+							
+							if (is_array($option)) {
+								foreach ($option as $property => $value) {
+									$buttonString .= "  ".$property.":'".$value."',";
+								}
+							} else {
 								foreach (['name', 'key', 'openWith', 'closeWith'] as $property) {
-									if (!empty($buttons[$profileButton]['children'][$option][$property])) {
-										if (in_array($property, ['openWith', 'closeWith'])) {
-											$buttonString .= "  ".$property.":'".$buttons[$profileButton]['children'][$option][$property][$type]."',";
+									if (in_array($property, ['openWith', 'closeWith'])) {
+										$buttonString .= "  ".$property.":'".$markItUpButtons[$profileButton]['children'][$option][$property][$type]."',".PHP_EOL;
+									} else {
+										if ($property == 'name') {
+											$buttonString .= "  ".$property.":'".$that->i18n($markItUpButtons[$profileButton]['children'][$option][$property])."',".PHP_EOL;
 										} else {
-											$buttonString .= "  ".$property.":'".$buttons[$profileButton]['children'][$option][$property]."',";
+											$buttonString .= "  ".$property.":'".$markItUpButtons[$profileButton]['children'][$option][$property]."',".PHP_EOL;
 										}
 									}
 								}
+							}
+							
 							$buttonString .= "},";
 						}
 						
@@ -130,6 +79,8 @@
 			
 			return $buttonString;
 		}
+		
+		/////////////////////////////////////////////
 		
 		rex_view::addJsFile($this->getAssetsUrl('jquery.markitup.js'));
 		rex_view::addCssFile($this->getAssetsUrl('style.css'));
