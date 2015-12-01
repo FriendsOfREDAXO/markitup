@@ -1,11 +1,12 @@
 package: rex_markitup
-version: '1.0.3'
+version: '1.0.4'
 author: Thomas Kaegi
 supportpage: www.redaxo.org/de/forum/
 
 page:
     title: 'translate:title'
     perm: rex_markitup[]
+    pjax: true
     subpages:
         tutorial: { title: 'translate:tutorial', perm: rex_markitup[tutorial] }
         profiles: { title: 'translate:profiles', perm: rex_markitup[profiles] }
