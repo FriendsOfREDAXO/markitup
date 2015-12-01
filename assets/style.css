@@ -66,8 +66,13 @@
 .markItUpContainer .markItUpHeader > ul > li.bold > a:before {
 	content: "\f032";
 }
+
 .markItUpContainer .markItUpHeader > ul > li.clips > a:before {
 	content: "\f009";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.code > a:before {
+	content: "\f121";
 }
 
 .markItUpContainer .markItUpHeader > ul > li.deleted > a:before {
@@ -78,12 +83,24 @@
 	content: "\f1dd";
 }
 
+.markItUpContainer .markItUpHeader > ul > li.image > a:before {
+	content: "\f03e";
+}
+
 .markItUpContainer .markItUpHeader > ul > li.italic > a:before {
 	content: "\f033";
 }
 
+.markItUpContainer .markItUpHeader > ul > li.link > a:before {
+	content: "\f0c1";
+}
+
 .markItUpContainer .markItUpHeader > ul > li.orderedlist > a:before {
 	content: "\f0cb";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.quote > a:before {
+	content: "\f10d";
 }
 
 .markItUpContainer .markItUpHeader > ul > li.sub > a:before {
