@@ -54,14 +54,18 @@
 									$buttonString .= "  ".$property.":'".$value."',";
 								}
 							} else {
-								foreach (['name', 'key', 'openWith', 'closeWith'] as $property) {
-									if (in_array($property, ['openWith', 'closeWith'])) {
-										$buttonString .= "  ".$property.":'".$markItUpButtons[$profileButton]['children'][$option][$property][$type]."',".PHP_EOL;
-									} else {
-										if ($property == 'name') {
-											$buttonString .= "  ".$property.":'".$that->i18n($markItUpButtons[$profileButton]['children'][$option][$property])."',".PHP_EOL;
+								foreach (['name', 'key', 'openWith', 'closeWith', 'replaceWith'] as $property) {
+									if (!empty($markItUpButtons[$profileButton]['children'][$option][$property])) {
+										if (in_array($property, ['openWith', 'closeWith'])) {
+											$buttonString .= "  ".$property.":'".$markItUpButtons[$profileButton]['children'][$option][$property][$type]."',".PHP_EOL;
 										} else {
-											$buttonString .= "  ".$property.":'".$markItUpButtons[$profileButton]['children'][$option][$property]."',".PHP_EOL;
+											if ($property == 'name') {
+												$buttonString .= "  ".$property.":'".$that->i18n($markItUpButtons[$profileButton]['children'][$option][$property])."',".PHP_EOL;
+											} else if ($property == 'replaceWith') {
+												$buttonString .= "  ".$property.":".$markItUpButtons[$profileButton]['children'][$option][$property][$type].",".PHP_EOL;
+											} else {
+												$buttonString .= "  ".$property.":'".$markItUpButtons[$profileButton]['children'][$option][$property]."',".PHP_EOL;
+											}
 										}
 									}
 								}
@@ -83,6 +87,7 @@
 		/////////////////////////////////////////////
 		
 		rex_view::addJsFile($this->getAssetsUrl('jquery.markitup.js'));
+		rex_view::addJsFile($this->getAssetsUrl('scripts.js'));
 		rex_view::addCssFile($this->getAssetsUrl('style.css'));
 		
 		//Start - get markitup-profiles
@@ -91,7 +96,8 @@
 			unset($sql);
 			
 			$jsCode = [];
-			$jsCode[] = '$(document).on(\'ready pjax:success\',function() {';
+			
+			$jsCode[] = 'function markitupInit() {';
 			foreach ($profiles as $profile) {
 				$jsCode[] = '  $(\'.markitupEditor-'.$profile['name'].'\').markItUp({';
 				
@@ -106,8 +112,11 @@
 				$jsCode[] = '      '.markitupDefineButtons($profile['type'], $profile['markitup_buttons'], $this);
 				$jsCode[] = '    ]';
 				$jsCode[] = '  });';
-				
 			}
+			$jsCode[] = '}';
+			
+			$jsCode[] = '$(document).on(\'ready pjax:success\',function() {';
+			$jsCode[] = '  markitupInit();';
 			$jsCode[] = '});';
 			
 			if (!rex_file::put(rex_path::addonAssets('rex_markitup', 'cache/markitup_profiles.js').'', implode(PHP_EOL, $jsCode))) {
@@ -117,6 +126,26 @@
 			rex_view::addJsFile($this->getAssetsUrl('cache/markitup_profiles.js'));
 		//End - get markitup-profiles
 		
-
+		//Start - use OUTPUT_FILTER-EP to use an custom callback
+			rex_extension::register('OUTPUT_FILTER', function($param) {
+				$page = rex_request('page', 'string');
+				$opener_input_field = rex_request('opener_input_field', 'string');
+				
+				$content = $param->getSubject();
+				
+				if (substr($opener_input_field, 0, 9) == 'markitup_') {
+					switch ($page) {
+						case 'mediapool/media':
+							$content = preg_replace("|javascript:selectMedia\(\'(.*)\', \'(.*)\'\);|", "javascript:window.opener.$.markItUp({target:'#".$opener_input_field."', openWith:'!".rex_url::media()."$1', closeWith:'($2)!'});self.close();", $content);
+						break;
+						case 'linkmap':
+							$content = preg_replace("|javascript:insertLink\(\'(.*)\',\'(.*)\'\);|",  "javascript:btnLinkInternalCallbackInsert('".$opener_input_field."','$1','$2');self.close();", $content);
+						break;
+					}
+				}
+				
+				return $content;
+			});
+		//End - use OUTPUT_FILTER-EP to use an custom callback
 	}
 ?>
