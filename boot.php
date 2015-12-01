@@ -136,7 +136,7 @@
 				if (substr($opener_input_field, 0, 9) == 'markitup_') {
 					switch ($page) {
 						case 'mediapool/media':
-							$content = preg_replace("|javascript:selectMedia\(\'(.*)\', \'(.*)\'\);|", "javascript:window.opener.$.markItUp({target:'#".$opener_input_field."', openWith:'!".rex_url::media()."$1', closeWith:'($2)!'});self.close();", $content);
+							$content = preg_replace("|javascript:selectMedia\(\'(.*)\', \'(.*)\'\);|", "javascript:btnImageCallbackInsert('".$opener_input_field."','$1','$2');self.close();", $content);
 						break;
 						case 'linkmap':
 							$content = preg_replace("|javascript:insertLink\(\'(.*)\',\'(.*)\'\);|",  "javascript:btnLinkInternalCallbackInsert('".$opener_input_field."','$1','$2');self.close();", $content);

@@ -3,6 +3,10 @@ function btnImageCallback (h) {
 	newPoolWindow('index.php?page=mediapool/media&opener_input_field='+markitupFieldID);
 }
 
+function btnImageCallbackInsert (id, url, linktext) {
+	window.opener.$.markItUp({target:'#'+id, openWith:'!'+url+'('+linktext+')!'});
+}
+
 function btnLinkExternalCallback (h) {
 	var linktext = h.selection;
 	if (linktext == '') {
@@ -21,7 +25,7 @@ function btnLinkInternalCallback (h) {
 }
 
 function btnLinkInternalCallbackInsert (id, url, linktext) {
-	$.markItUp({target:'#'+id, openWith:'url:linktext'});
+	window.opener.$.markItUp({target:'#'+id, openWith:url+':'+linktext});
 }
 
 function btnLinkMailtoCallback (h) {
