@@ -7,6 +7,14 @@ bold:
     openWith:
         textile: "*"
 
+code:
+    name: profiles_buttons_code
+    className: code
+    closeWith:
+        textile: "@"
+    openWith:
+        textile: "@"
+
 clips:
     name: profiles_buttons_clips
     className: clips
@@ -27,31 +35,37 @@ formatting:
         h1:
             name: profiles_buttons_formatting_option_h1
             openWith:
-                textile: "h1(!(([![Class]!]))!). "
+                textile: "h1. "
         h2:
             name: profiles_buttons_formatting_option_h2
             openWith:
-                textile: "h2(!(([![Class]!]))!). "
+                textile: "h2. "
         h3:
             name: profiles_buttons_formatting_option_h3
             openWith:
-                textile: "h3(!(([![Class]!]))!). "
+                textile: "h3. "
         h4:
             name: profiles_buttons_formatting_option_h4
             openWith:
-                textile: "h4(!(([![Class]!]))!). "
+                textile: "h4. "
         h5:
             name: profiles_buttons_formatting_option_h5
             openWith:
-                textile: "h5(!(([![Class]!]))!). "
+                textile: "h5. "
         h6:
             name: profiles_buttons_formatting_option_h6
             openWith:
-                textile: "h6(!(([![Class]!]))!). "
+                textile: "h6. "
         p:
             name: profiles_buttons_formatting_option_p
             openWith:
-                textile: "p(!(([![Class]!]))!). "
+                textile: "p. "
+
+image:
+    name: profiles_buttons_image
+    className: image
+    replaceWith:
+        textile: "function(h) {return btnImageCallback(h);}"
 
 italic:
     name: profiles_buttons_italic
@@ -62,13 +76,36 @@ italic:
     openWith:
         textile: "_"
 
+link:
+    name: profiles_buttons_link
+    className: link
+    children:
+        internal:
+            name: profiles_buttons_link_option_internal
+            replaceWith:
+                textile: "function(h) {return btnLinkInternalCallback(h);}"
+        external:
+            name: profiles_buttons_link_option_external
+            replaceWith:
+                textile: "function(h) {return btnLinkExternalCallback(h);}"
+        mailto:
+            name: profiles_buttons_link_option_mailto
+            replaceWith:
+                textile: "function(h) {return btnLinkMailtoCallback(h);}"
+
 orderedlist:
     name: profiles_buttons_orderedlist
     className: orderedlist
+    replaceWith:
+        textile: "function(h) {return btnOrderedlistCallback(h);}"
+
+quote:
+    name: profiles_buttons_quote
+    className: quote
     closeWith:
         textile: ""
     openWith:
-        textile: "(!(* |!|*)!)"
+        textile: "bq. "
 
 sub:
     name: profiles_buttons_sub
@@ -90,7 +127,7 @@ table:
     name: profiles_buttons_table
     className: table
     replaceWith:
-        textile: "function(h) {cols = prompt('How many cols?');rows = prompt('How many rows?');html = '';for (r = 0; r < rows; r++) {for (c = 0; c < cols; c++) {html += '|ABC';}html += '|\\n';}return html;}"
+        textile: "function(h) {return btnTableCallback(h);}"
 
 underline:
     name: profiles_buttons_underline
@@ -104,7 +141,5 @@ underline:
 unorderedlist:
     name: profiles_buttons_unorderedlist
     className: unorderedlist
-    closeWith:
-        textile: ""
-    openWith:
-        textile: "(!(# |!|#)!)"
+    replaceWith:
+        textile: "function(h) {return btnUnorderedlistCallback(h);}"
