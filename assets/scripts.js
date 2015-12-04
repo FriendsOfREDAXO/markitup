@@ -25,7 +25,7 @@ function btnLinkInternalCallback (h) {
 }
 
 function btnLinkInternalCallbackInsert (id, url, linktext) {
-	window.opener.$.markItUp({target:'#'+id, openWith:url+':'+linktext});
+	window.opener.$.markItUp({target:'#'+id, openWith:linktext + ':' + url});
 }
 
 function btnLinkMailtoCallback (h) {
@@ -60,17 +60,13 @@ function btnOrderedlistCallback (h) {
 	var r = "";
 	var start = "# ";
 	for (var i=0; i < lines.length; i++) {
-	  line = lines[i];
-	
-	  if (line.substr(0,1) == "*" || line.substr(0,1) == "#") {
-	    start = "*";
-	    if (i != lines.length - 1) {
-	      line = line + "\n";
-	    }
-	  } else {
-	    line = line + "\n";
-	  }
-	  r = r + start + line;
+		line = lines[i];
+		
+		r = r + start + line;
+		
+		if (i != lines.length - 1) {
+			r += "\n";
+		}
 	}
 	return r;
 }
@@ -82,17 +78,13 @@ function btnUnorderedlistCallback (h) {
 	var r = "";
 	var start = "* ";
 	for (var i=0; i < lines.length; i++) {
-	  line = lines[i];
-	  if (line.substr(0,1) == "*" || line.substr(0,1) == "#") {
-	    start = "*";
-	
-	    if (i != lines.length - 1) {
-	      line = line + "\n";
-	    }
-	  } else {
-	    line = line + "\n";
-	  }
-	  r = r + start + line;
+		line = lines[i];
+		
+		r = r + start + line;
+		
+		if (i != lines.length - 1) {
+			r += "\n";
+		}
 	}
 	return r;
 }
