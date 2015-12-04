@@ -1,8 +1,7 @@
-.markItUpContainer,
-.markItUpContainer textarea {
-	background-color:#FFFFFF;
-	box-shadow: none;
+.markItUpContainer .markItUpHeader {
+	background-color: #324050;
 	border: 1px solid #eee;
+	border-bottom: 0px;
 }
 
 .markItUpContainer .markItUpHeader ul {
@@ -19,7 +18,7 @@
 }
 
 .markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu ul {
-	border: 1px solid #eee;
+	border-top: 1px solid #9ca5b2;
 	display:none;
 	position:absolute;
 	left:0px;
@@ -27,11 +26,11 @@
 }
 
 .markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li {
-	background-color: #FFFFFF;
+	background-color: #324050;
 }
 
 .markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li > a {
-	color:#333;
+	color:#9ca5b2;
 	display:block;
 	height: 34px;
 	line-height: 34px;
@@ -40,7 +39,8 @@
 }
 
 .markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li > a:hover {
-	color:#FFFFFF;
+	background-color:#283542;
+	color:#4b9ad9;
 	text-decoration:none;
 }
 
@@ -53,14 +53,19 @@
 }
 
 .markItUpContainer .markItUpHeader > ul > li > a:before {
-	color:#333;
+	color:#9ca5b2;
 	font-family: 'FontAwesome';
 	font-size: 14px;
 	position:relative;
 }
 
 .markItUpContainer .markItUpHeader > ul > li a:hover {
-	background-color:#4B9AD9;
+	background-color:#283542;
+	text-decoration:none;
+}
+
+.markItUpContainer .markItUpHeader > ul > li a:hover:before {
+	color: #4b9ad9;
 }
 
 .markItUpContainer .markItUpHeader > ul > li.bold > a:before {
@@ -127,6 +132,12 @@
 
 .markItUpContainer .markItUpHeader > ul > li.unorderedlist > a:before {
 	content: "\f0ca";
+}
+
+.markItUpContainer textarea {
+	background-color:#FFFFFF;
+	box-shadow: none;
+	border: 1px solid #eee;
 }
 
 .markItUpContainer textarea:focus {
