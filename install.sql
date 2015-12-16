@@ -13,3 +13,6 @@ INSERT INTO `%TABLE_PREFIX%markitup_profiles` (`id`, `name`, `description`, `typ
 
 ALTER TABLE `%TABLE_PREFIX%markitup_profiles`
  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `%TABLE_PREFIX%markitup_profiles`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
