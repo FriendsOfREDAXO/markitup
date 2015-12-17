@@ -4,7 +4,10 @@ function btnImageCallback (h) {
 }
 
 function btnImageCallbackInsert (id, url, linktext) {
-	window.opener.$.markItUp({target:'#'+id, openWith:'!'+url+'('+linktext+')!'});
+	window.opener.$.markItUp({
+		target:'#'+id,
+		openWith:'!'+url+'('+linktext+')!'
+	});
 }
 
 function btnLinkExternalCallback (h) {
@@ -25,7 +28,11 @@ function btnLinkInternalCallback (h) {
 }
 
 function btnLinkInternalCallbackInsert (id, url, linktext) {
-	window.opener.$.markItUp({target:'#'+id, openWith:linktext + ':' + url});
+	window.opener.$.markItUp({
+		target:'#'+id,
+		openWith:'"'+linktext + '(',
+		closeWith:')":'+url
+	});
 }
 
 function btnLinkMailtoCallback (h) {
