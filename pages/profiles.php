@@ -82,21 +82,38 @@
 							'<b>bold</b><br>'.
 							$this->i18n('profiles_buttons_bold_description').'<br>'.
 							'<br>'.
-							'<b>clips</b><br>'.
+							'<b>clips[Snippetname1=Snippettext1|Snippetname2=Snippettext2]</b><br>'.
 							$this->i18n('profiles_buttons_clips_description').'<br>'.
 							'<br>'.
-							'<b>clips</b><br>'.
 							'<b>deleted</b><br>'.
 							$this->i18n('profiles_buttons_deleted_description').'<br>'.
 							'<br>'.
 							'<b>formatting[h1|h2|h3|h4|h5|h6|p]</b><br>'.
 							$this->i18n('profiles_buttons_formatting_description').'<br>'.
 							'<br>'.
+							'<b>image</b><br>'.
+							$this->i18n('profiles_buttons_image_description').'<br>'.
+							'<br>'.
 							'<b>italic</b><br>'.
 							$this->i18n('profiles_buttons_italic_description').'<br>'.
 							'<br>'.
+							'<b>link[internal|external|mailto]</b><br>'.
+							$this->i18n('profiles_buttons_link_description').'<br>'.
+							'<br>'.
 							'<b>orderedlist</b><br>'.
 							$this->i18n('profiles_buttons_orderedlist_description').'<br>'.
+							'<br>'.
+							'<b>quote</b><br>'.
+							$this->i18n('profiles_buttons_quote_description').'<br>'.
+							'<br>'.
+							'<b>sub</b><br>'.
+							$this->i18n('profiles_buttons_sub_description').'<br>'.
+							'<br>'.
+							'<b>sup</b><br>'.
+							$this->i18n('profiles_buttons_sup_description').'<br>'.
+							'<br>'.
+							'<b>table</b><br>'.
+							$this->i18n('profiles_buttons_table_description').'<br>'.
 							'<br>'.
 							'<b>underline</b><br>'.
 							$this->i18n('profiles_buttons_underline_description').'<br>'.
