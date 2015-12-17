@@ -16,5 +16,17 @@
 				return $e->getMessage();
 			}
 		}
+		
+		public static function profileExists ($name) {
+			$sql = rex_sql::factory();
+			$profile = $sql->setQuery("SELECT `name` FROM `".rex::getTablePrefix()."markitup_profiles` WHERE `name` = ".$sql->escape($name)."")->getArray();
+			unset($sql);
+			
+			if (!empty($profile)) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	}
 ?>
