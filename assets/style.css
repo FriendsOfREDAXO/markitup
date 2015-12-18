@@ -59,12 +59,21 @@
 	position:relative;
 }
 
+.markItUpContainer .markItUpHeader > ul > li > a:after {
+	color:#9ca5b2;
+	font-size: 14px;
+}
+
 .markItUpContainer .markItUpHeader > ul > li a:hover {
 	background-color:#283542;
 	text-decoration:none;
 }
 
 .markItUpContainer .markItUpHeader > ul > li a:hover:before {
+	color: #4b9ad9;
+}
+
+.markItUpContainer .markItUpHeader > ul > li a:hover:after {
 	color: #4b9ad9;
 }
 
@@ -84,10 +93,6 @@
 	content: "\f0cc";
 }
 
-.markItUpContainer .markItUpHeader > ul > li.formatting > a:before {
-	content: "\f1dd";
-}
-
 .markItUpContainer .markItUpHeader > ul > li.image > a:before {
 	content: "\f03e";
 }
@@ -96,12 +101,49 @@
 	content: "\f033";
 }
 
+.markItUpContainer .markItUpHeader > ul > li.heading1 > a:before,
+.markItUpContainer .markItUpHeader > ul > li.heading2 > a:before,
+.markItUpContainer .markItUpHeader > ul > li.heading3 > a:before,
+.markItUpContainer .markItUpHeader > ul > li.heading4 > a:before,
+.markItUpContainer .markItUpHeader > ul > li.heading5 > a:before,
+.markItUpContainer .markItUpHeader > ul > li.heading6 > a:before {
+	content: "\f1dc";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.heading1 > a:after {
+	content: "1";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.heading2 > a:after {
+	content: "2";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.heading3 > a:after {
+	content: "3";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.heading4 > a:after {
+	content: "4";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.heading5 > a:after {
+	content: "5";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.heading6 > a:after {
+	content: "6";
+}
+
 .markItUpContainer .markItUpHeader > ul > li.link > a:before {
 	content: "\f0c1";
 }
 
 .markItUpContainer .markItUpHeader > ul > li.orderedlist > a:before {
 	content: "\f0cb";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.paragraph > a:before {
+	content: "\f1dd";
 }
 
 .markItUpContainer .markItUpHeader > ul > li.quote > a:before {

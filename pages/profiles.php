@@ -88,8 +88,23 @@
 							'<b>deleted</b><br>'.
 							$this->i18n('profiles_buttons_deleted_description').'<br>'.
 							'<br>'.
-							'<b>formatting[h1|h2|h3|h4|h5|h6|p]</b><br>'.
-							$this->i18n('profiles_buttons_formatting_description').'<br>'.
+							'<b>heading1</b><br>'.
+							$this->i18n('profiles_buttons_heading1_description').'<br>'.
+							'<br>'.
+							'<b>heading2</b><br>'.
+							$this->i18n('profiles_buttons_heading2_description').'<br>'.
+							'<br>'.
+							'<b>heading3</b><br>'.
+							$this->i18n('profiles_buttons_heading3_description').'<br>'.
+							'<br>'.
+							'<b>heading4</b><br>'.
+							$this->i18n('profiles_buttons_heading4_description').'<br>'.
+							'<br>'.
+							'<b>heading5</b><br>'.
+							$this->i18n('profiles_buttons_heading5_description').'<br>'.
+							'<br>'.
+							'<b>heading6</b><br>'.
+							$this->i18n('profiles_buttons_heading6_description').'<br>'.
 							'<br>'.
 							'<b>image</b><br>'.
 							$this->i18n('profiles_buttons_image_description').'<br>'.
@@ -102,6 +117,9 @@
 							'<br>'.
 							'<b>orderedlist</b><br>'.
 							$this->i18n('profiles_buttons_orderedlist_description').'<br>'.
+							'<br>'.
+							'<b>paragraph</b><br>'.
+							$this->i18n('profiles_buttons_paragraph_description').'<br>'.
 							'<br>'.
 							'<b>quote</b><br>'.
 							$this->i18n('profiles_buttons_quote_description').'<br>'.
