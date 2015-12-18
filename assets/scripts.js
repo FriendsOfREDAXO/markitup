@@ -21,7 +21,6 @@ function btnLinkExternalCallback (h) {
 	return '"'+linktext+'":'+linkurl;
 }
 
-
 function btnLinkInternalCallback (h) {
 	var markitupFieldID = h.textarea.id;
 	openLinkMap(markitupFieldID);
