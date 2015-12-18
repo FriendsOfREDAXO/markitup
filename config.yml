@@ -31,31 +31,42 @@ deleted:
 formatting:
     name: profiles_buttons_formatting
     className: formatting
-    children:
         h1:
             name: profiles_buttons_formatting_option_h1
             openWith:
-                textile: "h1. "
+                textile: '\n\nh1. '
+            closeWith:
+                textile: '\n\n'
         h2:
             name: profiles_buttons_formatting_option_h2
             openWith:
-                textile: "h2. "
+                textile: '\n\nh2. '
+            closeWith:
+                textile: '\n\n'
         h3:
             name: profiles_buttons_formatting_option_h3
             openWith:
-                textile: "h3. "
+                textile: '\n\nh3. '
+            closeWith:
+                textile: '\n\n'
         h4:
             name: profiles_buttons_formatting_option_h4
             openWith:
-                textile: "h4. "
+                textile: '\n\nh4. '
+            closeWith:
+                textile: '\n\n'
         h5:
             name: profiles_buttons_formatting_option_h5
             openWith:
-                textile: "h5. "
+                textile: '\n\nh5. '
+            closeWith:
+                textile: '\n\n'
         h6:
             name: profiles_buttons_formatting_option_h6
             openWith:
-                textile: "h6. "
+                textile: '\n\nh6. '
+            closeWith:
+                textile: '\n\n'
         p:
             name: profiles_buttons_formatting_option_p
             openWith:
