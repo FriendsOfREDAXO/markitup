@@ -29,8 +29,8 @@ function btnLinkInternalCallback (h) {
 function btnLinkInternalCallbackInsert (id, url, linktext) {
 	window.opener.$.markItUp({
 		target:'#'+id,
-		openWith:'"'+linktext + '(',
-		closeWith:')":'+url
+		openWith: '"',
+		closeWith: '('+linktext+')":'+url
 	});
 }
 
@@ -45,8 +45,8 @@ function btnLinkMailtoCallback (h) {
 }
 
 function btnTableCallback (h) {
-	cols = prompt('How many cols?');
-	rows = prompt('How many rows?');
+	cols = prompt('Wie viele Spalten?');
+	rows = prompt('Wie viele Zeilen?');
 	html = '';
 	
 	for (r = 0; r < rows; r++) {
