@@ -32,49 +32,49 @@ heading1:
     name: profiles_buttons_heading1
     className: heading1
     openWith:
-        textile: "\n\nh1. "
+        textile: '\n\nh1. '
     closeWith:
-        textile: "\n\n"
+        textile: '\n\n'
 
 heading2:
     name: profiles_buttons_heading2
     className: heading2
     openWith:
-        textile: "\n\nh2. "
+        textile: '\n\nh2. '
     closeWith:
-        textile: "\n\n"
+        textile: '\n\n'
 
 heading3:
     name: profiles_buttons_heading3
     className: heading3
     openWith:
-        textile: "\n\nh3. "
+        textile: '\n\nh3. '
     closeWith:
-        textile: "\n\n"
+        textile: '\n\n'
 
 heading4:
     name: profiles_buttons_heading4
     className: heading4
     openWith:
-        textile: "\n\nh4. "
+        textile: '\n\nh4. '
     closeWith:
-        textile: "\n\n"
+        textile: '\n\n'
 
 heading5:
     name: profiles_buttons_heading5
     className: heading5
     openWith:
-        textile: "\n\nh5. "
+        textile: '\n\nh5. '
     closeWith:
-        textile: "\n\n"
+        textile: '\n\n'
 
 heading6:
     name: profiles_buttons_heading6
     className: heading6
     openWith:
-        textile: "\n\nh6. "
+        textile: '\n\nh6. '
     closeWith:
-        textile: "\n\n"
+        textile: '\n\n'
 
 image:
     name: profiles_buttons_image
