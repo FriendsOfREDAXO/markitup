@@ -180,6 +180,7 @@
 	background-color:#FFFFFF;
 	box-shadow: none;
 	border: 1px solid #eee;
+	min-height: 250px;
 }
 
 .markItUpContainer textarea:focus {
