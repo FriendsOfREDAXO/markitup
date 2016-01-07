@@ -87,6 +87,7 @@
 		/////////////////////////////////////////////
 		
 		rex_view::addJsFile($this->getAssetsUrl('jquery.markitup.js'));
+		rex_view::addJsFile($this->getAssetsUrl('autosize.min.js'));
 		rex_view::addJsFile($this->getAssetsUrl('scripts.js'));
 		rex_view::addCssFile($this->getAssetsUrl('style.css'));
 		
@@ -117,6 +118,7 @@
 			
 			$jsCode[] = '$(document).on(\'ready pjax:success\',function() {';
 			$jsCode[] = '  markitupInit();';
+			$jsCode[] = '  autosize($("textarea[class*=\'markitupEditor-\']"));';
 			$jsCode[] = '});';
 			
 			if (!rex_file::put(rex_path::addonAssets('rex_markitup', 'cache/markitup_profiles.js').'', implode(PHP_EOL, $jsCode))) {
@@ -134,12 +136,21 @@
 				$content = $param->getSubject();
 				
 				if (substr($opener_input_field, 0, 9) == 'markitup_') {
+					//Start - get markup
+						$markUp = '';
+						if (strpos($opener_input_field, 'markdown') !== false) {
+							$markUp = 'Markdown';
+						} else if (strpos($opener_input_field, 'textile') !== false) {
+							$markUp = 'Textile';
+						}
+					//End - get markup
+					
 					switch ($page) {
 						case 'mediapool/media':
-							$content = preg_replace("|javascript:selectMedia\(\'(.*)\', \'(.*)\'\);|", "javascript:btnImageCallbackInsert('".$opener_input_field."','$1','$2');self.close();", $content);
+							$content = preg_replace("|javascript:selectMedia\(\'(.*)\', \'(.*)\'\);|", "javascript:btn".$markUp."ImageCallbackInsert('".$opener_input_field."','$1','$2');self.close();", $content);
 						break;
 						case 'linkmap':
-							$content = preg_replace("|javascript:insertLink\(\'(.*)\',\'(.*)\'\);|",  "javascript:btnLinkInternalCallbackInsert('".$opener_input_field."','$1','$2');self.close();", $content);
+							$content = preg_replace("|javascript:insertLink\(\'(.*)\',\'(.*)\'\);|",  "javascript:btn".$markUp."LinkInternalCallbackInsert('".$opener_input_field."','$1','$2');self.close();", $content);
 						break;
 					}
 				}

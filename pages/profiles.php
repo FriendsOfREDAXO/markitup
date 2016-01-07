@@ -64,6 +64,7 @@
 			$select = $field->getSelect();
 			$select->setSize(1);
 			$select->addOption('---', 0);
+			$select->addOption('Markdown', 'markdown');
 			$select->addOption('Textile', 'textile');
 		//End - add type-field
 		

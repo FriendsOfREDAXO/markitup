@@ -2,17 +2,21 @@ bold:
     name: profiles_buttons_bold
     key: B
     className: bold
-    closeWith:
-        textile: "*"
     openWith:
+        markdown: "**"
+        textile: "*"
+    closeWith:
+        markdown: "**"
         textile: "*"
 
 code:
     name: profiles_buttons_code
     className: code
-    closeWith:
-        textile: "@"
     openWith:
+        markdown: "```"
+        textile: "@"
+    closeWith:
+        markdown: "```"
         textile: "@"
 
 clips:
@@ -23,72 +27,89 @@ deleted:
     name: profiles_buttons_deleted
     key: S
     className: deleted
-    closeWith:
-        textile: "-"
     openWith:
+        markdown: "~~"
+        textile: "-"
+    closeWith:
+        markdown: "~~"
         textile: "-"
 
 heading1:
     name: profiles_buttons_heading1
     className: heading1
     openWith:
+        markdown: '\n\n#'
         textile: '\n\nh1. '
     closeWith:
+        markdown: '\n\n'
         textile: '\n\n'
 
 heading2:
     name: profiles_buttons_heading2
     className: heading2
     openWith:
+        markdown: '\n\n##'
         textile: '\n\nh2. '
     closeWith:
+        markdown: '\n\n'
         textile: '\n\n'
 
 heading3:
     name: profiles_buttons_heading3
     className: heading3
     openWith:
+        markdown: '\n\n###'
         textile: '\n\nh3. '
     closeWith:
+        markdown: '\n\n'
         textile: '\n\n'
 
 heading4:
     name: profiles_buttons_heading4
     className: heading4
     openWith:
+        markdown: '\n\n####'
         textile: '\n\nh4. '
     closeWith:
+        markdown: '\n\n'
         textile: '\n\n'
 
 heading5:
     name: profiles_buttons_heading5
     className: heading5
     openWith:
+        markdown: '\n\n#####'
         textile: '\n\nh5. '
     closeWith:
+        markdown: '\n\n'
         textile: '\n\n'
 
 heading6:
     name: profiles_buttons_heading6
     className: heading6
     openWith:
+        markdown: '\n\n######'
         textile: '\n\nh6. '
     closeWith:
+        markdown: '\n\n'
         textile: '\n\n'
 
 image:
     name: profiles_buttons_image
     className: image
     replaceWith:
-        textile: "function(h) {return btnImageCallback(h);}"
+        markdown: "function(h) {return btnMarkdownImageCallback(h);}"
+        textile: "function(h) {return btnTextileImageCallback(h);}"
 
 italic:
     name: profiles_buttons_italic
     key: I
     className: italic
-    closeWith:
-        textile: "_"
     openWith:
+        markdown: "*"
+        textile: "_"
+    closeWith:
+        markdown: "*"
         textile: "_"
 
 link:
@@ -98,69 +119,81 @@ link:
         internal:
             name: profiles_buttons_link_option_internal
             replaceWith:
-                textile: "function(h) {return btnLinkInternalCallback(h);}"
+                markdown: "function(h) {return btnMarkdownLinkInternalCallback(h);}"
+                textile: "function(h) {return btnTextileLinkInternalCallback(h);}"
         external:
             name: profiles_buttons_link_option_external
             replaceWith:
-                textile: "function(h) {return btnLinkExternalCallback(h);}"
+                markdown: "function(h) {return btnMarkdownLinkExternalCallback(h);}"
+                textile: "function(h) {return btnTextileLinkExternalCallback(h);}"
         mailto:
             name: profiles_buttons_link_option_mailto
             replaceWith:
-                textile: "function(h) {return btnLinkMailtoCallback(h);}"
+                markdown: "function(h) {return btnMarkdownLinkMailtoCallback(h);}"
+                textile: "function(h) {return btnTextileLinkMailtoCallback(h);}"
 
 orderedlist:
     name: profiles_buttons_orderedlist
     className: orderedlist
     replaceWith:
-        textile: "function(h) {return btnOrderedlistCallback(h);}"
+        markdown: "function(h) {return btnMarkdownOrderedlistCallback(h);}"
+        textile: "function(h) {return btnTextileOrderedlistCallback(h);}"
 
 paragraph:
     name: profiles_buttons_paragraph
     className: paragraph
     openWith:
+        markdown: '\n\n'
         textile: "p. "
 
 quote:
     name: profiles_buttons_quote
     className: quote
-    closeWith:
-        textile: ""
     openWith:
+        markdown: "> "
         textile: "bq. "
 
 sub:
     name: profiles_buttons_sub
     className: sub
-    closeWith:
-        textile: "~"
     openWith:
+        markdown: "~"
+        textile: "~"
+    closeWith:
+        markdown: "~"
         textile: "~"
 
 sup:
     name: profiles_buttons_sup
     className: sup
-    closeWith:
-        textile: "^"
     openWith:
+        markdown: "^"
+        textile: "^"
+    closeWith:
+        markdown: "^"
         textile: "^"
 
 table:
     name: profiles_buttons_table
     className: table
     replaceWith:
-        textile: "function(h) {return btnTableCallback(h);}"
+        markdown: "function(h) {return btnMarkdownTableCallback(h);}"
+        textile: "function(h) {return btnTextileTableCallback(h);}"
 
 underline:
     name: profiles_buttons_underline
     key: U
     className: underline
-    closeWith:
-        textile: "+"
     openWith:
+        markdown: "__"
+        textile: "+"
+    closeWith:
+        markdown: "__"
         textile: "+"
 
 unorderedlist:
     name: profiles_buttons_unorderedlist
     className: unorderedlist
     replaceWith:
-        textile: "function(h) {return btnUnorderedlistCallback(h);}"
+        markdown: "function(h) {return btnMarkdownUnorderedlistCallback(h);}"
+        textile: "function(h) {return btnTextileUnorderedlistCallback(h);}"
