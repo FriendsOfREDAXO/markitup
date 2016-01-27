@@ -1,7 +1,7 @@
 package: rex_markitup
-version: '1.2.0'
+version: '1.2.1'
 author: Thomas Kaegi
-supportpage: github.com/factorylabs/rex_markitup
+supportpage: github.com/phoebusryan/rex_markitup
 
 page:
     title: 'translate:title'
