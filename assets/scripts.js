@@ -17,7 +17,7 @@
 	function btnMarkdownImageCallbackInsert (id, url, linktext) {
 		window.opener.$.markItUp({
 			target:'#'+id,
-			openWith:'['+linktext+']('+url+')'
+			openWith:'['+linktext+'](index.php?rex_media_type=markitupImage&rex_media_file='+url+')'
 		});
 	}
 	
@@ -115,9 +115,12 @@
 	function btnTextileImageCallbackInsert (id, url, linktext) {
 		window.opener.$.markItUp({
 			target:'#'+id,
-			openWith:'!'+url+'('+linktext+')!'
+			openWith:'!index.php?rex_media_type=markitupImage&rex_media_file='+url+'('+linktext+')!'
 		});
 	}
+	
+	
+
 	
 	function btnTextileLinkExternalCallback (h) {
 		var linktext = h.selection;
