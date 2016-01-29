@@ -9,11 +9,26 @@
 	$code .= '      <textarea class="form-control markitupEditor-markdown_full" id="markitup_markdown_1" name="REX_INPUT_VALUE[1]">REX_VALUE[1]</textarea>'.PHP_EOL;
 	$code .= '    </div>'.PHP_EOL;
 	$code .= '  </div>'.PHP_EOL;
-	$code .= '</fieldset>'.PHP_EOL;
+	$code .= '</fieldset>';
 	
 	$fragment = new rex_fragment();
+	$fragment->setVar('collapse', true, false);
+	$fragment->setVar('collapsed', true, false);
 	$fragment->setVar('class', 'info', false);
 	$fragment->setVar('title', 'Beispiel: Module Input (Markdown)', false); //todo
+	$fragment->setVar('body', rex_string::highlight($code), false);
+	echo $fragment->parse('core/page/section.php');
+	
+	$code = '';
+	$code .= '<?php'.PHP_EOL;
+	$code .= '  echo rex_markitup::parseOutput (\'markdown\', \'REX_VALUE[id=1 html=1]\');'.PHP_EOL;
+	$code .= '?>';
+	
+	$fragment = new rex_fragment();
+	$fragment->setVar('collapse', true, false);
+	$fragment->setVar('collapsed', true, false);
+	$fragment->setVar('class', 'info', false);
+	$fragment->setVar('title', 'Beispiel: Module Output (Markdown)', false); //todo
 	$fragment->setVar('body', rex_string::highlight($code), false);
 	echo $fragment->parse('core/page/section.php');
 	
@@ -24,12 +39,14 @@
 	$code .= '  <div class="form-group">'.PHP_EOL;
 	$code .= '    <label class="col-sm-2 control-label" for="markitup_textile_1">VALUE 1</label>'.PHP_EOL;
 	$code .= '    <div class="col-sm-10">'.PHP_EOL;
-	$code .= '      <textarea class="form-control  markitupEditor-textile_full" id="markitup_textile_1" name="REX_INPUT_VALUE[1]">REX_VALUE[1]</textarea>'.PHP_EOL;
+	$code .= '      <textarea class="form-control markitupEditor-textile_full" id="markitup_textile_1" name="REX_INPUT_VALUE[1]">REX_VALUE[1]</textarea>'.PHP_EOL;
 	$code .= '    </div>'.PHP_EOL;
 	$code .= '  </div>'.PHP_EOL;
-	$code .= '</fieldset>'.PHP_EOL;
+	$code .= '</fieldset>';
 	
 	$fragment = new rex_fragment();
+	$fragment->setVar('collapse', true, false);
+	$fragment->setVar('collapsed', true, false);
 	$fragment->setVar('class', 'info', false);
 	$fragment->setVar('title', 'Beispiel: Module Input (Textile)', false); //todo
 	$fragment->setVar('body', rex_string::highlight($code), false);
@@ -39,12 +56,30 @@
 	
 	$code = '';
 	$code .= '<?php'.PHP_EOL;
+	$code .= '  echo rex_markitup::parseOutput (\'textile\', \'REX_VALUE[id=1 html=1]\');'.PHP_EOL;
+	$code .= '?>';
+	
+	$fragment = new rex_fragment();
+	$fragment->setVar('collapse', true, false);
+	$fragment->setVar('collapsed', true, false);
+	$fragment->setVar('class', 'info', false);
+	$fragment->setVar('title', 'Beispiel: Module Output (Textile)', false); //todo
+	$fragment->setVar('body', rex_string::highlight($code), false);
+	echo $fragment->parse('core/page/section.php');
+	
+	///
+	
+	$code = '';
+	$code .= '<?php'.PHP_EOL;
 	$code .= '  if (!rex_markitup::profileExists(\'simple\')) {'.PHP_EOL;
+	$code .= '    //Name, Beschreibung, Typ (markdown oder textile), Buttons'.PHP_EOL;
 	$code .= '    rex_markitup::insertProfile(\'simple\', \'Lorem Ipsum\', \'textile\', \'bold,italic\');'.PHP_EOL;
 	$code .= '  }'.PHP_EOL;
 	$code .= '?>';
 	
 	$fragment = new rex_fragment();
+	$fragment->setVar('collapse', true, false);
+	$fragment->setVar('collapsed', true, false);
 	$fragment->setVar('class', 'info', false);
 	$fragment->setVar('title', 'Beispiel: Via Modul oder AddOn ein Profil anlegen', false); //todo
 	$fragment->setVar('body', rex_string::highlight($code), false);
