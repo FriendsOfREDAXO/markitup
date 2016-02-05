@@ -1,8 +1,6 @@
 <?php
-	require_once (rex_path::addon('rex_markitup','vendor/php-textile/src/Netcarver/Textile/Parser.php')); //todo: use $this
-	require_once (rex_path::addon('rex_markitup','vendor/php-textile/src/Netcarver/Textile/DataBag.php')); //todo: use $this
-	require_once (rex_path::addon('rex_markitup','vendor/php-textile/src/Netcarver/Textile/Tag.php')); //todo: use $this
-	require_once (rex_path::addon('rex_markitup','vendor/parsedown/Parsedown.php')); //todo: use $this
+	require_once (rex_path::addon('rex_markitup','lib/class.rex_markitup_markdown.php')); //todo: use $this
+	require_once (rex_path::addon('rex_markitup','lib/class.rex_markitup_textile.php')); //todo: use $this
 	
 	class rex_markitup {
 		
@@ -39,11 +37,11 @@
 			
 			switch ($type) {
 				case 'markdown':
-					$parser = new Parsedown();
+					$parser = new rex_markitup_markdown();
 					return $parser->text($content);
 				break;
 				case 'textile':
-					$parser = new \Netcarver\Textile\Parser();
+					$parser = new rex_markitup_textile();
 					return $parser->parse($content);
 				break;
 			}
