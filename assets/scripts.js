@@ -1,3 +1,20 @@
+var currentLanguage = $('html').attr('lang');
+
+var rex_markitupLanguagestrings = new Object();
+rex_markitupLanguagestrings['de'] = new Object();
+rex_markitupLanguagestrings['en'] = new Object();
+
+rex_markitupLanguagestrings['de']['linktext'] = 'Linktext?';
+rex_markitupLanguagestrings['en']['linktext'] = 'Linktext?';
+rex_markitupLanguagestrings['de']['linkurl'] = 'URL?';
+rex_markitupLanguagestrings['en']['linkurl'] = 'URL?';
+rex_markitupLanguagestrings['de']['linkemailaddress'] = 'E-Mail Adresse?';
+rex_markitupLanguagestrings['en']['linkemailaddress'] = 'Emailaddress?';
+rex_markitupLanguagestrings['de']['tablecolumns'] = 'Wie viele Spalten?';
+rex_markitupLanguagestrings['en']['tablecolumns'] = 'How many cols?';
+rex_markitupLanguagestrings['de']['tablerows'] = 'Wie viele Zeilen?';
+rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
+
 //Start - temporary functions to prevent errors
 	function btnImageCallbackInsert() {
 		alert('Module-Input is misconfigured, please use the example!');
@@ -24,10 +41,10 @@
 	function btnMarkdownLinkExternalCallback (h) {
 		var linktext = h.selection;
 		if (linktext == '') {
-			var linktext = prompt('Linktext?'); //todo
+			var linktext = prompt(rex_markitupLanguagestrings[currentLanguage]['linktext']);
 		}
 		
-		var linkurl = prompt('URL?'); //todo
+		var linkurl = prompt(rex_markitupLanguagestrings[currentLanguage]['linkurl']);
 		
 		return '['+linktext+']('+linkurl+')';
 	}
@@ -48,16 +65,16 @@
 	function btnMarkdownLinkMailtoCallback (h) {
 		var linktext = h.selection;
 		if (linktext == '') {
-			var linktext = prompt('Linktext?'); //todo
+			var linktext = prompt(rex_markitupLanguagestrings[currentLanguage]['linktext']);
 		}
-		var emailaddress = prompt('Emailadresse?'); //todo
+		var emailaddress = prompt(rex_markitupLanguagestrings[currentLanguage]['linkemailaddress']);
 		
 		return '['+linktext+'](mailto:'+emailaddress+')';
 	}
 	
 	function btnMarkdownTableCallback (h) {
-		cols = prompt('Wie viele Spalten?'); //todo
-		rows = prompt('Wie viele Zeilen?'); //todo
+		cols = prompt(rex_markitupLanguagestrings[currentLanguage]['tablecolumns']);
+		rows = prompt(rex_markitupLanguagestrings[currentLanguage]['tablerows']);
 		html = '';
 		
 		for (r = 0; r < rows; r++) {
@@ -119,16 +136,13 @@
 		});
 	}
 	
-	
-
-	
 	function btnTextileLinkExternalCallback (h) {
 		var linktext = h.selection;
 		if (linktext == '') {
-			var linktext = prompt('Linktext?'); //todo
+			var linktext = prompt(rex_markitupLanguagestrings[currentLanguage]['linktext']);
 		}
 		
-		var linkurl = prompt('URL?'); //todo
+		var linkurl = prompt(rex_markitupLanguagestrings[currentLanguage]['linkurl']); //todo
 		
 		return '"'+linktext+'":'+linkurl;
 	}
@@ -149,16 +163,16 @@
 	function btnTextileLinkMailtoCallback (h) {
 		var linktext = h.selection;
 		if (linktext == '') {
-			var linktext = prompt('Linktext?'); //todo
+			var linktext = prompt(rex_markitupLanguagestrings[currentLanguage]['linktext']);
 		}
-		var emailaddress = prompt('Emailadresse?'); //todo
+		var emailaddress = prompt(rex_markitupLanguagestrings[currentLanguage]['linkemailaddress']);
 		
 		return '"'+linktext+'":mailto:'+emailaddress;
 	}
 
 	function btnTextileTableCallback (h) {
-		cols = prompt('Wie viele Spalten?'); //todo
-		rows = prompt('Wie viele Zeilen?'); //todo
+		cols = prompt(rex_markitupLanguagestrings[currentLanguage]['tablecolumns']);
+		rows = prompt(rex_markitupLanguagestrings[currentLanguage]['tablerows']);
 		html = '';
 		
 		for (r = 0; r < rows; r++) {
