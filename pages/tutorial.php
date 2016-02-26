@@ -21,7 +21,7 @@
 	
 	$code = '';
 	$code .= '<?php'.PHP_EOL;
-	$code .= '  echo rex_markitup::parseOutput (\'markdown\', \'REX_VALUE[id=1 html=1]\');'.PHP_EOL;
+	$code .= '  echo rex_markitup::parseOutput (\'markdown\', \'REX_VALUE[id=1 output="html"]\');'.PHP_EOL;
 	$code .= '?>';
 	
 	$fragment = new rex_fragment();
@@ -56,7 +56,7 @@
 	
 	$code = '';
 	$code .= '<?php'.PHP_EOL;
-	$code .= '  echo rex_markitup::parseOutput (\'textile\', \'REX_VALUE[id=1 html=1]\');'.PHP_EOL;
+	$code .= '  echo rex_markitup::parseOutput (\'textile\', \'REX_VALUE[id=1 output="html"]\');'.PHP_EOL;
 	$code .= '?>';
 	
 	$fragment = new rex_fragment();
