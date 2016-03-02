@@ -61,7 +61,6 @@ rex_markitup_profiles_buttons_sub = Tiefgestellt
 rex_markitup_profiles_buttons_sub_description = Stellt Text tief
 rex_markitup_profiles_buttons_sup = Hochgestellt
 rex_markitup_profiles_buttons_sup_description = Stellt Text hoch
-rex_markitup_profiles_buttons_table_description = Fügt eine Tabelle ein
 rex_markitup_profiles_buttons_table = Tabelle
 rex_markitup_profiles_buttons_table_description = Fügt eine Tabelle ein
 rex_markitup_profiles_buttons_underline = Unterstrichen
@@ -72,4 +71,4 @@ rex_markitup_profiles_buttons_unorderedlist_description = Fügt eine unsortierte
 #permissions
 perm_general_rex_markitup[] = Rechte für MarkItUp-Addon
 perm_general_rex_markitup[tutorial] = Rechte für die Seite 'Erklärung' des MarkItUp-Addons
-perm_general_rex_markitup[profles] = Rechte für die Seite 'Profile' des MarkItUp-Addons
+perm_general_rex_markitup[profiles] = Rechte für die Seite 'Profile' des MarkItUp-Addons
