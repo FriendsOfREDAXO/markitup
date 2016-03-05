@@ -1,8 +1,7 @@
 rex_markitup_title = MarkItUp Editor
 
-#subpage tutorial
-rex_markitup_tutorial = Erklärung
-rex_markitup_tutorial_infotext = Das Addon bindet den MarkItUp-Editor im Backend ein.<br><br>Textareas mit der Klasse <i>markitupEditor-%profileName%</i> werden automatisch von einem normalen Texteingabefeld in einen MarkItUp-Editor umgewandelt.<br>z.B.: <textarea id="markitup_full" <b>class="markitupEditor-full"</b>></textarea><br><br>Im Backend können verschiedene Profile mit unterschiedlichen Konfigurationseinstellungen für den MarkItUp-Editor angelegt werden.<br><br><b>Im Moment muss jede Textarea noch eine id haben, die mit markitup_ beginnt!</b>
+#subpage help
+rex_markitup_help_infotext = Das Addon bindet den MarkItUp-Editor im Backend ein.<br><br>Textareas mit der Klasse <i>markitupEditor-%profileName%</i> werden automatisch von einem normalen Texteingabefeld in einen MarkItUp-Editor umgewandelt.<br>z.B.: <textarea id="markitup_full" <b>class="markitupEditor-full"</b>></textarea><br><br>Im Backend können verschiedene Profile mit unterschiedlichen Konfigurationseinstellungen für den MarkItUp-Editor angelegt werden.<br><br><b>Im Moment muss jede Textarea noch eine id haben, die mit markitup_ beginnt!</b>
 
 #subpage profiles
 rex_markitup_profiles = Profile
@@ -70,5 +69,4 @@ rex_markitup_profiles_buttons_unorderedlist_description = Fügt eine unsortierte
 
 #permissions
 perm_general_rex_markitup[] = Rechte für MarkItUp-Addon
-perm_general_rex_markitup[tutorial] = Rechte für die Seite 'Erklärung' des MarkItUp-Addons
 perm_general_rex_markitup[profiles] = Rechte für die Seite 'Profile' des MarkItUp-Addons

@@ -1,5 +1,5 @@
 <?php
-	echo rex_view::info($this->i18n('tutorial_infotext'));
+	echo rex_view::info($this->i18n('help_infotext'));
 	
 	$code = '';
 	$code .= '<fieldset class="form-horizontal">'.PHP_EOL;
