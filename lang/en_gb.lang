@@ -1,0 +1,72 @@
+rex_markitup_title = MarkItUp Editor
+
+#subpage help
+rex_markitup_help_infotext = Das Addon bindet den MarkItUp-Editor im Backend ein.<br><br>Textareas mit der Klasse <i>markitupEditor-%profileName%</i> werden automatisch von einem normalen Texteingabefeld in einen MarkItUp-Editor umgewandelt.<br>z.B.: <textarea id="markitup_full" <b>class="markitupEditor-full"</b>></textarea><br><br>Im Backend können verschiedene Profile mit unterschiedlichen Konfigurationseinstellungen für den MarkItUp-Editor angelegt werden.<br><br><b>Im Moment muss jede Textarea noch eine id haben, die mit markitup_ beginnt!</b>
+
+#subpage profiles
+rex_markitup_profiles = Profiles
+rex_markitup_profiles_norowsmessage = Es wurden keine Profile gefunden
+
+rex_markitup_profiles_column_name = Name
+rex_markitup_profiles_column_description = Description
+rex_markitup_profiles_column_type = Typs
+rex_markitup_profiles_column_functions = Functions
+
+rex_markitup_profiles_formcaption_add = Add profile
+rex_markitup_profiles_formcaption_edit = Edit profile
+
+rex_markitup_profiles_label_name = Name
+rex_markitup_profiles_label_description = Description
+rex_markitup_profiles_label_language = Language
+rex_markitup_profiles_label_type = Type
+rex_markitup_profiles_label_markitupbuttons = MarkItUp-Buttons
+
+rex_markitup_profiles_buttons_bold = Bold
+rex_markitup_profiles_buttons_bold_description = Makes the marked text bold
+rex_markitup_profiles_buttons_clips = Textsnippets
+rex_markitup_profiles_buttons_clips_description = Inserts predefined textsnippets
+rex_markitup_profiles_buttons_code = Code
+rex_markitup_profiles_buttons_code_description = Inserts code
+rex_markitup_profiles_buttons_deleted = Deleted
+rex_markitup_profiles_buttons_deleted_description = Streicht den markierten Text durch
+rex_markitup_profiles_buttons_heading1 = Headline 1
+rex_markitup_profiles_buttons_heading1_description = Inserts a headline with size 1
+rex_markitup_profiles_buttons_heading2 = Headline 2
+rex_markitup_profiles_buttons_heading2_description = Inserts a headline with size 2
+rex_markitup_profiles_buttons_heading3 = Headline 3
+rex_markitup_profiles_buttons_heading3_description = Inserts a headline with size 3
+rex_markitup_profiles_buttons_heading4 = Headline 4
+rex_markitup_profiles_buttons_heading4_description = Inserts a headline with size 4
+rex_markitup_profiles_buttons_heading5 = Headline 5
+rex_markitup_profiles_buttons_heading5_description = Inserts a headline with size 5
+rex_markitup_profiles_buttons_heading6 = Headline 6
+rex_markitup_profiles_buttons_heading6_description = Inserts a headline with size 6
+rex_markitup_profiles_buttons_image = Image
+rex_markitup_profiles_buttons_image_description = Inserts an image
+rex_markitup_profiles_buttons_italic = Italic
+rex_markitup_profiles_buttons_italic_description = Makes the marked text italic
+rex_markitup_profiles_buttons_link = Link
+rex_markitup_profiles_buttons_link_description = Inserts a link
+rex_markitup_profiles_buttons_link_option_external = External
+rex_markitup_profiles_buttons_link_option_internal = Internal
+rex_markitup_profiles_buttons_link_option_mailto = E-Mail
+rex_markitup_profiles_buttons_orderedlist = Ordered list
+rex_markitup_profiles_buttons_orderedlist_description = Inserts an ordererd list
+rex_markitup_profiles_buttons_paragraph = Paragraph
+rex_markitup_profiles_buttons_paragraph_description = Inserts a paragraph
+rex_markitup_profiles_buttons_quote = Quote
+rex_markitup_profiles_buttons_quote_description = Inserts a quote
+rex_markitup_profiles_buttons_sub = Tiefgestellt
+rex_markitup_profiles_buttons_sub_description = Stellt Text tief
+rex_markitup_profiles_buttons_sup = Hochgestellt
+rex_markitup_profiles_buttons_sup_description = Stellt Text hoch
+rex_markitup_profiles_buttons_table = Table
+rex_markitup_profiles_buttons_table_description = Inserts a table
+rex_markitup_profiles_buttons_underline = Underlined
+rex_markitup_profiles_buttons_underline_description = Makes the marked text underlined
+rex_markitup_profiles_buttons_unorderedlist = Unordered list
+rex_markitup_profiles_buttons_unorderedlist_description = Inserts an unordered list
+
+#permissions
+perm_general_rex_markitup[] = Permissions for the MarkItUp-Addon
+perm_general_rex_markitup[profiles] = Permissions for the page 'Profiles' of the MarkItUp-Addon
