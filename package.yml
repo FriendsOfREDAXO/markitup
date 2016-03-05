@@ -1,5 +1,5 @@
 package: rex_markitup
-version: '1.3.3'
+version: '1.4.0'
 author: Thomas Kaegi
 supportpage: github.com/phoebusryan/rex_markitup
 
@@ -8,5 +8,4 @@ page:
     perm: rex_markitup[]
     pjax: true
     subpages:
-        tutorial: { title: 'translate:tutorial', perm: rex_markitup[tutorial] }
         profiles: { title: 'translate:profiles', perm: rex_markitup[profiles] }
