@@ -136,6 +136,21 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 		});
 	}
 	
+	function btnTextileImageCallbackInsert (id, url, linktext) {
+		var url = '!index.php?rex_media_type=markitupImage&rex_media_file='+url;
+		
+		if (linktext != '') {
+			url += '('+linktext+')!';
+		} else {
+			url += '!';
+		}
+		
+		window.opener.$.markItUp({
+			target:'#'+id,
+			openWith:url
+		});
+	}
+	
 	function btnTextileLinkExternalCallback (h) {
 		var linktext = h.selection;
 		if (linktext == '') {
