@@ -10,7 +10,6 @@ rex_markitup_profiles_norowsmessage = Es wurden keine Profile gefunden
 rex_markitup_profiles_column_name = Name
 rex_markitup_profiles_column_description = Beschreibung
 rex_markitup_profiles_column_type = Typ
-rex_markitup_profiles_column_functions = Funktionen
 
 rex_markitup_profiles_formcaption_add = Profil hinzufügen
 rex_markitup_profiles_formcaption_edit = Profil editieren

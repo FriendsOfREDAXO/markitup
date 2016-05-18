@@ -16,16 +16,7 @@
 		$list->setColumnLabel('description', $this->i18n('profiles_column_description'));
 		$list->setColumnLabel('type', $this->i18n('profiles_column_type'));
 		
-		// functions column spans 2 data-columns
-		$funcs = $this->i18n('profiles_column_functions');
-		
-		$list->addColumn($funcs, '<i class="rex-icon rex-icon-edit"></i> '.rex_i18n::msg('edit'), -1, ['<th class="rex-table-action" colspan="2">###VALUE###</th>', '<td class="rex-table-action">###VALUE###</td>']);
-		$list->setColumnParams($funcs, ['id' => '###id###', 'func' => 'edit']);
-		
-		$delete = 'deleteCol';
-		$list->addColumn($delete, '<i class="rex-icon rex-icon-delete"></i> '.rex_i18n::msg('delete'), -1, ['', '<td class="rex-table-action">###VALUE###</td>']);
-		$list->setColumnParams($delete, ['id' => '###id###', 'func' => 'delete']);
-		$list->addLinkAttribute($delete, 'data-confirm', rex_i18n::msg('delete').' ?');
+		$list->setColumnParams('name', ['id' => '###id###', 'func' => 'edit']);
 		
 		$list->removeColumn('id');
 		
@@ -159,11 +150,5 @@
 		$content = $fragment->parse('core/page/section.php');
 		
 		echo $content;
-	} else if ($func == 'delete') {
-		$id = rex_request('id', 'int');
-		
-		$del = rex_sql::factory();
-		$del->setQuery('DELETE FROM ' . rex::getTablePrefix() . 'markitup_profiles WHERE `id` = "'.$id.'"');
-		echo 'Profil wurde gelöscht'; //todo: translate
 	}
 ?>
