@@ -48,5 +48,89 @@
 			
 			return false;
 		}
+		
+		public static function defineButtons($type, $profileButtons, $that) {
+			$markItUpButtons = rex_file::getConfig(rex_path::addon('rex_markitup', 'config.yml'));
+			
+			$buttonString = '';
+			$profileButtons = explode(',', $profileButtons);
+			foreach ($profileButtons as $profileButton) {
+				$options = [];
+				
+				if (preg_match('/(.*)\[(.*)\]/', $profileButton, $matches)) {
+					$profileButton = $matches[1];
+					
+					//Start - explode parameters
+						$parameters = explode('|', $matches[2]);
+						$parameterString = '';
+						foreach ($parameters as $parameter) {
+							if (strpos($parameter, '=') !== false) {
+								list($key, $value) = explode('=',$parameter);
+								$options[] = ['name' => addslashes($key), 'openWith' => addslashes($value)];
+							} else {
+								$options[] = $parameter;
+							}
+						}
+						
+					//End - explode parameters
+				}
+				
+				$buttonString .= "{";
+				
+				foreach (['name', 'key', 'openWith', 'closeWith', 'className', 'replaceWith'] as $property) {
+					if (!empty($markItUpButtons[$profileButton][$property])) {
+						if (in_array($property, ['openWith', 'closeWith'])) {
+							$buttonString .= "  ".$property.":'".$markItUpButtons[$profileButton][$property][$type]."',".PHP_EOL;
+						} else if ($property == 'replaceWith') {
+							$buttonString .= "  ".$property.":".$markItUpButtons[$profileButton][$property][$type].",".PHP_EOL;
+						} else if ($property == 'name') {
+							$buttonString .= "  ".$property.":'".$that->i18n($markItUpButtons[$profileButton][$property])."',".PHP_EOL;
+						} else {
+							$buttonString .= "  ".$property.":'".$markItUpButtons[$profileButton][$property]."',".PHP_EOL;
+						}
+					}
+				}
+				
+				//Start - dropdown
+					if (!empty($options)) {
+						$buttonString .= "  dropMenu: [";
+						
+						foreach ($options as $option) {
+							$buttonString .= "{";
+							
+							if (is_array($option)) {
+								foreach ($option as $property => $value) {
+									$buttonString .= "  ".$property.":'".$value."',";
+								}
+							} else {
+								foreach (['name', 'key', 'openWith', 'closeWith', 'replaceWith'] as $property) {
+									if (!empty($markItUpButtons[$profileButton]['children'][$option][$property])) {
+										if (in_array($property, ['openWith', 'closeWith'])) {
+											$buttonString .= "  ".$property.":'".$markItUpButtons[$profileButton]['children'][$option][$property][$type]."',".PHP_EOL;
+										} else {
+											if ($property == 'name') {
+												$buttonString .= "  ".$property.":'".$that->i18n($markItUpButtons[$profileButton]['children'][$option][$property])."',".PHP_EOL;
+											} else if ($property == 'replaceWith') {
+												$buttonString .= "  ".$property.":".$markItUpButtons[$profileButton]['children'][$option][$property][$type].",".PHP_EOL;
+											} else {
+												$buttonString .= "  ".$property.":'".$markItUpButtons[$profileButton]['children'][$option][$property]."',".PHP_EOL;
+											}
+										}
+									}
+								}
+							}
+							
+							$buttonString .= "},";
+						}
+						
+						$buttonString .= "  ]";
+					}
+				//End - dropdown
+				
+				$buttonString .= "},";
+			}
+			
+			return $buttonString;
+		}
 	}
 ?>
