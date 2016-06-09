@@ -47,7 +47,27 @@
 			$field = $form->addTextField('description');
 			$field->setLabel($this->i18n('profiles_label_description'));
 		//End - add description-field
-
+		
+		//Start - add minheight-field
+			$field = $form->addTextField('minheight');
+			$field->setLabel($this->i18n('profiles_label_minheight'));
+		//End - add minheight-field
+		
+		//Start - add maxheight-field
+			$field = $form->addTextField('maxheight');
+			$field->setLabel($this->i18n('profiles_label_maxheight'));
+		//End - add maxheight-field
+		
+		//Start - add urltype-field
+			$field = $form->addSelectField('urltype');
+			$field->setLabel($this->i18n('profiles_label_urltype'));
+			
+			$select = $field->getSelect();
+			$select->setSize(1);
+			$select->addOption($this->i18n('profiles_label_urltype_option_relative'), 'relative');
+			$select->addOption($this->i18n('profiles_label_urltype_option_absolute'), 'absolute');
+		//End - add urltype-field
+		
 		//Start - add type-field
 			$field = $form->addSelectField('type');
 			$field->setLabel($this->i18n('profiles_label_type'));
