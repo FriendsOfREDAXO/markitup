@@ -1,7 +1,7 @@
 rex_markitup_title = MarkItUp Editor
 
 #subpage help
-rex_markitup_help_infotext = Das Addon bindet den MarkItUp-Editor im Backend ein.<br><br>Textareas mit der Klasse <i>markitupEditor-%profileName%</i> werden automatisch von einem normalen Texteingabefeld in einen MarkItUp-Editor umgewandelt.<br>z.B.: <textarea id="markitup_full" <b>class="markitupEditor-full"</b>></textarea><br><br>Im Backend können verschiedene Profile mit unterschiedlichen Konfigurationseinstellungen für den MarkItUp-Editor angelegt werden.<br><br><b>Im Moment muss jede Textarea noch eine id haben, die mit markitup_ beginnt!</b>
+rex_markitup_help_infotext = Das Addon bindet den MarkItUp-Editor im Backend ein.<br><br>Textareas mit der Klasse <i>markitupEditor-%profileName%</i> werden automatisch von einem normalen Texteingabefeld in einen MarkItUp-Editor umgewandelt.<br>z.B.: <textarea id="markitup_full" <b>class="markitupEditor-full"</b>></textarea><br><br>Im Backend können verschiedene Profile mit unterschiedlichen Konfigurationseinstellungen für den MarkItUp-Editor angelegt werden.
 
 #subpage profiles
 rex_markitup_profiles = Profile
@@ -16,7 +16,11 @@ rex_markitup_profiles_formcaption_edit = Profil editieren
 
 rex_markitup_profiles_label_name = Name
 rex_markitup_profiles_label_description = Beschreibung
-rex_markitup_profiles_label_language = Sprache
+rex_markitup_profiles_label_minheight = Mindesthöhe
+rex_markitup_profiles_label_maxheight = Maximalhöhe
+rex_markitup_profiles_label_urltype = URL-Art
+rex_markitup_profiles_label_urltype_option_relative = Relativ
+rex_markitup_profiles_label_urltype_option_absolute = Absolut
 rex_markitup_profiles_label_type = Typ
 rex_markitup_profiles_label_markitupbuttons = MarkItUp-Buttons
 

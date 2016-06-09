@@ -1,7 +1,7 @@
 rex_markitup_title = MarkItUp Editor
 
 #subpage help
-rex_markitup_help_infotext = Das Addon bindet den MarkItUp-Editor im Backend ein.<br><br>Textareas mit der Klasse <i>markitupEditor-%profileName%</i> werden automatisch von einem normalen Texteingabefeld in einen MarkItUp-Editor umgewandelt.<br>z.B.: <textarea id="markitup_full" <b>class="markitupEditor-full"</b>></textarea><br><br>Im Backend können verschiedene Profile mit unterschiedlichen Konfigurationseinstellungen für den MarkItUp-Editor angelegt werden.<br><br><b>Im Moment muss jede Textarea noch eine id haben, die mit markitup_ beginnt!</b>
+rex_markitup_help_infotext = Das Addon bindet den MarkItUp-Editor im Backend ein.<br><br>Textareas mit der Klasse <i>markitupEditor-%profileName%</i> werden automatisch von einem normalen Texteingabefeld in einen MarkItUp-Editor umgewandelt.<br>z.B.: <textarea id="markitup_full" <b>class="markitupEditor-full"</b>></textarea><br><br>Im Backend können verschiedene Profile mit unterschiedlichen Konfigurationseinstellungen für den MarkItUp-Editor angelegt werden.
 
 #subpage profiles
 rex_markitup_profiles = Profiles
@@ -9,14 +9,18 @@ rex_markitup_profiles_norowsmessage = Es wurden keine Profile gefunden
 
 rex_markitup_profiles_column_name = Name
 rex_markitup_profiles_column_description = Description
-rex_markitup_profiles_column_type = Typs
+rex_markitup_profiles_column_type = Type
 
 rex_markitup_profiles_formcaption_add = Add profile
 rex_markitup_profiles_formcaption_edit = Edit profile
 
 rex_markitup_profiles_label_name = Name
 rex_markitup_profiles_label_description = Description
-rex_markitup_profiles_label_language = Language
+rex_markitup_profiles_label_minheight = Minimal height
+rex_markitup_profiles_label_maxheight = Maximum height
+rex_markitup_profiles_label_urltype = URL-Type
+rex_markitup_profiles_label_urltype_option_relative = Relative
+rex_markitup_profiles_label_urltype_option_absolute = Absolute
 rex_markitup_profiles_label_type = Type
 rex_markitup_profiles_label_markitupbuttons = MarkItUp-Buttons
 
