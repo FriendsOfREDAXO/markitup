@@ -42,7 +42,7 @@
 				break;
 				case 'textile':
 					$parser = new rex_markitup_textile();
-					return $parser->parse($content);
+					return $parser->custom_parse($content);
 				break;
 			}
 			
