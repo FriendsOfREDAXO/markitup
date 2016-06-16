@@ -34,6 +34,31 @@ deleted:
         markdown: "~~"
         textile: "-"
 
+grouplink:
+    name: profiles_buttons_link
+    className: link
+    children:
+        file:
+            name: profiles_buttons_grouplink_option_file
+            replaceWith:
+                markdown: "function(h) {return btnMarkdownLinkFileCallback(h);}"
+                textile: "function(h) {return btnTextileLinkFileCallback(h);}"
+        internal:
+            name: profiles_buttons_grouplink_option_internal
+            replaceWith:
+                markdown: "function(h) {return btnMarkdownLinkInternalCallback(h);}"
+                textile: "function(h) {return btnTextileLinkInternalCallback(h);}"
+        external:
+            name: profiles_buttons_grouplink_option_external
+            replaceWith:
+                markdown: "function(h) {return btnMarkdownLinkExternalCallback(h);}"
+                textile: "function(h) {return btnTextileLinkExternalCallback(h);}"
+        mailto:
+            name: profiles_buttons_grouplink_option_mailto
+            replaceWith:
+                markdown: "function(h) {return btnMarkdownLinkMailtoCallback(h);}"
+                textile: "function(h) {return btnTextileLinkMailtoCallback(h);}"
+
 heading1:
     name: profiles_buttons_heading1
     className: heading1
@@ -111,26 +136,6 @@ italic:
     closeWith:
         markdown: "*"
         textile: "_"
-
-link:
-    name: profiles_buttons_link
-    className: link
-    children:
-        internal:
-            name: profiles_buttons_link_option_internal
-            replaceWith:
-                markdown: "function(h) {return btnMarkdownLinkInternalCallback(h);}"
-                textile: "function(h) {return btnTextileLinkInternalCallback(h);}"
-        external:
-            name: profiles_buttons_link_option_external
-            replaceWith:
-                markdown: "function(h) {return btnMarkdownLinkExternalCallback(h);}"
-                textile: "function(h) {return btnTextileLinkExternalCallback(h);}"
-        mailto:
-            name: profiles_buttons_link_option_mailto
-            replaceWith:
-                markdown: "function(h) {return btnMarkdownLinkMailtoCallback(h);}"
-                textile: "function(h) {return btnTextileLinkMailtoCallback(h);}"
 
 orderedlist:
     name: profiles_buttons_orderedlist

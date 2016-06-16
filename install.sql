@@ -12,8 +12,8 @@ CREATE TABLE `%TABLE_PREFIX%markitup_profiles` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 INSERT INTO `%TABLE_PREFIX%markitup_profiles` (`id`, `name`, `description`, `urltype`,`minheight`,`maxheight`,`type`, `markitup_buttons`) VALUES
-(1, 'textile_full', 'Standard MarkItUp-Konfiguration', 'relative', '300', '800', 'textile', 'bold,code,deleted,clips[Snippetname1=Snippettext1|Snippetname2=Snippettext2],heading1,heading2,heading3,heading4,heading5,heading6,image,italic,link[internal|external|mailto],orderedlist,paragraph,quote,sub,sup,table,underline,unorderedlist'),
-(2, 'markdown_full', 'Standard MarkItUp-Konfiguration', 'relative', '300', '800', 'markdown', 'bold,code,deleted,clips[Snippetname1=Snippettext1|Snippetname2=Snippettext2],heading1,heading2,heading3,heading4,heading5,heading6,image,italic,link[internal|external|mailto],orderedlist,paragraph,quote,sub,sup,table,underline,unorderedlist');
+(1, 'textile_full', 'Standard MarkItUp-Konfiguration', 'relative', '300', '800', 'textile', 'bold,code,deleted,clips[Snippetname1=Snippettext1|Snippetname2=Snippettext2],heading1,heading2,heading3,heading4,heading5,heading6,image,italic,grouplink[file|internal|external|mailto],orderedlist,paragraph,quote,sub,sup,table,underline,unorderedlist'),
+(2, 'markdown_full', 'Standard MarkItUp-Konfiguration', 'relative', '300', '800', 'markdown', 'bold,code,deleted,clips[Snippetname1=Snippettext1|Snippetname2=Snippettext2],heading1,heading2,heading3,heading4,heading5,heading6,image,italic,grouplink[file|internal|external|mailto],orderedlist,paragraph,quote,sub,sup,table,underline,unorderedlist');
 
 ALTER TABLE `%TABLE_PREFIX%markitup_profiles`
  ADD PRIMARY KEY (`id`);
