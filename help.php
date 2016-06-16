@@ -4,9 +4,9 @@
 	$code = '';
 	$code .= '<fieldset class="form-horizontal">'.PHP_EOL;
 	$code .= '  <div class="form-group">'.PHP_EOL;
-	$code .= '    <label class="col-sm-2 control-label" for="markitup_markdown_1">VALUE 1</label>'.PHP_EOL;
+	$code .= '    <label class="col-sm-2 control-label" for="value-1">VALUE 1</label>'.PHP_EOL;
 	$code .= '    <div class="col-sm-10">'.PHP_EOL;
-	$code .= '      <textarea class="form-control markitupEditor-markdown_full" id="markitup_markdown_1" name="REX_INPUT_VALUE[1]">REX_VALUE[1]</textarea>'.PHP_EOL;
+	$code .= '      <textarea class="form-control markitupEditor-markdown_full" id="value-1" name="REX_INPUT_VALUE[1]">REX_VALUE[1]</textarea>'.PHP_EOL;
 	$code .= '    </div>'.PHP_EOL;
 	$code .= '  </div>'.PHP_EOL;
 	$code .= '</fieldset>';
@@ -37,9 +37,9 @@
 	$code = '';
 	$code .= '<fieldset class="form-horizontal">'.PHP_EOL;
 	$code .= '  <div class="form-group">'.PHP_EOL;
-	$code .= '    <label class="col-sm-2 control-label" for="markitup_textile_1">VALUE 1</label>'.PHP_EOL;
+	$code .= '    <label class="col-sm-2 control-label" for="value-1">VALUE 1</label>'.PHP_EOL;
 	$code .= '    <div class="col-sm-10">'.PHP_EOL;
-	$code .= '      <textarea class="form-control markitupEditor-textile_full" id="markitup_textile_1" name="REX_INPUT_VALUE[1]">REX_VALUE[1]</textarea>'.PHP_EOL;
+	$code .= '      <textarea class="form-control markitupEditor-textile_full" id="value-1" name="REX_INPUT_VALUE[1]">REX_VALUE[1]</textarea>'.PHP_EOL;
 	$code .= '    </div>'.PHP_EOL;
 	$code .= '  </div>'.PHP_EOL;
 	$code .= '</fieldset>';
