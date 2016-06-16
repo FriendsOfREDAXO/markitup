@@ -26,15 +26,15 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 //End - temporary functions to prevent errors
 
 //Start - functions for markdown
-	function btnMarkdownImageCallback (h) {
-		var markitupFieldID = h.textarea.id;
-		newPoolWindow('index.php?page=mediapool/media&opener_input_field='+markitupFieldID);
-	}
-	
-	function btnMarkdownImageCallbackInsert (id, url, linktext) {
-		window.opener.$.markItUp({
-			target:'#'+id,
-			openWith:'['+linktext+'](index.php?rex_media_type=markitupImage&rex_media_file='+url+')'
+	function btnMarkdownImageCallback () {
+		var mediapool = openMediaPool('markitup_media');
+		$(mediapool).on('rex:selectMedia', function (event, filename) {
+			event.preventDefault();
+			mediapool.close();
+			
+			$.markItUp({
+				openWith: '['+filename+'](index.php?rex_media_type=markitupImage&rex_media_file='+filename+')'
+			});
 		});
 	}
 	
@@ -53,16 +53,27 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 		return '['+linktext+']('+linkurl+')';
 	}
 	
-	function btnMarkdownLinkInternalCallback (h) {
-		var markitupFieldID = h.textarea.id;
-		openLinkMap(markitupFieldID);
+	function btnMarkdownLinkFileCallback () {
+		var mediapool = openMediaPool('markitup_link');
+		$(mediapool).on('rex:selectMedia', function (event, filename) {
+			event.preventDefault();
+			mediapool.close();
+			
+			$.markItUp({
+				openWith: '['+filename+'](/media/'+filename+')'
+			});
+		});
 	}
 	
-	function btnMarkdownLinkInternalCallbackInsert (id, url, linktext) {
-		window.opener.$.markItUp({
-			target:'#'+id,
-			openWith: '[',
-			closeWith: ']('+url+')'
+	function btnMarkdownLinkInternalCallback () {
+		var linkMap = openLinkMap();
+		$(linkMap).on('rex:selectLink', function (event, linkurl, linktext) {
+			event.preventDefault();
+			linkMap.close();
+			
+			$.markItUp({
+				openWith: '['+linktext+']('+linkurl+')'
+			});
 		});
 	}
 	
@@ -145,32 +156,16 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 	}
 //End - functions for markdown
 
-
 //Start - functions for textile
 	function btnTextileImageCallback (h) {
-		var markitupFieldID = h.textarea.id;
-		newPoolWindow('index.php?page=mediapool/media&opener_input_field='+markitupFieldID);
-	}
-	
-	function btnTextileImageCallbackInsert (id, url, linktext) {
-		window.opener.$.markItUp({
-			target:'#'+id,
-			openWith:'!index.php?rex_media_type=markitupImage&rex_media_file='+url+'('+linktext+')!'
-		});
-	}
-	
-	function btnTextileImageCallbackInsert (id, url, linktext) {
-		var url = '!index.php?rex_media_type=markitupImage&rex_media_file='+url;
-		
-		if (linktext != '') {
-			url += '('+linktext+')!';
-		} else {
-			url += '!';
-		}
-		
-		window.opener.$.markItUp({
-			target:'#'+id,
-			openWith:url
+		var mediapool = openMediaPool('markitup_media');
+		$(mediapool).on('rex:selectMedia', function (event, filename) {
+			event.preventDefault();
+			mediapool.close();
+			
+			$.markItUp({
+				openWith: '!index.php?rex_media_type=markitupImage&rex_media_file='+filename+'('+filename+')!'
+			});
 		});
 	}
 	
@@ -189,16 +184,27 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 		return '"'+linktext+'":'+linkurl;
 	}
 	
-	function btnTextileLinkInternalCallback (h) {
-		var markitupFieldID = h.textarea.id;
-		openLinkMap(markitupFieldID);
+	function btnTextileLinkFileCallback () {
+		var mediapool = openMediaPool('markitup_link');
+		$(mediapool).on('rex:selectMedia', function (event, filename) {
+			event.preventDefault();
+			mediapool.close();
+			
+			$.markItUp({
+				openWith: '"'+filename+'":/media/'+filename
+			});
+		});
 	}
 	
-	function btnTextileLinkInternalCallbackInsert (id, url, linktext) {
-		window.opener.$.markItUp({
-			target:'#'+id,
-			openWith: '"',
-			closeWith: '('+linktext+')":'+url
+	function btnTextileLinkInternalCallback () {
+		var linkMap = openLinkMap();
+		$(linkMap).on('rex:selectLink', function (event, linkurl, linktext) {
+			event.preventDefault();
+			linkMap.close();
+			
+			$.markItUp({
+				openWith: '"'+linktext+'":'+linkurl
+			});
 		});
 	}
 	
