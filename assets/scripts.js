@@ -41,10 +41,14 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 	function btnMarkdownLinkExternalCallback (h) {
 		var linktext = h.selection;
 		if (linktext == '') {
-			var linktext = prompt(rex_markitupLanguagestrings[currentLanguage]['linktext']);
+			if ((linktext = prompt(rex_markitupLanguagestrings[currentLanguage]['linktext'])) == null) {
+				return;
+			}
 		}
 		
-		var linkurl = prompt(rex_markitupLanguagestrings[currentLanguage]['linkurl']);
+		if ((linkurl = prompt(rex_markitupLanguagestrings[currentLanguage]['linkurl'], 'http://')) == null) {
+			return;
+		}
 		
 		return '['+linktext+']('+linkurl+')';
 	}
@@ -65,16 +69,27 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 	function btnMarkdownLinkMailtoCallback (h) {
 		var linktext = h.selection;
 		if (linktext == '') {
-			var linktext = prompt(rex_markitupLanguagestrings[currentLanguage]['linktext']);
+			if ((linktext = prompt(rex_markitupLanguagestrings[currentLanguage]['linktext'])) == null) {
+				return;
+			}
 		}
-		var emailaddress = prompt(rex_markitupLanguagestrings[currentLanguage]['linkemailaddress']);
+		
+		if ((emailaddress = prompt(rex_markitupLanguagestrings[currentLanguage]['linkemailaddress'])) == null) {
+			return;
+		}
 		
 		return '['+linktext+'](mailto:'+emailaddress+')';
 	}
 	
 	function btnMarkdownTableCallback (h) {
-		cols = prompt(rex_markitupLanguagestrings[currentLanguage]['tablecolumns']);
-		rows = prompt(rex_markitupLanguagestrings[currentLanguage]['tablerows']);
+		if ((cols = prompt(rex_markitupLanguagestrings[currentLanguage]['tablecolumns'])) == null) {
+			return;
+		}
+		
+		if ((rows = prompt(rex_markitupLanguagestrings[currentLanguage]['tablerows'])) == null) {
+			return;
+		}
+		
 		html = '';
 		
 		for (r = 0; r < rows; r++) {
@@ -90,35 +105,43 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 	function btnMarkdownOrderedlistCallback (h) {
 		var selection = h.selection;
 		
-		var lines = selection.split(/\r?\n/);
-		var r = "";
-		for (var i=0; i < lines.length; i++) {
-			line = lines[i];
-			
-			r = r + (i+1) + '. ' + line;
-			
-			if (i != lines.length - 1) {
-				r += "\n";
+		if (selection != '') {
+			var lines = selection.split(/\r?\n/);
+			var r = "";
+			for (var i=0; i < lines.length; i++) {
+				line = lines[i];
+				
+				r = r + (i+1) + '. ' + line;
+				
+				if (i != lines.length - 1) {
+					r += "\n";
+				}
 			}
+			return r;
+		} else {
+			return;
 		}
-		return r;
 	}
 	
 	function btnMarkdownUnorderedlistCallback (h) {
 		var selection = h.selection;
 		
-		var lines = selection.split(/\r?\n/);
-		var r = "";
-		for (var i=0; i < lines.length; i++) {
-			line = lines[i];
-			
-			r = r + "- " + line;
-			
-			if (i != lines.length - 1) {
-				r += "\n";
+		if (selection != '') {
+			var lines = selection.split(/\r?\n/);
+			var r = "";
+			for (var i=0; i < lines.length; i++) {
+				line = lines[i];
+				
+				r = r + "- " + line;
+				
+				if (i != lines.length - 1) {
+					r += "\n";
+				}
 			}
+			return r;
+		} else {
+			return;
 		}
-		return r;
 	}
 //End - functions for markdown
 
@@ -154,10 +177,14 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 	function btnTextileLinkExternalCallback (h) {
 		var linktext = h.selection;
 		if (linktext == '') {
-			var linktext = prompt(rex_markitupLanguagestrings[currentLanguage]['linktext']);
+			if ((linktext = prompt(rex_markitupLanguagestrings[currentLanguage]['linktext'])) == null) {
+				return;
+			}
 		}
 		
-		var linkurl = prompt(rex_markitupLanguagestrings[currentLanguage]['linkurl']); //todo
+		if ((linkurl = prompt(rex_markitupLanguagestrings[currentLanguage]['linkurl'], 'http://')) == null) {
+			return;
+		}
 		
 		return '"'+linktext+'":'+linkurl;
 	}
@@ -178,16 +205,27 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 	function btnTextileLinkMailtoCallback (h) {
 		var linktext = h.selection;
 		if (linktext == '') {
-			var linktext = prompt(rex_markitupLanguagestrings[currentLanguage]['linktext']);
+			if ((linktext = prompt(rex_markitupLanguagestrings[currentLanguage]['linktext'])) == null) {
+				return;
+			}
 		}
-		var emailaddress = prompt(rex_markitupLanguagestrings[currentLanguage]['linkemailaddress']);
+		
+		if ((emailaddress = prompt(rex_markitupLanguagestrings[currentLanguage]['linkemailaddress'])) == null) {
+			return;
+		}
 		
 		return '"'+linktext+'":mailto:'+emailaddress;
 	}
 
 	function btnTextileTableCallback (h) {
-		cols = prompt(rex_markitupLanguagestrings[currentLanguage]['tablecolumns']);
-		rows = prompt(rex_markitupLanguagestrings[currentLanguage]['tablerows']);
+		if ((cols = prompt(rex_markitupLanguagestrings[currentLanguage]['tablecolumns'])) == null) {
+			return;
+		}
+		
+		if ((rows = prompt(rex_markitupLanguagestrings[currentLanguage]['tablerows'])) == null) {
+			return;
+		}
+		
 		html = '';
 		
 		for (r = 0; r < rows; r++) {
@@ -203,34 +241,42 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 	function btnTextileOrderedlistCallback (h) {
 		var selection = h.selection;
 		
-		var lines = selection.split(/\r?\n/);
-		var r = "";
-		for (var i=0; i < lines.length; i++) {
-			line = lines[i];
-			
-			r = r + "# " + line;
-			
-			if (i != lines.length - 1) {
-				r += "\n";
+		if (selection != '') {
+			var lines = selection.split(/\r?\n/);
+			var r = "";
+			for (var i=0; i < lines.length; i++) {
+				line = lines[i];
+				
+				r = r + "# " + line;
+				
+				if (i != lines.length - 1) {
+					r += "\n";
+				}
 			}
+			return r;
+		} else {
+			return;
 		}
-		return r;
 	}
 	
 	function btnTextileUnorderedlistCallback (h) {
 		var selection = h.selection;
 		
-		var lines = selection.split(/\r?\n/);
-		var r = "";
-		for (var i=0; i < lines.length; i++) {
-			line = lines[i];
-			
-			r = r + "* " + line;
-			
-			if (i != lines.length - 1) {
-				r += "\n";
+		if (selection != '') {
+			var lines = selection.split(/\r?\n/);
+			var r = "";
+			for (var i=0; i < lines.length; i++) {
+				line = lines[i];
+				
+				r = r + "* " + line;
+				
+				if (i != lines.length - 1) {
+					r += "\n";
+				}
 			}
+			return r;
+		} else {
+			return;
 		}
-		return r;
 	}
 //End - functions for textile
