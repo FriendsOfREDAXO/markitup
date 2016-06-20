@@ -15,8 +15,8 @@
 			
 			$jsCode[] = 'function markitupInit() {';
 			foreach ($profiles as $profile) {
-				$cssCode[] = '  div.markitupEditor-'.$profile['name'].' textarea, textarea.markitupEditor-'.$profile['name'].' { min-height: '.$profile['minheight'].'px; max-height: '.$profile['maxheight'].'px; }';
-				$jsCode[] = '  $(\'div.markitupEditor-'.$profile['name'].' textarea, textarea.markitupEditor-'.$profile['name'].'\').markItUp({';
+				$cssCode[] = '  textarea.markitupEditor-'.$profile['name'].' { min-height: '.$profile['minheight'].'px; max-height: '.$profile['maxheight'].'px; }';
+				$jsCode[] = '  $(\'.markitupEditor-'.$profile['name'].'\').markItUp({';
 				
 				$jsCode[] = '    nameSpace: "markitup_'.$profile['type'].'",';
 				switch ($profile['type']) {
@@ -34,7 +34,7 @@
 			
 			$jsCode[] = '$(document).on(\'ready pjax:success\',function() {';
 			$jsCode[] = '  markitupInit();';
-			$jsCode[] = '  autosize($("div[class*=\'markitupEditor-\'] textarea, textarea[class*=\'markitupEditor-\']"));';
+			$jsCode[] = '  autosize($("textarea[class*=\'markitupEditor-\']"));';
 			$jsCode[] = '});';
 			
 			if (!rex_file::put(rex_path::addonAssets('rex_markitup', 'cache/markitup_profiles.css').'', implode(PHP_EOL, $cssCode))) {
