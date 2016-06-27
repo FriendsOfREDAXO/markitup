@@ -124,8 +124,8 @@
 							'<b>italic</b><br>'.
 							$this->i18n('profiles_buttons_italic_description').'<br>'.
 							'<br>'.
-							'<b>link[internal|external|mailto]</b><br>'.
-							$this->i18n('profiles_buttons_link_description').'<br>'.
+							'<b>grouplink[file|internal|external|mailto]</b><br>'.
+							$this->i18n('profiles_buttons_grouplink_description').'<br>'.
 							'<br>'.
 							'<b>orderedlist</b><br>'.
 							$this->i18n('profiles_buttons_orderedlist_description').'<br>'.
