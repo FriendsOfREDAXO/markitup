@@ -191,7 +191,8 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 			mediapool.close();
 			
 			$.markItUp({
-				openWith: '"'+filename+'":/media/'+filename
+				openWith: '"',
+				closeWith: ' ('+filename+')":/media/'+filename
 			});
 		});
 	}
@@ -203,7 +204,8 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 			linkMap.close();
 			
 			$.markItUp({
-				openWith: '"'+linktext+'":'+linkurl
+				openWith: '"',
+				closeWith: ' ('+linktext+')":'+linkurl
 			});
 		});
 	}
