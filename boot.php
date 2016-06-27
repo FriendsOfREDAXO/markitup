@@ -4,6 +4,9 @@
 		rex_view::addJsFile($this->getAssetsUrl('autosize.min.js'));
 		rex_view::addJsFile($this->getAssetsUrl('scripts.js'));
 		rex_view::addCssFile($this->getAssetsUrl('style.css'));
+		if (file_exists($this->getAssetsPath('skin.css'))) {
+			rex_view::addCssFile($this->getAssetsUrl('skin.css'));
+		}
 		
 		//Start - get markitup-profiles
 			$sql = rex_sql::factory();
