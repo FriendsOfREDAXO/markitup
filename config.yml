@@ -34,9 +34,76 @@ deleted:
         markdown: "~~"
         textile: "-"
 
+emaillink:
+    name: profiles_buttons_emaillink
+    className: emaillink
+    replaceWith:
+        markdown: "function(h) {return btnMarkdownLinkMailtoCallback(h);}"
+        textile: "function(h) {return btnTextileLinkMailtoCallback(h);}"
+
+externallink:
+    name: profiles_buttons_externallink
+    className: externallink
+    replaceWith:
+        markdown: "function(h) {return btnMarkdownLinkExternalCallback(h);}"
+        textile: "function(h) {return btnTextileLinkExternalCallback(h);}"
+
+groupheading:
+    name: profiles_buttons_groupheading
+    className: groupheading
+    children:
+        heading1:
+            name: profiles_plugins_groupheading_option_heading1
+            openWith:
+                markdown: '\n\n#'
+                textile: '\n\nh1. '
+            closeWith:
+                markdown: '\n\n'
+                textile: '\n\n'
+        heading2:
+            name: profiles_buttons_groupheading_option_heading2
+            openWith:
+                markdown: '\n\n##'
+                textile: '\n\nh2. '
+            closeWith:
+                markdown: '\n\n'
+                textile: '\n\n'
+        heading3:
+            name: profiles_buttons_groupheading_option_heading3
+            openWith:
+                markdown: '\n\n###'
+                textile: '\n\nh3. '
+            closeWith:
+                markdown: '\n\n'
+                textile: '\n\n'
+        heading4:
+            name: profiles_buttons_groupheading_option_heading4
+            openWith:
+                markdown: '\n\n####'
+                textile: '\n\nh4. '
+            closeWith:
+                markdown: '\n\n'
+                textile: '\n\n'
+        heading5:
+            name: profiles_buttons_groupheading_option_heading5
+            openWith:
+                markdown: '\n\n#####'
+                textile: '\n\nh5. '
+            closeWith:
+                markdown: '\n\n'
+                textile: '\n\n'
+        heading6:
+            name: profiles_buttons_groupheading_option_heading6
+            openWith:
+                markdown: '\n\n######'
+                textile: '\n\nh6. '
+            closeWith:
+                markdown: '\n\n'
+                textile: '\n\n'
+
 grouplink:
-    name: profiles_buttons_link
-    className: link
+    name: profiles_buttons_grouplink
+    className: grouplink
     children:
         file:
             name: profiles_buttons_grouplink_option_file
@@ -119,12 +186,12 @@ heading6:
         markdown: '\n\n'
         textile: '\n\n'
 
-image:
-    name: profiles_buttons_image
-    className: image
+internallink:
+    name: profiles_buttons_internallink
+    className: internallink
     replaceWith:
-        markdown: "function(h) {return btnMarkdownImageCallback(h);}"
-        textile: "function(h) {return btnTextileImageCallback(h);}"
+        markdown: "function(h) {return btnMarkdownLinkInternalCallback(h);}"
+        textile: "function(h) {return btnTextileLinkInternalCallback(h);}"
 
 italic:
     name: profiles_buttons_italic
@@ -136,6 +203,20 @@ italic:
     closeWith:
         markdown: "*"
         textile: "_"
+
+media:
+    name: profiles_buttons_media
+    className: media
+    replaceWith:
+        markdown: "function(h) {return btnMarkdownMediaCallback(h);}"
+        textile: "function(h) {return btnTextileMediaCallback(h);}"
+
+medialink:
+    name: profiles_buttons_medialink
+    className: medialink
+    replaceWith:
+        markdown: "function(h) {return btnMarkdownLinkFileCallback(h);}"
+        textile: "function(h) {return btnTextileLinkFileCallback(h);}"
 
 orderedlist:
     name: profiles_buttons_orderedlist
