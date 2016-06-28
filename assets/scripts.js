@@ -26,7 +26,7 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 //End - temporary functions to prevent errors
 
 //Start - functions for markdown
-	function btnMarkdownImageCallback () {
+	function btnMarkdownMediaCallback () {
 		var mediapool = openMediaPool('markitup_media');
 		$(mediapool).on('rex:selectMedia', function (event, filename) {
 			event.preventDefault();
@@ -157,7 +157,7 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 //End - functions for markdown
 
 //Start - functions for textile
-	function btnTextileImageCallback (h) {
+	function btnTextileMediaCallback (h) {
 		var mediapool = openMediaPool('markitup_media');
 		$(mediapool).on('rex:selectMedia', function (event, filename) {
 			event.preventDefault();
