@@ -93,12 +93,32 @@
 	content: "\f0cc";
 }
 
-.markItUpContainer .markItUpHeader > ul > li.image > a:before {
-	content: "\f03e";
+.markItUpContainer .markItUpHeader > ul > li.emaillink > a:before {
+	content: "\f0c1";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.emaillink > a:after {
+	content: "@";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.externallink > a:before {
+	content: "\f0c1";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.externallink > a:after {
+	content: "E";
 }
 
 .markItUpContainer .markItUpHeader > ul > li.italic > a:before {
 	content: "\f033";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.groupheading > a:before {
+	content: "\f1dc";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.grouplink > a:before {
+	content: "\f0c1";
 }
 
 .markItUpContainer .markItUpHeader > ul > li.heading1 > a:before,
@@ -134,8 +154,24 @@
 	content: "6";
 }
 
-.markItUpContainer .markItUpHeader > ul > li.link > a:before {
+.markItUpContainer .markItUpHeader > ul > li.internallink > a:before {
 	content: "\f0c1";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.internallink > a:after {
+	content: "I";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.media > a:before {
+	content: "\f03e";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.medialink > a:before {
+	content: "\f0c1";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.medialink > a:after {
+	content: "M";
 }
 
 .markItUpContainer .markItUpHeader > ul > li.orderedlist > a:before {
