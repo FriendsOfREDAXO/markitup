@@ -9,3 +9,7 @@ page:
     pjax: true
     subpages:
         profiles: { title: 'translate:profiles', perm: rex_markitup[profiles] }
+
+conflicts:
+    packages:
+        textile: *
