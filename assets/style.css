@@ -162,6 +162,12 @@
 	content: "I";
 }
 
+.markItUpContainer .markItUpHeader > ul > li.media {
+	/* reset rules from be_style */
+	overflow:visible;
+	margin-top:0px;
+}
+
 .markItUpContainer .markItUpHeader > ul > li.media > a:before {
 	content: "\f03e";
 }
