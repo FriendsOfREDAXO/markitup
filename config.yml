@@ -215,8 +215,8 @@ medialink:
     name: profiles_buttons_medialink
     className: medialink
     replaceWith:
-        markdown: "function(h) {return btnMarkdownLinkFileCallback(h);}"
-        textile: "function(h) {return btnTextileLinkFileCallback(h);}"
+        markdown: "function(h) {return btnMarkdownLinkMediaCallback(h);}"
+        textile: "function(h) {return btnTextileLinkMediaCallback(h);}"
 
 orderedlist:
     name: profiles_buttons_orderedlist

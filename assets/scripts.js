@@ -53,7 +53,7 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 		return '['+linktext+']('+linkurl+')';
 	}
 	
-	function btnMarkdownLinkFileCallback () {
+	function btnMarkdownLinkMediaCallback () {
 		var mediapool = openMediaPool('markitup_link');
 		$(mediapool).on('rex:selectMedia', function (event, filename) {
 			event.preventDefault();
@@ -184,7 +184,7 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 		return '"'+linktext+'":'+linkurl;
 	}
 	
-	function btnTextileLinkFileCallback () {
+	function btnTextileLinkMediaCallback () {
 		var mediapool = openMediaPool('markitup_link');
 		$(mediapool).on('rex:selectMedia', function (event, filename) {
 			event.preventDefault();
