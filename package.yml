@@ -12,4 +12,4 @@ page:
 
 conflicts:
     packages:
-        textile: *
+        textile: '*'
