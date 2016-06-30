@@ -1,7 +1,7 @@
 rex_markitup_title = MarkItUp Editor
 
 #subpage help
-rex_markitup_help_infotext = Das Addon bindet den MarkItUp-Editor im Backend ein.<br><br>Textareas mit der Klasse <i>markitupEditor-%profileName%</i> werden automatisch von einem normalen Texteingabefeld in einen MarkItUp-Editor umgewandelt.<br>z.B.: <textarea id="markitup_full" <b>class="markitupEditor-full"</b>></textarea><br><br>Im Backend können verschiedene Profile mit unterschiedlichen Konfigurationseinstellungen für den MarkItUp-Editor angelegt werden.
+rex_markitup_help_infotext = Das Addon bindet den MarkItUp-Editor im Backend ein.<br><br>Textareas mit der Klasse <i>markitupEditor-%profileName%</i> werden automatisch von einem normalen Texteingabefeld in einen MarkItUp-Editor umgewandelt.<br>z.B.: <textarea id="markitup_full" <b>class="markitupEditor-full"</b>></textarea><br><br>Im Backend können verschiedene Profile mit unterschiedlichen Konfigurationseinstellungen für den MarkItUp-Editor angelegt werden.<br><br>Es gibt die Möglichkeit, dem Editor eigene CSS-Styles zu geben. Dafür muss lediglich im Ordner /assets/addons/rex_markitup eine Datei mit dem Namen skin.css angelegt werden.
 
 #subpage profiles
 rex_markitup_profiles = Profile
@@ -32,18 +32,18 @@ rex_markitup_profiles_buttons_code = Code
 rex_markitup_profiles_buttons_code_description = Fügt Code ein
 rex_markitup_profiles_buttons_deleted = Durchgestrichen
 rex_markitup_profiles_buttons_deleted_description = Streicht den markierten Text durch
-rex_markitup_profiles_plugins_emaillink = Email-Link
-rex_markitup_profiles_plugins_emaillink_description = Fügt einen Email-Link ein
-rex_markitup_profiles_plugins_externallink = Externer Link
-rex_markitup_profiles_plugins_externallink_description = Fügt einen externen Link ein
-rex_markitup_profiles_plugins_groupheading = Überschrift
-rex_markitup_profiles_plugins_groupheading_description = Fügt eine Überschrift via Dropdown ein
-rex_markitup_profiles_plugins_groupheading_option_heading1 = Überschrift 1
-rex_markitup_profiles_plugins_groupheading_option_heading2 = Überschrift 2
-rex_markitup_profiles_plugins_groupheading_option_heading3 = Überschrift 3
-rex_markitup_profiles_plugins_groupheading_option_heading4 = Überschrift 4
-rex_markitup_profiles_plugins_groupheading_option_heading5 = Überschrift 5
-rex_markitup_profiles_plugins_groupheading_option_heading6 = Überschrift 6
+rex_markitup_profiles_buttons_emaillink = Email-Link
+rex_markitup_profiles_buttons_emaillink_description = Fügt einen Email-Link ein
+rex_markitup_profiles_buttons_externallink = Externer Link
+rex_markitup_profiles_buttons_externallink_description = Fügt einen externen Link ein
+rex_markitup_profiles_buttons_groupheading = Überschrift
+rex_markitup_profiles_buttons_groupheading_description = Fügt eine Überschrift via Dropdown ein
+rex_markitup_profiles_buttons_groupheading_option_heading1 = Überschrift 1
+rex_markitup_profiles_buttons_groupheading_option_heading2 = Überschrift 2
+rex_markitup_profiles_buttons_groupheading_option_heading3 = Überschrift 3
+rex_markitup_profiles_buttons_groupheading_option_heading4 = Überschrift 4
+rex_markitup_profiles_buttons_groupheading_option_heading5 = Überschrift 5
+rex_markitup_profiles_buttons_groupheading_option_heading6 = Überschrift 6
 rex_markitup_profiles_buttons_grouplink = Link
 rex_markitup_profiles_buttons_grouplink_description = Fügt einen Link ein
 rex_markitup_profiles_buttons_grouplink_option_external = Extern
@@ -62,14 +62,14 @@ rex_markitup_profiles_buttons_heading5 = Überschrift 5
 rex_markitup_profiles_buttons_heading5_description = Fügt eine Überschrift der Grösse 5 ein
 rex_markitup_profiles_buttons_heading6 = Überschrift 6
 rex_markitup_profiles_buttons_heading6_description = Fügt eine Überschrift der Grösse 6 ein
-rex_markitup_profiles_plugins_internallink = Interner Link
-rex_markitup_profiles_plugins_internallink_description = Fügt einen internen Link mit Hilfe der Linkmap ein
+rex_markitup_profiles_buttons_internallink = Interner Link
+rex_markitup_profiles_buttons_internallink_description = Fügt einen internen Link mit Hilfe der Linkmap ein
 rex_markitup_profiles_buttons_italic = Kursiv
 rex_markitup_profiles_buttons_italic_description = Macht den markierten Text kursiv
 rex_markitup_profiles_buttons_media = Media
 rex_markitup_profiles_buttons_media_description = Fügt ein Bild mithilfe des Medienpool ein
-rex_markitup_profiles_plugins_medialink = Medialink
-rex_markitup_profiles_plugins_medialink_description = Fügt einen Link auf eine Datei aus dem Medienpool ein
+rex_markitup_profiles_buttons_medialink = Medialink
+rex_markitup_profiles_buttons_medialink_description = Fügt einen Link auf eine Datei aus dem Medienpool ein
 rex_markitup_profiles_buttons_orderedlist = Sortierte Liste
 rex_markitup_profiles_buttons_orderedlist_description = Fügt eine sortierte Liste ein
 rex_markitup_profiles_buttons_paragraph = Paragraph
