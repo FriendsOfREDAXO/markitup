@@ -100,6 +100,24 @@
 							'<b>deleted</b><br>'.
 							$this->i18n('profiles_buttons_deleted_description').'<br>'.
 							'<br>'.
+							'<b>emaillink</b><br>'.
+							$this->i18n('profiles_buttons_emaillink_description').'<br>'.
+							'<br>'.
+							'<b>externallink</b><br>'.
+							$this->i18n('profiles_buttons_externallink_description').'<br>'.
+							'<br>'.
+							'<b>internallink</b><br>'.
+							$this->i18n('profiles_buttons_internallink_description').'<br>'.
+							'<br>'.
+							'<b>italic</b><br>'.
+							$this->i18n('profiles_buttons_italic_description').'<br>'.
+							'<br>'.
+							'<b>groupheading[1|2|3|4|5|6]</b><br>'.
+							$this->i18n('profiles_buttons_groupheading_description').'<br>'.
+							'<br>'.
+							'<b>grouplink[file|internal|external|mailto]</b><br>'.
+							$this->i18n('profiles_buttons_grouplink_description').'<br>'.
+							'<br>'.
 							'<b>heading1</b><br>'.
 							$this->i18n('profiles_buttons_heading1_description').'<br>'.
 							'<br>'.
@@ -118,14 +136,11 @@
 							'<b>heading6</b><br>'.
 							$this->i18n('profiles_buttons_heading6_description').'<br>'.
 							'<br>'.
-							'<b>image</b><br>'.
-							$this->i18n('profiles_buttons_image_description').'<br>'.
+							'<b>media</b><br>'.
+							$this->i18n('profiles_buttons_media_description').'<br>'.
 							'<br>'.
-							'<b>italic</b><br>'.
-							$this->i18n('profiles_buttons_italic_description').'<br>'.
-							'<br>'.
-							'<b>grouplink[file|internal|external|mailto]</b><br>'.
-							$this->i18n('profiles_buttons_grouplink_description').'<br>'.
+							'<b>medialink</b><br>'.
+							$this->i18n('profiles_buttons_medialink_description').'<br>'.
 							'<br>'.
 							'<b>orderedlist</b><br>'.
 							$this->i18n('profiles_buttons_orderedlist_description').'<br>'.
