@@ -4,12 +4,15 @@
 	
 	class rex_markitup {
 		
-		public static function insertProfile ($name, $description = '', $type = '', $markitupButtons = '') {
+		public static function insertProfile ($name, $description = '', $type = '', $minheight = '300', $maxheight = '800', $urltype = 'relative', $markitupButtons = '') {
 			$sql = rex_sql::factory();
 			$sql->setTable(rex::getTablePrefix().'markitup_profiles');
 			$sql->setValue('name', $name);
 			$sql->setValue('description', $description);
 			$sql->setValue('type', $type);
+			$sql->setValue('minheight', $minheight);
+			$sql->setValue('maxheight', $maxheight);
+			$sql->setValue('urltype', $urltype);
 			$sql->setValue('markitup_buttons', $markitupButtons);
 			
 			try {
