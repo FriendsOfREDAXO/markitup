@@ -52,15 +52,15 @@ groupheading:
     name: profiles_buttons_groupheading
     className: groupheading
     children:
-        heading1:
-            name: profiles_plugins_groupheading_option_heading1
+        1:
+            name: profiles_buttons_groupheading_option_heading1
             openWith:
                 markdown: '\n\n#'
                 textile: '\n\nh1. '
             closeWith:
                 markdown: '\n\n'
                 textile: '\n\n'
-        heading2:
+        2:
             name: profiles_buttons_groupheading_option_heading2
             openWith:
                 markdown: '\n\n##'
@@ -68,7 +68,7 @@ groupheading:
             closeWith:
                 markdown: '\n\n'
                 textile: '\n\n'
-        heading3:
+        3:
             name: profiles_buttons_groupheading_option_heading3
             openWith:
                 markdown: '\n\n###'
@@ -76,7 +76,7 @@ groupheading:
             closeWith:
                 markdown: '\n\n'
                 textile: '\n\n'
-        heading4:
+        4:
             name: profiles_buttons_groupheading_option_heading4
             openWith:
                 markdown: '\n\n####'
@@ -84,7 +84,7 @@ groupheading:
             closeWith:
                 markdown: '\n\n'
                 textile: '\n\n'
-        heading5:
+        5:
             name: profiles_buttons_groupheading_option_heading5
             openWith:
                 markdown: '\n\n#####'
@@ -92,7 +92,7 @@ groupheading:
             closeWith:
                 markdown: '\n\n'
                 textile: '\n\n'
-        heading6:
+        6:
             name: profiles_buttons_groupheading_option_heading6
             openWith:
                 markdown: '\n\n######'
