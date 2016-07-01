@@ -60,6 +60,11 @@
 			foreach ($profileButtons as $profileButton) {
 				$options = [];
 				
+				if ($profileButton == '|') {
+					$buttonString .= '{separator:\'&nbsp;\'},';
+					continue;
+				}
+				
 				if (preg_match('/(.*)\[(.*)\]/', $profileButton, $matches)) {
 					$profileButton = $matches[1];
 					

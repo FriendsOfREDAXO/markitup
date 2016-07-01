@@ -218,6 +218,16 @@
 	content: "\f0ca";
 }
 
+.markItUpContainer .markItUpHeader > ul > li.markItUpSeparator {
+	background-color: #9ca5b2;
+	font-size: 0px;
+	height: 24px;
+	line-height: 34px;
+	margin: 0px 10px;
+	padding: 0px;
+	width: 2px;
+}
+
 .markItUpContainer textarea {
 	background-color:#FFFFFF;
 	box-shadow: none;
