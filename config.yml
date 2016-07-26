@@ -108,8 +108,8 @@ grouplink:
         file:
             name: profiles_buttons_grouplink_option_file
             replaceWith:
-                markdown: "function(h) {return btnMarkdownLinkFileCallback(h);}"
-                textile: "function(h) {return btnTextileLinkFileCallback(h);}"
+                markdown: "function(h) {return btnMarkdownLinkMediaCallback(h);}"
+                textile: "function(h) {return btnTextileLinkMediaCallback(h);}"
         internal:
             name: profiles_buttons_grouplink_option_internal
             replaceWith:
