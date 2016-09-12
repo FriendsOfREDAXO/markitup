@@ -159,7 +159,7 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 //Start - functions for textile
 	function btnTextileMediaCallback (h) {
 		var mediapool = openMediaPool('markitup_media');
-		$(mediapool).on('rex:selectMedia', function (event, filename) {
+		$(window).on('rex:selectMedia', function (event, filename) {
 			event.preventDefault();
 			mediapool.close();
 			
@@ -186,7 +186,7 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 	
 	function btnTextileLinkMediaCallback () {
 		var mediapool = openMediaPool('markitup_link');
-		$(mediapool).on('rex:selectMedia', function (event, filename) {
+		$(window).on('rex:selectMedia', function (event, filename) {
 			event.preventDefault();
 			mediapool.close();
 			
