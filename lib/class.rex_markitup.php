@@ -58,6 +58,7 @@
 			$buttonString = '';
 			$profileButtons = explode(',', $profileButtons);
 			foreach ($profileButtons as $profileButton) {
+				$profileButton = trim($profileButton);
 				$options = [];
 				
 				if ($profileButton == '|') {
