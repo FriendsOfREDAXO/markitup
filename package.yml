@@ -1,14 +1,14 @@
-package: rex_markitup
+package: markitup
 version: '3.0.0-dev'
 author: Friends Of REDAXO
-supportpage: github.com/FriendsOfREDAXO/rex_markitup
+supportpage: github.com/FriendsOfREDAXO/markitup
 
 page:
     title: 'translate:title'
-    perm: rex_markitup[]
+    perm: markitup[]
     pjax: true
     subpages:
-        profiles: { title: 'translate:profiles', perm: rex_markitup[profiles] }
+        profiles: { title: 'translate:profiles', perm: markitup[profiles] }
 
 conflicts:
     packages:

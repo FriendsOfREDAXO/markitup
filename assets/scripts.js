@@ -1,19 +1,19 @@
 var currentLanguage = $('html').attr('lang');
 
-var rex_markitupLanguagestrings = new Object();
-rex_markitupLanguagestrings['de'] = new Object();
-rex_markitupLanguagestrings['en'] = new Object();
+var markitupLanguagestrings = new Object();
+markitupLanguagestrings['de'] = new Object();
+markitupLanguagestrings['en'] = new Object();
 
-rex_markitupLanguagestrings['de']['linktext'] = 'Linktext?';
-rex_markitupLanguagestrings['en']['linktext'] = 'Linktext?';
-rex_markitupLanguagestrings['de']['linkurl'] = 'URL?';
-rex_markitupLanguagestrings['en']['linkurl'] = 'URL?';
-rex_markitupLanguagestrings['de']['linkemailaddress'] = 'E-Mail Adresse?';
-rex_markitupLanguagestrings['en']['linkemailaddress'] = 'Emailaddress?';
-rex_markitupLanguagestrings['de']['tablecolumns'] = 'Wie viele Spalten?';
-rex_markitupLanguagestrings['en']['tablecolumns'] = 'How many cols?';
-rex_markitupLanguagestrings['de']['tablerows'] = 'Wie viele Zeilen?';
-rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
+markitupLanguagestrings['de']['linktext'] = 'Linktext?';
+markitupLanguagestrings['en']['linktext'] = 'Linktext?';
+markitupLanguagestrings['de']['linkurl'] = 'URL?';
+markitupLanguagestrings['en']['linkurl'] = 'URL?';
+markitupLanguagestrings['de']['linkemailaddress'] = 'E-Mail Adresse?';
+markitupLanguagestrings['en']['linkemailaddress'] = 'Emailaddress?';
+markitupLanguagestrings['de']['tablecolumns'] = 'Wie viele Spalten?';
+markitupLanguagestrings['en']['tablecolumns'] = 'How many cols?';
+markitupLanguagestrings['de']['tablerows'] = 'Wie viele Zeilen?';
+markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 
 //Start - temporary functions to prevent errors
 	function btnImageCallbackInsert() {
@@ -41,12 +41,12 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 	function btnMarkdownLinkExternalCallback (h) {
 		var linktext = h.selection;
 		if (linktext == '') {
-			if (!(linktext = prompt(rex_markitupLanguagestrings[currentLanguage]['linktext']))) {
+			if (!(linktext = prompt(markitupLanguagestrings[currentLanguage]['linktext']))) {
 				return;
 			}
 		}
 		
-		if (!(linkurl = prompt(rex_markitupLanguagestrings[currentLanguage]['linkurl'], 'http://'))) {
+		if (!(linkurl = prompt(markitupLanguagestrings[currentLanguage]['linkurl'], 'http://'))) {
 			return;
 		}
 		
@@ -80,12 +80,12 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 	function btnMarkdownLinkMailtoCallback (h) {
 		var linktext = h.selection;
 		if (linktext == '') {
-			if (!(linktext = prompt(rex_markitupLanguagestrings[currentLanguage]['linktext']))) {
+			if (!(linktext = prompt(markitupLanguagestrings[currentLanguage]['linktext']))) {
 				return;
 			}
 		}
 		
-		if (!(emailaddress = prompt(rex_markitupLanguagestrings[currentLanguage]['linkemailaddress']))) {
+		if (!(emailaddress = prompt(markitupLanguagestrings[currentLanguage]['linkemailaddress']))) {
 			return;
 		}
 		
@@ -93,11 +93,11 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 	}
 	
 	function btnMarkdownTableCallback (h) {
-		if (!(cols = prompt(rex_markitupLanguagestrings[currentLanguage]['tablecolumns']))) {
+		if (!(cols = prompt(markitupLanguagestrings[currentLanguage]['tablecolumns']))) {
 			return;
 		}
 		
-		if (!(rows = prompt(rex_markitupLanguagestrings[currentLanguage]['tablerows']))) {
+		if (!(rows = prompt(markitupLanguagestrings[currentLanguage]['tablerows']))) {
 			return;
 		}
 		
@@ -172,12 +172,12 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 	function btnTextileLinkExternalCallback (h) {
 		var linktext = h.selection;
 		if (linktext == '') {
-			if (!(linktext = prompt(rex_markitupLanguagestrings[currentLanguage]['linktext']))) {
+			if (!(linktext = prompt(markitupLanguagestrings[currentLanguage]['linktext']))) {
 				return;
 			}
 		}
 		
-		if (!(linkurl = prompt(rex_markitupLanguagestrings[currentLanguage]['linkurl'], 'http://'))) {
+		if (!(linkurl = prompt(markitupLanguagestrings[currentLanguage]['linkurl'], 'http://'))) {
 			return;
 		}
 		
@@ -213,12 +213,12 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 	function btnTextileLinkMailtoCallback (h) {
 		var linktext = h.selection;
 		if (linktext == '') {
-			if (!(linktext = prompt(rex_markitupLanguagestrings[currentLanguage]['linktext']))) {
+			if (!(linktext = prompt(markitupLanguagestrings[currentLanguage]['linktext']))) {
 				return;
 			}
 		}
 		
-		if (!(emailaddress = prompt(rex_markitupLanguagestrings[currentLanguage]['linkemailaddress']))) {
+		if (!(emailaddress = prompt(markitupLanguagestrings[currentLanguage]['linkemailaddress']))) {
 			return;
 		}
 		
@@ -226,11 +226,11 @@ rex_markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 	}
 
 	function btnTextileTableCallback (h) {
-		if (!(cols = prompt(rex_markitupLanguagestrings[currentLanguage]['tablecolumns']))) {
+		if (!(cols = prompt(markitupLanguagestrings[currentLanguage]['tablecolumns']))) {
 			return;
 		}
 		
-		if (!(rows = prompt(rex_markitupLanguagestrings[currentLanguage]['tablerows']))) {
+		if (!(rows = prompt(markitupLanguagestrings[currentLanguage]['tablerows']))) {
 			return;
 		}
 		

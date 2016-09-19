@@ -29,7 +29,7 @@
 				}
 				
 				$jsCode[] = '    markupSet: [';
-				$jsCode[] = '      '.rex_markitup::defineButtons($profile['type'], $profile['markitup_buttons'], $this);
+				$jsCode[] = '      '.markitup::defineButtons($profile['type'], $profile['markitup_buttons'], $this);
 				$jsCode[] = '    ]';
 				$jsCode[] = '  });';
 			}
@@ -40,11 +40,11 @@
 			$jsCode[] = '  autosize($("textarea[class*=\'markitupEditor-\']"));';
 			$jsCode[] = '});';
 			
-			if (!rex_file::put(rex_path::addonAssets('rex_markitup', 'cache/markitup_profiles.css').'', implode(PHP_EOL, $cssCode))) {
+			if (!rex_file::put(rex_path::addonAssets('markitup', 'cache/markitup_profiles.css').'', implode(PHP_EOL, $cssCode))) {
 				echo 'css-file konnte nicht gespeichert werden';
 			}
 			
-			if (!rex_file::put(rex_path::addonAssets('rex_markitup', 'cache/markitup_profiles.js').'', implode(PHP_EOL, $jsCode))) {
+			if (!rex_file::put(rex_path::addonAssets('markitup', 'cache/markitup_profiles.js').'', implode(PHP_EOL, $jsCode))) {
 				echo 'js-file konnte nicht gespeichert werden';
 			}
 			

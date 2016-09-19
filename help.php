@@ -21,7 +21,7 @@
 	
 	$code = '';
 	$code .= '<?php'.PHP_EOL;
-	$code .= '  echo rex_markitup::parseOutput (\'markdown\', \'REX_VALUE[id=1 output="html"]\');'.PHP_EOL;
+	$code .= '  echo markitup::parseOutput (\'markdown\', \'REX_VALUE[id=1 output="html"]\');'.PHP_EOL;
 	$code .= '?>';
 	
 	$fragment = new rex_fragment();
@@ -56,7 +56,7 @@
 	
 	$code = '';
 	$code .= '<?php'.PHP_EOL;
-	$code .= '  echo rex_markitup::parseOutput (\'textile\', \'REX_VALUE[id=1 output="html"]\');'.PHP_EOL;
+	$code .= '  echo markitup::parseOutput (\'textile\', \'REX_VALUE[id=1 output="html"]\');'.PHP_EOL;
 	$code .= '?>';
 	
 	$fragment = new rex_fragment();
@@ -71,9 +71,9 @@
 	
 	$code = '';
 	$code .= '<?php'.PHP_EOL;
-	$code .= '  if (!rex_markitup::profileExists(\'simple\')) {'.PHP_EOL;
-	$code .= '    //Name, Beschreibung, Typ (markdown oder textile), Mindesthöhe, Maximalhöhe, URL-Art (relativ oder absolut), Buttons'.PHP_EOL;
-	$code .= '    rex_markitup::insertProfile (\'simple\', \'Lorem Ipsum\', \'textile\', 300, 800, \'relative\', \'bold,italic\');'.PHP_EOL;
+	$code .= '  if (!markitup::profileExists(\'simple\')) {'.PHP_EOL;
+	$code .= '    //Name, Beschreibung, Typ (markdown oder textile), MindesthÃ¶he, MaximalhÃ¶he, URL-Art (relativ oder absolut), Buttons'.PHP_EOL;
+	$code .= '    markitup::insertProfile (\'simple\', \'Lorem Ipsum\', \'textile\', 300, 800, \'relative\', \'bold,italic\');'.PHP_EOL;
 	$code .= '  }'.PHP_EOL;
 	$code .= '?>';
 	

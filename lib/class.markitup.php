@@ -1,8 +1,8 @@
 <?php
-	require_once (rex_path::addon('rex_markitup','lib/class.rex_markitup_markdown.php')); //todo: use $this
-	require_once (rex_path::addon('rex_markitup','lib/class.rex_markitup_textile.php')); //todo: use $this
+	require_once (rex_path::addon('markitup','lib/class.markitup_markdown.php')); //todo: use $this
+	require_once (rex_path::addon('markitup','lib/class.markitup_textile.php')); //todo: use $this
 	
-	class rex_markitup {
+	class markitup {
 		
 		public static function insertProfile ($name, $description = '', $type = '', $minheight = '300', $maxheight = '800', $urltype = 'relative', $markitupButtons = '') {
 			$sql = rex_sql::factory();
@@ -40,11 +40,11 @@
 			
 			switch ($type) {
 				case 'markdown':
-					$parser = new rex_markitup_markdown();
+					$parser = new markitup_markdown();
 					return $parser->text($content);
 				break;
 				case 'textile':
-					$parser = new rex_markitup_textile();
+					$parser = new markitup_textile();
 					return $parser->custom_parse($content);
 				break;
 			}
@@ -53,7 +53,7 @@
 		}
 		
 		public static function defineButtons($type, $profileButtons, $that) {
-			$markItUpButtons = rex_file::getConfig(rex_path::addon('rex_markitup', 'config.yml'));
+			$markItUpButtons = rex_file::getConfig(rex_path::addon('markitup', 'config.yml'));
 			
 			$buttonString = '';
 			$profileButtons = explode(',', $profileButtons);
