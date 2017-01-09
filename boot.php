@@ -19,7 +19,7 @@
 			$jsCode[] = 'function markitupInit() {';
 			foreach ($profiles as $profile) {
 				$cssCode[] = '  textarea.markitupEditor-'.$profile['name'].' { min-height: '.$profile['minheight'].'px; max-height: '.$profile['maxheight'].'px; }';
-				$jsCode[] = '  $(\'.markitupEditor-'.$profile['name'].'\').markItUp({';
+				$jsCode[] = '  $(\'.markitupEditor-'.$profile['name'].'\').not(\'.markitupActive\').markItUp({';
 				
 				$jsCode[] = '    nameSpace: "markitup_'.$profile['type'].'",';
 				switch ($profile['type']) {
@@ -31,7 +31,7 @@
 				$jsCode[] = '    markupSet: [';
 				$jsCode[] = '      '.markitup::defineButtons($profile['type'], $profile['markitup_buttons'], $this);
 				$jsCode[] = '    ]';
-				$jsCode[] = '  });';
+				$jsCode[] = '  }).addClass(\'markitupActive\');';
 			}
 			$jsCode[] = '}';
 			
