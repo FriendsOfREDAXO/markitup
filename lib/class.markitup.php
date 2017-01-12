@@ -53,7 +53,11 @@
 		}
 		
 		public static function defineButtons($type, $profileButtons, $that) {
-			$markItUpButtons = rex_file::getConfig(rex_path::addon('markitup', 'config.yml'));
+			static $markItUpButtons = null;
+
+			if (!$markItUpButtons) {
+				$markItUpButtons = rex_file::getConfig(rex_path::addon('markitup', 'config.yml'));
+			}
 			
 			$buttonString = '';
 			$profileButtons = explode(',', $profileButtons);
