@@ -1,1 +1,1 @@
-DROP TABLE `%TABLE_PREFIX%markitup_profiles`;
+DROP TABLE IF EXISTS `%TABLE_PREFIX%markitup_profiles`;
