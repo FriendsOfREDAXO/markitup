@@ -33,7 +33,7 @@ markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 			mediapool.close();
 			
 			$.markItUp({
-				openWith: '['+filename+'](index.php?rex_media_type=markitupImage&rex_media_file='+filename+')'
+				openWith: '!['+filename+'](index.php?rex_media_type=markitupImage&rex_media_file='+filename+')'
 			});
 		});
 	}
