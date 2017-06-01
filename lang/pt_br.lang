@@ -1,0 +1,92 @@
+markitup_title = MarkItUp Editor
+
+#subpage help
+markitup_help_infotext = Este addon permite o uso do editor MarkItUp no backend.<br><br> campos textuais com a classe <i>markitupEditor-%profileName%</i>Será automaticamente transformado em um campo apropriado Editor MarkItUp. <br> Exemplo: <textarea id="markitup_full" <b>class="markitupEditor-full"</b>></textarea><br><br> Você pode configurar vários perfis com configurações diferentes para usar com o editor MarkItUp no backend.<br> <br> Você pode até mesmo definir sua própria pele para o editor usando CSS. Para fazer isso, adicione um arquivo chamado skin.css na pasta / ativos / addons / markitup
+
+#subpage profiles
+markitup_profiles = Perfis
+markitup_profiles_norowsmessage = Nenhum perfil encontrado
+
+markitup_profiles_column_name = Nome
+markitup_profiles_column_description = Descrição
+markitup_profiles_column_type = Tipo
+
+markitup_profiles_formcaption_add = Adicionar perfil
+markitup_profiles_formcaption_edit = Editar perfil
+
+markitup_profiles_label_name = Nome
+markitup_profiles_label_description = Descrição
+markitup_profiles_label_minheight = Comprimento mínimo
+markitup_profiles_label_maxheight = Comprimento máximo
+markitup_profiles_label_urltype = Tipo de URL
+markitup_profiles_label_urltype_option_relative = Relativo
+markitup_profiles_label_urltype_option_absolute = Absoluto
+markitup_profiles_label_type = Tipo
+markitup_profiles_label_markitupbuttons = MarkItUp buttons
+
+markitup_profiles_buttons_bold = Negrito
+markitup_profiles_buttons_bold_description = Torna o texto em destaque em negrito
+markitup_profiles_buttons_clips =  Text snippets
+markitup_profiles_buttons_clips_description = Insere  Text snippets pré-definidos
+markitup_profiles_buttons_code = Código
+markitup_profiles_buttons_code_description = Inserir código
+markitup_profiles_buttons_deleted = Riscar
+markitup_profiles_buttons_deleted_description = Riscar o texto em destaque
+markitup_profiles_buttons_emaillink = Link do e-mail
+markitup_profiles_buttons_emaillink_description = Inserir um link de mailto
+markitup_profiles_buttons_externallink = Link externo
+markitup_profiles_buttons_externallink_description = Inserir link para uma página externa
+markitup_profiles_buttons_groupheading = Título
+markitup_profiles_buttons_groupheading_description = Inserir um título usando o menu drop down
+markitup_profiles_buttons_groupheading_option_heading1 = Título 1
+markitup_profiles_buttons_groupheading_option_heading2 = Título 2
+markitup_profiles_buttons_groupheading_option_heading3 = Título 3
+markitup_profiles_buttons_groupheading_option_heading4 = Título 4
+markitup_profiles_buttons_groupheading_option_heading5 = Título 5
+markitup_profiles_buttons_groupheading_option_heading6 = Título 6
+markitup_profiles_buttons_grouplink = Link
+markitup_profiles_buttons_grouplink_description = Inserir um link
+markitup_profiles_buttons_grouplink_option_external = Externo
+markitup_profiles_buttons_grouplink_option_file = Arquivo
+markitup_profiles_buttons_grouplink_option_internal = Interno
+markitup_profiles_buttons_grouplink_option_mailto = E-mail
+markitup_profiles_buttons_heading1 = Título 1
+markitup_profiles_buttons_heading1_description = Inserir um título com o tamanho 1
+markitup_profiles_buttons_heading2 = Título 2
+markitup_profiles_buttons_heading2_description = Inserir um título com o tamanho 2
+markitup_profiles_buttons_heading3 = Título 3
+markitup_profiles_buttons_heading3_description = Inserir um título com o tamanho 3
+markitup_profiles_buttons_heading4 = Título 4
+markitup_profiles_buttons_heading4_description = Inserir um título com o tamanho 4
+markitup_profiles_buttons_heading5 = Título 5
+markitup_profiles_buttons_heading5_description = Inserir um título com o tamanho 5
+markitup_profiles_buttons_heading6 = Título 6
+markitup_profiles_buttons_heading6_description = Inserir um título com o tamanho 6
+markitup_profiles_buttons_internallink = Link externo
+markitup_profiles_buttons_internallink_description = Inserir um link externo
+markitup_profiles_buttons_italic = Itálico
+markitup_profiles_buttons_italic_description = Torna o texto em destaque em itálico
+markitup_profiles_buttons_media = Mídia
+markitup_profiles_buttons_media_description = Insere um arquivo de imagem utilizando o mediapool
+markitup_profiles_buttons_medialink = Link do arquivo
+markitup_profiles_buttons_medialink_description = Insere um link em um arquivo do mediapool
+markitup_profiles_buttons_orderedlist = Lista ordenada
+markitup_profiles_buttons_orderedlist_description = Insere uma lista ordenada
+markitup_profiles_buttons_paragraph = Parágrafo
+markitup_profiles_buttons_paragraph_description = Insere um parágrafo
+markitup_profiles_buttons_quote = Citação
+markitup_profiles_buttons_quote_description = Insere uma citação
+markitup_profiles_buttons_sub = Subscrito
+markitup_profiles_buttons_sub_description = Insere uma seqüência subscrita
+markitup_profiles_buttons_sup = Sobrescrito
+markitup_profiles_buttons_sup_description = Insere uma sequência sobreescrita
+markitup_profiles_buttons_table = Tabela
+markitup_profiles_buttons_table_description = Insere uma tabela
+markitup_profiles_buttons_underline = Sublinhado
+markitup_profiles_buttons_underline_description = Sublinha o texto em destaque
+markitup_profiles_buttons_unorderedlist = Lista não ordenada
+markitup_profiles_buttons_unorderedlist_description = Insere uma lista não ordenada
+
+#permissions
+perm_general_markitup[] = Permissões para o MarkItUp-Addon
+perm_general_markitup[profiles] = Permissões da página "Perfis" do MarkItUp-Addon
