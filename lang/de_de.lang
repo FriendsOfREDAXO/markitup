@@ -10,6 +10,7 @@ markitup_profiles_norowsmessage = Es wurden keine Profile gefunden
 markitup_profiles_column_name = Name
 markitup_profiles_column_description = Beschreibung
 markitup_profiles_column_type = Typ
+markitup_profiles_column_cssclass = CSS-Klasse
 
 markitup_profiles_formcaption_add = Profil hinzufügen
 markitup_profiles_formcaption_edit = Profil editieren
