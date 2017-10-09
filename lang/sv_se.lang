@@ -1,0 +1,93 @@
+markitup_title = MarkItUp Editor
+
+#subpage help
+markitup_help_infotext = Denna tillägg tillåter användning av MarkItUp-redigeraren i backend. <br> <br> Textarea-fält med klassen <i> markitupEditor-% profileName% </i> kommer automatiskt att omvandlas till ett korrekt MarkItUp-redigeringsfält. <br> Exempel : <Textarea id = "markitup_full" <b> class = "markitupEditor-full" </b> > </textarea><br><br>Du kan konfigurera flera profiler med olika konfigurationer att använda med MarkItUp-redigeraren i backend.<br> <br>Du kan även definiera egna stilar för redaktören med hjälp av CSS. För att göra så lägg till en fil som heter skin.css i mappen / tillgångar / addons / markitup
+
+#subpage profiles
+markitup_profiles = Profiler
+markitup_profiles_norowsmessage = Inga profiler hittades
+
+markitup_profiles_column_name = Namn
+markitup_profiles_column_description = Beskrivning
+markitup_profiles_column_type = Typ
+markitup_profiles_column_cssclass = CSS-klass
+
+markitup_profiles_formcaption_add = Tillfoga profil
+markitup_profiles_formcaption_edit = Redigera profil
+
+markitup_profiles_label_name = Namn
+markitup_profiles_label_description = Beskrivning
+markitup_profiles_label_minheight = Min. höjd
+markitup_profiles_label_maxheight = Max. höjd
+markitup_profiles_label_urltype = URL typ
+markitup_profiles_label_urltype_option_relative = Relativ
+markitup_profiles_label_urltype_option_absolute = Abolut
+markitup_profiles_label_type = Typ
+markitup_profiles_label_markitupbuttons = MarkItUp-Buttons
+
+markitup_profiles_buttons_bold = Fetstil
+markitup_profiles_buttons_bold_description = Gör markerad text i fetstil
+markitup_profiles_buttons_clips = Textsnippets
+markitup_profiles_buttons_clips_description = Infogar fördefinierade textsnippets
+markitup_profiles_buttons_code = Kod
+markitup_profiles_buttons_code_description = Infogar kod
+markitup_profiles_buttons_deleted = genomstruken
+markitup_profiles_buttons_deleted_description = genomstryka markerat text
+markitup_profiles_buttons_emaillink = E-post länk
+markitup_profiles_buttons_emaillink_description = Infogar e-post länk
+markitup_profiles_buttons_externallink = Extern länk
+markitup_profiles_buttons_externallink_description = Infogar extern länk
+markitup_profiles_buttons_groupheading = Headline
+markitup_profiles_buttons_groupheading_description = Infogar en rubrik via dropdown-menyn
+markitup_profiles_buttons_groupheading_option_heading1 = Headline 1
+markitup_profiles_buttons_groupheading_option_heading2 = Headline 2
+markitup_profiles_buttons_groupheading_option_heading3 = Headline 3
+markitup_profiles_buttons_groupheading_option_heading4 = Headline 4
+markitup_profiles_buttons_groupheading_option_heading5 = Headline 5
+markitup_profiles_buttons_groupheading_option_heading6 = Headline 6
+markitup_profiles_buttons_grouplink = Länk
+markitup_profiles_buttons_grouplink_description = Infogar en länk via dropdown-menyn
+markitup_profiles_buttons_grouplink_option_external = Extern
+markitup_profiles_buttons_grouplink_option_file = Fil
+markitup_profiles_buttons_grouplink_option_internal = Intern
+markitup_profiles_buttons_grouplink_option_mailto = E-post
+markitup_profiles_buttons_heading1 = Headline 1
+markitup_profiles_buttons_heading1_description = Skapa en rubrik nivå 1
+markitup_profiles_buttons_heading2 = Headline 2
+markitup_profiles_buttons_heading2_description = Skapa en rubrik nivå 2
+markitup_profiles_buttons_heading3 = Headline 3
+markitup_profiles_buttons_heading3_description = Skapa en rubrik nivå 3
+markitup_profiles_buttons_heading4 = Headline 4
+markitup_profiles_buttons_heading4_description = Skapa en rubrik nivå 4
+markitup_profiles_buttons_heading5 = Headline 5
+markitup_profiles_buttons_heading5_description = Skapa en rubrik nivå 5
+markitup_profiles_buttons_heading6 = Headline 6
+markitup_profiles_buttons_heading6_description = Skapa en rubrik nivå 6
+markitup_profiles_buttons_internallink = Intern länk
+markitup_profiles_buttons_internallink_description = Skapa en intern länk
+markitup_profiles_buttons_italic = Kursiv
+markitup_profiles_buttons_italic_description = Gör texten kursiv
+markitup_profiles_buttons_media = Media
+markitup_profiles_buttons_media_description = Infoga en bild med hjälp av filhanteraren
+markitup_profiles_buttons_medialink = Fillänk
+markitup_profiles_buttons_medialink_description = Infoga en länk till en fil från filhanteraren
+markitup_profiles_buttons_orderedlist = Sorterat lista
+markitup_profiles_buttons_orderedlist_description = Infoga en sorterat lista
+markitup_profiles_buttons_paragraph = Stycke
+markitup_profiles_buttons_paragraph_description = Infoga ett stycke
+markitup_profiles_buttons_quote = Citat
+markitup_profiles_buttons_quote_description = Infoga ett citat
+markitup_profiles_buttons_sub = Subscript
+markitup_profiles_buttons_sub_description = Infogar subscript text
+markitup_profiles_buttons_sup = Upphöjd
+markitup_profiles_buttons_sup_description = Infogar upphöjd text
+markitup_profiles_buttons_table = Tabell
+markitup_profiles_buttons_table_description = Infogar tabell
+markitup_profiles_buttons_underline = Understryken
+markitup_profiles_buttons_underline_description = Understryka markerat text
+markitup_profiles_buttons_unorderedlist = Osorterat lista
+markitup_profiles_buttons_unorderedlist_description = Infogar osorterat lista
+
+#permissions
+perm_general_markitup[] = Rättigheter för MarkItUp-Addon
+perm_general_markitup[profiles] = Rättigheter för sidan 'Profiles' av MarkItUp-Addon
