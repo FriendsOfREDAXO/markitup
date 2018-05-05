@@ -107,6 +107,11 @@
   background: #dff5ee;
 }
 
+.addon_documentation img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Navigation */
 
 .addon_documentation-navi ul {
