@@ -1,0 +1,9 @@
+documentation_menu_entry = Dokumentation
+
+documentation_navigation_title = Navigation [ main_navi.md ]
+documentation_content_title = Innehåll [ <span id="doc-file-name">{0}</span> ]
+
+documentation_noparser = Ingen Markdown Parser tillgänglig! Var god installera en parser först (AddOn markitup eller textil)
+
+documentation_navinotfound = Navigationsfilen <strong> {0} </ strong> hittades inte! <br> Den här filen är obligatorisk!
+documentation_filenotfound = Filen <strong> {0} </ strong> hittades inte. Innehållet finns inte (ännu). <br> <br> Vi är glada om du vill hjälpa till: <a href="{1}" target="_blank"> {1} </a>
