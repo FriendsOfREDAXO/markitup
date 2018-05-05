@@ -23,6 +23,7 @@
 	position:absolute;
 	left:0px;
 	top:34px;
+    z-index: 1;
 }
 
 .markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li {
