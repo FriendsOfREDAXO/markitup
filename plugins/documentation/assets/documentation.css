@@ -1,33 +1,23 @@
 .addon_documentation h1 {
-  font-size: 35px;
+  font-size: 22px;
   margin-top: 5px;
   margin-bottom: 20px;
 }
 
 .addon_documentation h2 {
-  font-size: 25px;
+  font-size: 16px;
   margin-top: 40px;
   text-transform: uppercase;
   margin-bottom: 20px;
   letter-spacing: 0.02em;
   border-bottom: 1px solid #ccc;
   padding: 13px 15px 10px;
-  background: #324050;
-	color: #fff;
+  background: #eee;
 }
 
 .addon_documentation h3 {
-	color: #4b9ad9;
-	font-size: 20px;
-	margin-top: 40px;
-  	margin-bottom: 5px;
-}
-
-.addon_documentation h4 {
-	color: #777;
-	font-size: 18px;
-	margin-top: 30px;
-	margin-bottom: 5px;
+  margin-top: 40px;
+  margin-bottom: 5px;
 }
 
 .addon_documentation blockquote {
