@@ -13,4 +13,4 @@ $subpage = rex_be_controller::getCurrentPagePart(2);
 
 // Subpages können über diese Methode eingebunden werden. So ist sichergestellt, dass auch Subpages funktionieren,
 // die von anderen Addons/Plugins hinzugefügt wurden
-include rex_be_controller::getCurrentPageObject()->getSubPath();
+rex_be_controller::includeCurrentPageSubPath();
