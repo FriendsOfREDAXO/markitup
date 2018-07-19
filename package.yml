@@ -13,3 +13,6 @@ page:
 conflicts:
     packages:
         textile: '*'
+        
+requires:
+    redaxo: '^5.1.0'
