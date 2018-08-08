@@ -28,4 +28,3 @@
 			return self::$instances[$doctype];
 		}
 	}
-?>

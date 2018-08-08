@@ -1,5 +1,4 @@
 <?php
-
 	class markitup {
 
 		public static function insertProfile ($name, $description = '', $type = '', $minheight = '300', $maxheight = '800', $urltype = 'relative', $markitupButtons = '') {
@@ -51,7 +50,4 @@
 
 			return false;
 		}
-
-
 	}
-?>

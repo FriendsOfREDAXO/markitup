@@ -6,4 +6,3 @@
 	class markitup_markdown extends Parsedown {
 		
 	}
-?>

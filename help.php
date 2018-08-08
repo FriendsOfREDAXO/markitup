@@ -84,4 +84,3 @@
 	$fragment->setVar('title', 'Beispiel: Via Modul oder AddOn ein Profil anlegen', false); //todo
 	$fragment->setVar('body', rex_string::highlight($code), false);
 	echo $fragment->parse('core/page/section.php');
-?>
