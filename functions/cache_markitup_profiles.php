@@ -113,7 +113,7 @@ function markitup_cache_defineButtons($type, $profileButtons, $languageSet) {
                         if( $snippets ) {
                             foreach( $languageSet as $language ) {
                                 if( isset( $snippets[$language] ) ) {
-                                    $value = $snippets[$language];
+                                    $value = str_replace(["\r\n","\n","\r"],'\\\n',$snippets[$language]);
                                     break;
                                 }
                             }
