@@ -34,7 +34,7 @@ function markitup_cache_update( )
 
     $jsCode[] = '}';
 
-    $jsCode[] = '$(document).on(\'ready pjax:success\',function() {';
+    $jsCode[] = '$(document).on(\'rex:ready ready pjax:success\',function() {';
     $jsCode[] = '  markitupInit();';
     $jsCode[] = '  autosize($("textarea[class*=\'markitupEditor-\']"));';
     $jsCode[] = '});';
