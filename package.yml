@@ -9,10 +9,11 @@ page:
     pjax: true
     subpages:
         profiles: { title: 'translate:profiles', perm: markitup[profiles] }
+        snippets: { title: 'translate:snippets', perm: markitup[snippets] }
 
 conflicts:
     packages:
         textile: '*'
-        
+
 requires:
     redaxo: '^5.1.0'

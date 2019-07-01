@@ -13,6 +13,16 @@ rex_sql_table::get(rex::getTable('markitup_profiles'))
     ->ensureColumn(new rex_sql_column('markitup_buttons', 'text'))
     ->ensure();
 
+// Datenbank-Tabelle für Snippets anlegen / anpassen
+
+rex_sql_table::get(rex::getTable('markitup_snippets'))
+    ->ensurePrimaryIdColumn()
+    ->ensureColumn(new rex_sql_column('name', 'varchar(30)', false, ''))
+    ->ensureColumn(new rex_sql_column('lang', 'varchar(30)', false, ''))
+    ->ensureColumn(new rex_sql_column('description', 'text', false, ''))
+    ->ensureColumn(new rex_sql_column('content', 'text'))
+    ->ensure();
+
 // Erstbetankung mit den Musterprofilen
 
 $tableName = rex::getTable( 'markitup_profiles' );

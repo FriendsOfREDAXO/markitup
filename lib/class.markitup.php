@@ -14,7 +14,11 @@
 
 			try {
 				$sql->insert();
-				return $sql->getLastId();
+                $lastId = $sql->getLastId();
+                // Profilbezogenes JS/CSS generieren
+                include_once( rex_path::addon('markitup', 'functions/cache_markitup_profiles.php') );
+                $result = markitup_cache_update( );
+				return $result ? $result : $lastId;
 			} catch (rex_sql_exception $e) {
 				return $e->getMessage();
 			}
@@ -27,6 +31,52 @@
 
 			if (!empty($profile)) {
 				return true;
+			} else {
+				return false;
+			}
+		}
+
+        public static function insertSnippet ($name, $lang, $snippet, $description = '') {
+
+            if( !$name ) return rex_i18n::msg('markitup_validate_empty',rex_i18n::msg('markitup_snippets_label_name'));
+            if( !$lang ) return rex_i18n::msg('markitup_validate_empty',rex_i18n::msg('markitup_snippets_label_lang'));
+            if( !$snippet ) return rex_i18n::msg('markitup_validate_empty',rex_i18n::msg('markitup_snippets_label_content'));
+
+            if( self::snippetExists ($name, $lang) ) return rex_i18n::msg('markitup_validate_unique',rex_i18n::msg('markitup_snippets_label_name').' + '.rex_i18n::msg('markitup_snippets_label_lang'));
+            $languages = array_unique(
+                array_map(
+                    function($l) { return substr($l,0,2); },
+                    array_merge(rex_i18n::getLocales(),['--'])
+                )
+            );
+            if( !in_array($lang,$languages)) return rex_i18n::msg('markitup_validate_invalid',rex_i18n::msg('markitup_snippets_label_lang'));
+
+			$sql = rex_sql::factory();
+			$sql->setTable(rex::getTable('markitup_snippets'));
+			$sql->setValue('name', $name);
+			$sql->setValue('description', $description);
+			$sql->setValue('lang', $lang);
+			$sql->setValue('content', $snippet);
+
+			try {
+				$sql->insert();
+                $lastId = $sql->getLastId();
+                // Profilbezogenes JS/CSS generieren
+                include_once( rex_path::addon('markitup', 'functions/cache_markitup_profiles.php') );
+                $result = markitup_cache_update( );
+				return $result ? $result : $lastId;
+			} catch (rex_sql_exception $e) {
+				return $e->getMessage();
+			}
+		}
+
+        public static function snippetExists ($name, $lang) {
+			$sql = rex_sql::factory();
+			$snippet = $sql->getArray('SELECT `id` FROM `'.rex::getTable('markitup_snippets').'` WHERE `name` LIKE :name AND `lang` LIKE :lang' ,[':name'=>$name,':lang'=>$lang]);
+            unset($sql);
+
+			if ( $snippet ) {
+				return $snippet[0]['id'];
 			} else {
 				return false;
 			}

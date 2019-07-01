@@ -91,6 +91,28 @@ markitup_profiles_buttons_underline_description = Underlines the highlighted tex
 markitup_profiles_buttons_unorderedlist = Unordered list
 markitup_profiles_buttons_unorderedlist_description = Inserts an unordered list
 
+#subpage snippets
+markitup_snippets = Snippets
+markitup_snippets_norowsmessage = No snippets found
+
+markitup_snippets_column_name = Name
+markitup_snippets_column_lang = Language
+markitup_snippets_column_description = Descriptions
+markitup_snippets_column_content = Snippet
+
+markitup_snippets_formcaption_add = Add snippet
+markitup_snippets_formcaption_edit = Edit Snippet
+
+markitup_snippets_label_name = Snippet-Name
+markitup_snippets_label_lang = Language
+markitup_snippets_label_lang_all = (all languages)
+markitup_snippets_label_content = Snippet
+markitup_snippets_label_description = Descriptions
+
+markitup_validate_empty = Field "{0}" may not be empty.
+markitup_validate_unique = The value for "{0}" needs to be unique.
+markitup_validate_invalid = Invalid value for "{0}". 
+
 #permissions
 perm_general_markitup[] = Permissions for the MarkItUp-Addon
 perm_general_markitup[profiles] = Permissions for the page 'Profiles' of the MarkItUp-Addon
