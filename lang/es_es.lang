@@ -109,6 +109,7 @@ markitup_snippets_label_lang_all = (todos los lenguajes)
 markitup_snippets_label_content = Módulo de texto
 markitup_snippets_label_description = Descripción
 
+markitup_validate_empty = El campo "{0}" no puede estar vacío.
 markitup_validate_unique = Valor único requerido para "{0}"
 markitup_validate_invalid = Valor no válido para "{0}".
 
