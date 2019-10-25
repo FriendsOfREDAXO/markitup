@@ -91,6 +91,28 @@ markitup_profiles_buttons_underline_description = Understryka markerat text
 markitup_profiles_buttons_unorderedlist = Osorterat lista
 markitup_profiles_buttons_unorderedlist_description = Infogar osorterat lista
 
+#subpage snippets
+markitup_snippets = Snippets
+markitup_snippets_norowsmessage = Det kunde inte hittas några snippets
+
+markitup_snippets_column_name = Namn
+markitup_snippets_column_lang = Språk
+markitup_snippets_column_description = Beskrivning
+markitup_snippets_column_content = Snippet
+
+markitup_snippets_formcaption_add = Tillfoga snippet
+markitup_snippets_formcaption_edit = Bearbeta snippet
+
+markitup_snippets_label_name = Snippets namn
+markitup_snippets_label_lang = Språk
+markitup_snippets_label_lang_all = (till alla språk)
+markitup_snippets_label_content = Snippet
+markitup_snippets_label_description = Beskrivning
+
+markitup_validate_empty = Fältet "{0}" får inte vara tomt.
+markitup_validate_unique = Värdet för "{0}" måste vara unikt.
+markitup_validate_invalid = Värdet för "{0}" är inte tillåtet.
+
 #permissions
 perm_general_markitup[] = Rättigheter för MarkItUp-Addon
 perm_general_markitup[profiles] = Rättigheter för sidan 'Profiles' av MarkItUp-Addon

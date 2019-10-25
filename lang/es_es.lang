@@ -91,6 +91,28 @@ markitup_profiles_buttons_underline_description = Subraya el texto seleccionado
 markitup_profiles_buttons_unorderedlist = Lista sin clasificar
 markitup_profiles_buttons_unorderedlist_description = Inserta una lista desordenada
 
+#subpage snippets
+markitup_snippets = Módulo de texto
+markitup_snippets_norowsmessage = No se encontraron módulo de texto
+
+markitup_snippets_column_name = Identificador
+markitup_snippets_column_lang = Lengua
+markitup_snippets_column_description = Descripción
+markitup_snippets_column_content = Módulo de texto
+
+markitup_snippets_formcaption_add = Agregar módulo de texto
+markitup_snippets_formcaption_edit = Editar módulo de texto
+
+markitup_snippets_label_name = Identificador
+markitup_snippets_label_lang = Lengua
+markitup_snippets_label_lang_all = (todos los lenguajes)
+markitup_snippets_label_content = Módulo de texto
+markitup_snippets_label_description = Descripción
+
+markitup_validate_empty = El campo "{0}" no puede estar vacío.
+markitup_validate_unique = Valor único requerido para "{0}"
+markitup_validate_invalid = Valor no válido para "{0}".
+
 #permissions
 perm_general_markitup[] = Derechos para el complemento MarkItUp
 perm_general_markitup[profiles] = Derechos para la página 'Perfil' del complemento MarkItUp

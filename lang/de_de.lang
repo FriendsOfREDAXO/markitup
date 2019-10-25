@@ -4,7 +4,7 @@ markitup_title = MarkItUp Editor
 markitup_help_infotext = Das Addon bindet den MarkItUp-Editor im Backend ein.<br><br>Textareas mit der Klasse <i>markitupEditor-%profileName%</i> werden automatisch von einem normalen Texteingabefeld in einen MarkItUp-Editor umgewandelt.<br>z.B.: <textarea id="markitup_full" <b>class="markitupEditor-full"</b>></textarea><br><br>Im Backend können verschiedene Profile mit unterschiedlichen Konfigurationseinstellungen für den MarkItUp-Editor angelegt werden.<br><br>Es gibt die Möglichkeit, dem Editor eigene CSS-Styles zu geben. Dafür muss lediglich im Ordner /assets/addons/markitup eine Datei mit dem Namen skin.css angelegt werden.
 
 #cache message
-markitup_cache = {1} konnte nicht geändert werden. 
+markitup_cache = {1} konnte nicht geändert werden.
 
 #subpage profiles
 markitup_profiles = Profile
@@ -90,6 +90,28 @@ markitup_profiles_buttons_underline = Unterstrichen
 markitup_profiles_buttons_underline_description = Unterstreicht den markierten Text
 markitup_profiles_buttons_unorderedlist = Unsortierte Liste
 markitup_profiles_buttons_unorderedlist_description = Fügt eine unsortierte Liste ein
+
+#subpage snippets
+markitup_snippets = Snippets
+markitup_snippets_norowsmessage = Es wurden keine Snippets gefunden
+
+markitup_snippets_column_name = Name
+markitup_snippets_column_lang = Sprache
+markitup_snippets_column_description = Beschreibung
+markitup_snippets_column_content = Snippet
+
+markitup_snippets_formcaption_add = Snippet hinzufügen
+markitup_snippets_formcaption_edit = Snippet editieren
+
+markitup_snippets_label_name = Snippet-Name
+markitup_snippets_label_lang = Sprache
+markitup_snippets_label_lang_all = (für alle Sprachen)
+markitup_snippets_label_content = Snippet
+markitup_snippets_label_description = Beschreibung
+
+markitup_validate_empty = Das Feld "{0}" darf nicht leer sein.
+markitup_validate_unique = Der Wert für "{0}" muss eindeutig sein.
+markitup_validate_invalid = Der Wert für "{0}" ist nicht zulässig.
 
 #permissions
 perm_general_markitup[] = Rechte für MarkItUp-Addon
