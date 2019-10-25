@@ -3,6 +3,7 @@
 // Einbinden und ausführen mit
 //      include_once
 //      $message = markitup_cache_update( )
+
 function markitup_cache_update( )
 {
     $message = '';
