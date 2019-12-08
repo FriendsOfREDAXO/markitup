@@ -192,7 +192,7 @@ markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 			
 			$.markItUp({
 				openWith: '"',
-				closeWith: ' ('+filename+')":/media/'+filename
+				closeWith: '":/media/'+filename
 			});
 		});
 	}
@@ -205,7 +205,7 @@ markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 			
 			$.markItUp({
 				openWith: '"',
-				closeWith: ' ('+linktext+')":'+linkurl
+				closeWith: '":'+linkurl
 			});
 		});
 	}
