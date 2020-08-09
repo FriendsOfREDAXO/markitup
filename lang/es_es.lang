@@ -113,3 +113,6 @@ markitup_validate_invalid = Valor no válido para "{0}".
 #permissions
 perm_general_markitup[] = Derechos para el complemento MarkItUp
 perm_general_markitup[profiles] = Derechos para la página 'Perfil' del complemento MarkItUp
+
+#subpage description
+markitup_description = Descripción

@@ -113,3 +113,6 @@ markitup_validate_invalid = Värdet för "{0}" är inte tillåtet.
 #permissions
 perm_general_markitup[] = Rättigheter för MarkItUp-Addon
 perm_general_markitup[profiles] = Rättigheter för sidan 'Profiles' av MarkItUp-Addon
+
+#subpage description
+markitup_description = Förklaring

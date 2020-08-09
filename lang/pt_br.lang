@@ -90,3 +90,6 @@ markitup_profiles_buttons_unorderedlist_description = Insere uma lista não orde
 #permissions
 perm_general_markitup[] = Permissões para o MarkItUp-Addon
 perm_general_markitup[profiles] = Permissões da página "Perfis" do MarkItUp-Addon
+
+#subpage description
+markitup_description = Descrição

@@ -113,3 +113,6 @@ markitup_validate_invalid = Invalid value for "{0}".
 #permissions
 perm_general_markitup[] = Permissions for the MarkItUp-Addon
 perm_general_markitup[profiles] = Permissions for the page 'Profiles' of the MarkItUp-Addon
+
+#subpage description
+markitup_description = Description
