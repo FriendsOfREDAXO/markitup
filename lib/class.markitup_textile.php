@@ -19,7 +19,7 @@
         public static function custom_parse($code, $restricted = false, $doctype = 'xhtml')
         {
             $instance = self::getInstance($doctype);
-            return $restricted ? $instance->TextileRestricted($code) : $instance->TextileThis($code);
+            return $restricted ? $instance->setRestricted(true)->parse($code) : $instance->setRestricted(false)->parse($code);
         }
         
         private static function getInstance($doctype = 'xhtml')
