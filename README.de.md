@@ -1,23 +1,23 @@
 # MarkItUp Editor
 
-Integrates the [MarkItUp Editor](http://markitup.jaysalvat.com/) (Markdown and Textile) into REDAXO CMS.
+Integriert den [MarkItUp-Editor](http://markitup.jaysalvat.com/) (Markdown und Textile) in REDAXO CMS.
 
 ![Screenshot](https://raw.githubusercontent.com/FriendsOfREDAXO/markitup/assets/rex_markitup.png)
 
-Textarea fields with the class `markitupEditor-%profileName%` will automatically be turned into a proper MarkItUp editor field, for example:
+Textareas mit der Klasse `markitupEditor-%profileName%` werden automatisch von einem normalen Texteingabefeld in einen MarkItUp-Editor umgewandelt, zum Beispiel:
 
 ```html
 <textarea id="markitup_full" class="markitupEditor-full"></textarea>
 ```
 
-You can setup multiple profiles with different configurations to use with the MarkItUp editor in the backend.
+Im Backend können verschiedene Profile mit unterschiedlichen Konfigurationseinstellungen für den MarkItUp-Editor angelegt werden.
 
-You can even define your own skin for the editor using CSS. To do so, add a file called `skin.css` in the folder `/assets/addons/markitup`.
+Es gibt die Möglichkeit, dem Editor eigene CSS-Styles zu geben. Dafür muss lediglich im Ordner `/assets/addons/markitup` eine Datei mit dem Namen `skin.css` angelegt werden.
 
 
 ## Markdown
 
-Module input:
+Modul-Eingabe:
 
 ```html
 <fieldset class="form-horizontal">
@@ -30,7 +30,7 @@ Module input:
 </fieldset>
 ```
 
-Module output:
+Modul-Ausgabe:
 
 ```php
 <?php
@@ -40,7 +40,7 @@ Module output:
 
 ## Textile
 
-Module input:
+Modul-Eingabe:
 
 ```html
 <fieldset class="form-horizontal">
@@ -53,7 +53,7 @@ Module input:
 </fieldset>
 ```
 
-Module output:
+Modul-Ausgabe:
 
 ```php
 <?php
@@ -61,9 +61,9 @@ Module output:
 ?>
 ```
 
-## Create new profile
+## Profil anlegen
 
-Example code for use in templates, modules or AddOns:
+Beispielcode zur Nutzung in Templates, Modulen oder AddOns:
 
 ```php
 <?php

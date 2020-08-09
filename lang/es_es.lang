@@ -1,8 +1,5 @@
 markitup_title = MarkItUp Editor
 
-#subpage help
-markitup_help_infotext = El complemento incluye el editor MarkItUp en el backend <br><br>Textareas con la clase <i> markitupEditor-%profileName%</i> se convierten automáticamente de un campo de entrada de texto normal a un editor MarkItUp.<br>ej.: <textarea id="markitup_full" <b>class="markitupEditor-full"</b></textarea><br><br>Se pueden crear varios perfiles con diferentes configuraciones para el Editor de MarkItUp en el backend.<br><br>Existe la posibilidad de darle al editor estilos de CSS propios. Todo lo que tienes que hacer es crear un archivo llamado skin.css en la carpeta /assets/addons/markitup .
-
 #cache message
 markitup_cache = {1} no actualizado
 
