@@ -35,7 +35,7 @@ $sql->delete();
 $sql->setTable( $tableName );
 $sql->setValue( 'id', 1 );
 $sql->setValue( 'name', 'textile_full' );
-$sql->setValue( 'description', 'Standard MarkItUp-Konfiguration' );
+$sql->setValue( 'description', 'Textile default configuration' );
 $sql->setValue( 'urltype', 'relative' );
 $sql->setValue( 'minheight', '300' );
 $sql->setValue( 'maxheight', '800' );
@@ -49,7 +49,7 @@ try {
 $sql->setTable( $tableName );
 $sql->setValue( 'id', 2 );
 $sql->setValue( 'name', 'markdown_full' );
-$sql->setValue( 'description', 'Standard MarkItUp-Konfiguration' );
+$sql->setValue( 'description', 'Markdown default configuration' );
 $sql->setValue( 'urltype', 'relative' );
 $sql->setValue( 'minheight', '300' );
 $sql->setValue( 'maxheight', '800' );

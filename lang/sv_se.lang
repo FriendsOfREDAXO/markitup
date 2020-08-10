@@ -1,8 +1,5 @@
 markitup_title = MarkItUp Editor
 
-#subpage help
-markitup_help_infotext = Denna tillägg tillåter användning av MarkItUp-redigeraren i backend. <br> <br> Textarea-fält med klassen <i> markitupEditor-% profileName% </i> kommer automatiskt att omvandlas till ett korrekt MarkItUp-redigeringsfält. <br> Exempel : <Textarea id = "markitup_full" <b> class = "markitupEditor-full" </b> > </textarea><br><br>Du kan konfigurera flera profiler med olika konfigurationer att använda med MarkItUp-redigeraren i backend.<br> <br>Du kan även definiera egna stilar för redaktören med hjälp av CSS. För att göra så lägg till en fil som heter skin.css i mappen / tillgångar / addons / markitup
-
 #cache message
 markitup_cache = {1} inte uppdaterat
 
@@ -116,3 +113,6 @@ markitup_validate_invalid = Värdet för "{0}" är inte tillåtet.
 #permissions
 perm_general_markitup[] = Rättigheter för MarkItUp-Addon
 perm_general_markitup[profiles] = Rättigheter för sidan 'Profiles' av MarkItUp-Addon
+
+#subpage description
+markitup_description = Förklaring

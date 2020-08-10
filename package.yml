@@ -10,10 +10,11 @@ page:
     subpages:
         profiles: { title: 'translate:profiles', perm: markitup[profiles] }
         snippets: { title: 'translate:snippets', perm: markitup[snippets] }
+        overview: { title: 'translate:description', subPath: README.md }
 
 conflicts:
     packages:
         textile: '*'
 
 requires:
-    redaxo: '^5.1.0'
+    redaxo: '^5.2.0'

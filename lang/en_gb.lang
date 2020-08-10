@@ -1,8 +1,5 @@
 markitup_title = MarkItUp Editor
 
-#subpage help
-markitup_help_infotext = This addon allows usage of the MarkItUp editor in the backend.<br><br>Textarea fields with the class <i>markitupEditor-%profileName%</i> will automatically be turned into a proper MarkItUp editor field.<br>Example: <textarea id="markitup_full" <b>class="markitupEditor-full"</b>></textarea><br><br>You can setup multiple profiles with different configurations to use with the MarkItUp editor in the backend. <br><br>You can even define your own skin for the editor using CSS. To do so, add a file called skin.css in the folder /assets/addons/markitup
-
 #cache message
 markitup_cache = {1} not updated
 
@@ -116,3 +113,6 @@ markitup_validate_invalid = Invalid value for "{0}".
 #permissions
 perm_general_markitup[] = Permissions for the MarkItUp-Addon
 perm_general_markitup[profiles] = Permissions for the page 'Profiles' of the MarkItUp-Addon
+
+#subpage description
+markitup_description = Description
