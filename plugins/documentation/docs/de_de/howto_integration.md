@@ -4,9 +4,12 @@ Mit der Installation des AddOns markitUp! stehen Dir die default-Profile für ma
 
 Für eine bedienerfreundliche Nutzung im System empfehlen wir Dir noch 3 Schritte für die Integration in REX:
 * [Einschränken der Funktionen in den Editoren](#editoren)
-* [Editoren um Textbausteine erweitern](#textbausteine)
 * [Integration markdown](#markdown)
 * [Integration textile](#textile)
+
+Weitere Informationen und Features:
+* [Editoren um Textbausteine erweitern](#textbausteine)
+* [Editoren mit Links auf YForm-Tabellen](#yform)
 * [Weitere Modul-Beispiele](#beispiele)
 
 
@@ -19,28 +22,6 @@ Beispiel für einen minimalisierten textile-Editor:
 
 	groupheading[2|3|4|5|6], grouplink[internal|external|mailto|file], unorderedlist, orderedlist, sup, sub
 
-
-<a name="textbausteine"></a>
-### Editoren um Textbausteine erweitern
-
-Über die Clip-Funktion können eigene Textbausteine im Editor bereitgestellt werden. Hier ein Basisbeispiel aus dem mitgelieferten Profil "markdown_full":
-
-    bold,code,clips[Snippetname1=Snippettext1|Snippetname2=Snippettext2],deleted,emaillink, ....
-
-![snippets](snippet.jpg)
-
-Klick auf "Snippetname1" würde an der Cursorposition den Text "Snippettext1" einfügen. Komplexe oder größere Textbausteine sprengen schnell den Rahmen des Möglichen,
-wenn man sie in der Profil-Konfiguration einbaut. Ergänzend kann in der Tabelle "Snippets" eine Textbausteinbibliothek erfasst werden.
-
-Zuerst wird in der Snippet-Liste nach dem Textbaustein "Snippettext1" (um beim Beispiel zu bleiben) gesucht. Gibt es ihn, wird er in den Text eingebaut. Gibt es ihn nicht, wird wie zuvor "Snippettext1" in den Text eingebaut.
-
-Es kann mehrere Snippets gleichen Namens geben für unterschiedliche Backendsprachen. Per Default gilt ein Textbaustein "für alle Sprachen". Wenn zu einem Snippettextnamen
-mehrere Sprachvarianten existieren, wird wie folgt ausgewählt:
-
-1. die Variante der aktuell eingestellten Backendsprache. Wenn nicht existent ...
-2. ... die Variante "für alle Sprachen". Wenn nicht existent ...
-3. ... die Variante einer der Fallback-Sprachen gem. Systemkonfiguration. Wenn nicht existent ...
-4. ... wird der Snippettextname als Text übernommen.
 
 
 <a name="markdown"></a>
@@ -259,6 +240,154 @@ Die entsprechende css-Klasse für den Editor vergibst Du unter [Profile](/redaxo
 &uarr; [zurück zur Übersicht](#top)
 
 
+<a name="textbausteine"></a>
+### Editoren um Textbausteine erweitern
+
+Über die Clip-Funktion können eigene Textbausteine im Editor bereitgestellt werden. Hier ein Basisbeispiel aus dem mitgelieferten Profil "markdown_full":
+
+    bold,code,clips[Snippetname1=Snippettext1|Snippetname2=Snippettext2],deleted,emaillink, ....
+
+![snippets](snippet.jpg)
+
+Klick auf "Snippetname1" würde an der Cursorposition den Text "Snippettext1" einfügen. Komplexe oder größere Textbausteine sprengen schnell den Rahmen des Möglichen,
+wenn man sie in der Profil-Konfiguration einbaut. Ergänzend kann in der Tabelle "Snippets" eine Textbausteinbibliothek erfasst werden.
+
+Zuerst wird in der Snippet-Liste nach dem Textbaustein "Snippettext1" (um beim Beispiel zu bleiben) gesucht. Gibt es ihn, wird er in den Text eingebaut. Gibt es ihn nicht, wird wie zuvor "Snippettext1" in den Text eingebaut.
+
+Es kann mehrere Snippets gleichen Namens geben für unterschiedliche Backendsprachen. Per Default gilt ein Textbaustein "für alle Sprachen". Wenn zu einem Snippettextnamen
+mehrere Sprachvarianten existieren, wird wie folgt ausgewählt:
+
+1. die Variante der aktuell eingestellten Backendsprache. Wenn nicht existent ...
+2. ... die Variante "für alle Sprachen". Wenn nicht existent ...
+3. ... die Variante einer der Fallback-Sprachen gem. Systemkonfiguration. Wenn nicht existent ...
+4. ... wird der Snippettextname als Text übernommen.
+
+&uarr; [zurück zur Übersicht](#top)
+
+<a name="yform"></a>
+### Links auf YForm-Tabellen einfügen
+
+> MarkItUp greift nicht direkt auf YForm zu. Somit ist YForm auch keine Installationsvorrausetzung. Wenn dieser Link-Mechanismus für YForm genutzt werden soll,
+muss YForm auch verfügbar sein. Das liegt in der Verantwortung des Entwicklers / Administrators
+
+Über die YForm-Funktion können beliebige YForm-Tabellen als Popup-Fenster aufgerufen, ein Eintrag ausgewählt und als Link in den Text eingebaut werden.
+Hier ein Basisbeispiel für die Tabellen
+- rex_shop_artikel
+- rex_shop_kunde
+- rex_shop_bestellung
+
+Das einleitende "rex_" wird weggelassen; daraus ergibt sich der Name des Eintrags im Profil:
+
+    ...,yform[shop_artikel|shop_kunde|shop_bestellung],...
+
+Aus diesem Profileintrag wird ein Dropdown-Menu erstellt. Klickt man den Eintrag an, wird ein Auswahl-Popup der Tabelle "rex_xxx" angezeigt, wobei xxx der jeweilige Name des Eintrags ist.
+
+Der Name wird über i18n in den angezeigten Text übersetzt. Dazu muss ein .lang-Eintrag angelegt werden, der folgenden Aufbau hat:
+```
+profiles_buttons_yform_option_xxx
+```
+wobei wiederum xxx der Name aus dem Profil ist bzw. der Tabellenname ohne führendes "rex_".
+
+Beispiel:
+```
+profiles_buttons_yform_option_artikel = Artikel
+profiles_buttons_yform_option_kunden = Kunden
+profiles_buttons_yform_option_bestellung = Bestellung
+```
+
+Hat man den Datensatz ausgewählt, wird ein Link-Eintrag im Editorfeld erzeugt, dessen URL dem Schema `yform:rex_xxx/nnn` folgt. Dabei ist xxx der Name des Eintrags und nnn die Satznummer (Feld `id`) des ausgewählten Datensatzes.
+
+```
+/yform:rex_shop_artikel/22
+```
+
+Für die Ausgabe werden die Pseudo-URLs in eine konkrete Url umgewandelt. Dabei ist zu beachten:
+
+#### URL-Auflösung im Frondend
+
+Per default werden die Links umgewandelt in 'javascript&colon;void();', also neutralisiert.
+
+Über eine eigenen Callback-Funktion können die individuellen Links erzeugt werden. Die Callback-Methode erhält ein
+preg-match-Array mit den Elementen `table_name` und `id`. Die Funktion muss daraus die URL aufbauen und den String
+mit Return zurückmelden.
+
+Da nur eine Funktion zugewiesen werden kann, muss sie ggf. zwischen Frontend und Backend
+unterscheiden und auch ggf. Berechtigungsprüfungen durchführen.
+
+#### URL-Auflösung im Backend
+
+Im Backend wird zumindest verlangt, dass ein Benutzer angemeldet ist. Ansonsten werden die Links neutralisiert.
+
+Im Backend werden die Links in JS-Aufrufe umgewandelt: 'javascript&colon;markitupYformOpen(nummer,tablename,id);'. Damit wird der Datensatz in einem neuen Edit-Fenster angezeigt.
+- Die Nummer ist zufällig erzeugt und benennt das Fenster
+- Der Tabellenname ist aus dem Link entnommen
+- Die Satznummer ist aus dem Link entnommen.
+
+Alternativ kann der Link auch über die Callback-Funktion erzeugt werden.
+
+#### URL-Auflösung mit Callback
+
+Das Beispiel zeigt gleich zwei Punkte:
+- Die Callback-Funktion wird über Zuweisung an `markitup::$yform_callback` festgelegt.
+- Die Funktion erzeugt im Backend den Standard-Link und im Frontend einen individuellen.
+- Wenn keine Berechtigung im Frontend vorliegt, wird ein Null-Link erzeugt.
+
+```PHP
+markitup::$yform_callback = function ($link) {
+    if( rex:isBackend() ) {
+        return markitup::createYFormLink( $link );
+    }
+    if( .... autorisiert ....) return 'http://mydomain/daten/'.$link['table_name'].'/edit/'.$link['id'];
+    return rex_article::getNotfoundArticle()->getUrl();
+};
+```
+
+#### Id is in Use - Löschen absichern
+
+Es steht eine Funktion zur Verfügung, mit der Yform-Links in den Textfeldern überprüft werden können
+
+```php
+markitup::yformLinkInUse( $table_name, $data_id, $tableset=null, $fullResult=false )
+```
+Die Funktion überprüft für die angegebenen Tabllen in den Feldern vom Typ `text` und vom Typ `varchar...`, ob
+in ihnen der zu prüfende Link vorkommt.  
+
+Beispiel:
+- Aus der YForm-Tabelle `rex_shop_kunde` soll der Datensatz `123` wird gelöscht werden.
+- Referenzen kommen nur in den Core-Tabellen (Artikel, Media) vor.
+- Gesucht wird nach dem Eintrag `yform:$table_name/$data_id`, also hier: `yform:rex_shop_kunde/123`
+
+| Parameter | Erklärung | Beispiel |
+|--|--|--|
+| $table_name | Der Name der Tabelle, deren Eintrag geprüft wird | rex_shop_kunde |
+| $data_id | Die ID des Datensatzes, der geprüft wird | 123 |
+| $tableset | Die Liste der Tabellen, in denen nach dem Link gesucht wird | 1 |
+| $fullResult | wenn TRUE werden die IDs aller gefundenen referenzen zurückgemeldet, sonst nur TRUE/FALSE |  |
+
+
+Für `$tableset` gibt es die Varianten
+- null => **Alle** Tabellen der Datenbank durchsuchen (sicher, aber aufwendig und daher langsam)
+- 1 => Core-Tabellen rex_article, rex_article_slice und rex_media durchsuchen
+- 2 => YForm-Tabellen durchsuchen
+- 3 => Kombination aus 1 und 2
+- `['tabelle_1',...]` = nur die Liste der angegebenen Tabellen durchsuchen.
+- alle anderen Eingaben => keine Suche, Rückmeldung ist `false` = nicht in Benutzung
+
+Im Normalfall bricht die Funktion nach dem ersten gefundenen Eintrag bereits mit TRUE ab.
+Mit `$fullResult = true` wird stets eine Suche über alle angegebenen Tabellen durchgeführt und alle
+gefundenen Einträge als Array der Satznummern (id) zurückgemeldet.
+
+Die Funktion kann z.B. über den Extension-Point `YFORM_DATA_DELETE` genutzt werden; im Beispiel wird die YForm-Tabelle `rex_shop_kunde` überwacht:
+
+```php
+\rex_extension::register('YFORM_DATA_DELETE', function( \rex_extension_point $ep ){
+    $table_name = $ep->getParam('table')->getTablename();
+    if( 'rex_shop_kunde' !== $table_name ) return true;
+    return !markitup::yformLinkInUse( $table_name, $ep->getParam('data_id'), 1 );
+});
+```
+
+&uarr; [zurück zur Übersicht](#top)
 
 <a name="beispiele"></a>
 ## Weitere Modul-Beispiele
