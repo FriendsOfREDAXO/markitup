@@ -185,6 +185,10 @@
 	content: "\f0cb";
 }
 
+.markItUpContainer .markItUpHeader > ul > li.tuedel > a:before {
+	content: "\f10d\f10e";
+}
+
 .markItUpContainer .markItUpHeader > ul > li.paragraph > a:before {
 	content: "\f1dd";
 }
@@ -217,6 +221,10 @@
 
 .markItUpContainer .markItUpHeader > ul > li.unorderedlist > a:before {
 	content: "\f0ca";
+}
+
+.markItUpContainer .markItUpHeader > ul > li.yform > a:before {
+	content: "\f1c0";
 }
 
 .markItUpContainer .markItUpHeader > ul > li.markItUpSeparator {
