@@ -87,6 +87,10 @@ markitup_profiles_buttons_underline = Underlined
 markitup_profiles_buttons_underline_description = Underlines the highlighted text
 markitup_profiles_buttons_unorderedlist = Unordered list
 markitup_profiles_buttons_unorderedlist_description = Inserts an unordered list
+markitup_profiles_buttons_yform = Database
+markitup_profiles_buttons_yform_description1 = YForm-Link => yform[name/tablename|...]
+markitup_profiles_buttons_yform_description2 = Use tablename without leading "rex_"!
+markitup_profiles_buttons_yform_description3 = Put an entry in your .lang-file corresponding to name: "markitup_profiles_buttons_yform_option_name"
 
 #subpage snippets
 markitup_snippets = Snippets
@@ -108,7 +112,7 @@ markitup_snippets_label_description = Descriptions
 
 markitup_validate_empty = Field "{0}" may not be empty.
 markitup_validate_unique = The value for "{0}" needs to be unique.
-markitup_validate_invalid = Invalid value for "{0}". 
+markitup_validate_invalid = Invalid value for "{0}".
 
 #permissions
 perm_general_markitup[] = Permissions for the MarkItUp-Addon
