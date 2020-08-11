@@ -186,6 +186,11 @@
 							'<br>'.
 							'<b>unorderedlist</b><br>'.
 							$this->i18n('profiles_buttons_unorderedlist_description').'<br>'.
+                            '<br>'.
+                            '<b>YForm-Tabelle</b><br>'.
+                            $this->i18n('markitup_profiles_buttons_yform_description1').'<br>'.
+                            $this->i18n('markitup_profiles_buttons_yform_description2').'<br>'.
+                            $this->i18n('markitup_profiles_buttons_yform_description3').'<br>'.
 							'
 						</div>
 					</dd>
