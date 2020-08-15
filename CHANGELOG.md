@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.5.0](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.5.0) – XX.XX.XXXX
+
+### Features
+
+- Links to YForm-tables (@christophboecker)
+    - optional button for a dropdown-menu with entries per linked YForm table
+        ...,yform[tabel1|table2],...
+    - Record-selection via default popup-window from YForm.
+    - link-schema: yform:tablename/data_id ( -> yform:rex_table1/123 )
+    - link-translation by individual callback
+    - inUse-Funktion
+    - for details activate plugin "Documentation" and view page "Editor integrieren"
+
 
 ## [3.4.0](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.4.0) – 15.08.2020
 

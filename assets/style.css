@@ -219,6 +219,10 @@
 	content: "\f0ca";
 }
 
+.markItUpContainer .markItUpHeader > ul > li.yform > a:before {
+	content: "\f1c0";
+}
+
 .markItUpContainer .markItUpHeader > ul > li.markItUpSeparator {
 	background-color: #9ca5b2;
 	font-size: 0px;

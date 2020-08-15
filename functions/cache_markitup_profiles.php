@@ -88,6 +88,7 @@ function markitup_cache_defineButtons($type, $profileButtons, $languageSet) {
     $buttonString = '';
     $profileButtons = explode(',', $profileButtons);
     foreach ($profileButtons as $profileButton) {
+
         $profileButton = trim($profileButton);
         $options = [];
 
@@ -122,6 +123,18 @@ function markitup_cache_defineButtons($type, $profileButtons, $languageSet) {
                         $options[] = $parameter;
                     }
                 }
+            } elseif( $profileButton == 'yform' ) {
+                // yform[tablename|...]
+                $data = [];
+                foreach ($parameters as $table) {
+                    $options[] = $table;
+                    $data[$table] = [
+                        'name' => 'profiles_buttons_yform_option_'.$table,
+                        'replaceWith' => [ $type => 'function(h) {return btn'.ucfirst($type).'YformCallback(h,"'.rex::getTable($table).'");}']
+                    ];
+                }
+                if( !rex_i18n::hasMsg('markitup_'.$data[$table]['name']) ) rex_i18n::addMsg('markitup_'.$data[$table]['name'],$table);
+                $markItUpButtons[$profileButton]['children'] = $data;
             } else {
                 foreach ($parameters as $parameter) {
                     if (strpos($parameter, '=') !== false) {

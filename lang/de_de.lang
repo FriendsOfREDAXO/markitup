@@ -87,6 +87,10 @@ markitup_profiles_buttons_underline = Unterstrichen
 markitup_profiles_buttons_underline_description = Unterstreicht den markierten Text
 markitup_profiles_buttons_unorderedlist = Unsortierte Liste
 markitup_profiles_buttons_unorderedlist_description = Fügt eine unsortierte Liste ein
+markitup_profiles_buttons_yform = Datenbank
+markitup_profiles_buttons_yform_description1 = YForm-Link => yform[name/tabellenname|...]
+markitup_profiles_buttons_yform_description2 = Beim Tabellennamen das "rex_" weglassen!
+markitup_profiles_buttons_yform_description3 = In eigener lang-Datei "markitup_profiles_buttons_yform_option_name" einfügen
 
 #subpage snippets
 markitup_snippets = Snippets

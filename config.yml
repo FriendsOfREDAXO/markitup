@@ -283,3 +283,7 @@ unorderedlist:
     replaceWith:
         markdown: "function(h) {return btnMarkdownUnorderedlistCallback(h);}"
         textile: "function(h) {return btnTextileUnorderedlistCallback(h);}"
+
+yform:
+    name: profiles_buttons_yform
+    className: yform
