@@ -185,10 +185,6 @@
 	content: "\f0cb";
 }
 
-.markItUpContainer .markItUpHeader > ul > li.tuedel > a:before {
-	content: "\f10d\f10e";
-}
-
 .markItUpContainer .markItUpHeader > ul > li.paragraph > a:before {
 	content: "\f1dd";
 }
