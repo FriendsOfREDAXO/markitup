@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.5.1](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.5.1) – 16.08.2020
+
+### Bugfixes
+
+- Fehlerkorrekturen zu YForm-Support ([#111](https://github.com/FriendsOfREDAXO/markitup/pull/112))
+
+
 ## [3.5.0](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.5.0) – 15.08.2020
 
 ### Features
