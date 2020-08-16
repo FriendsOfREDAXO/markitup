@@ -4,7 +4,7 @@
 
 ### Bugfixes
 
-- Fehlerkorrekturen zu YForm-Support ([#111](https://github.com/FriendsOfREDAXO/markitup/pull/112))
+- Fehlerkorrekturen zu YForm-Support ([#112](https://github.com/FriendsOfREDAXO/markitup/pull/112))
 
 
 ## [3.5.0](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.5.0) – 15.08.2020
