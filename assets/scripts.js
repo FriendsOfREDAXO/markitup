@@ -184,15 +184,15 @@ function markitupYformOpen( id, tablename, data_id ){
 	}
 
     function btnMarkdownYformCallback( h, table ){
-        let markItUp = $.markItUp;
+        let markitup = h.textarea;
         if( !markitup._yform ) markitup._yform = {};
-        let $yform = markitup._yform[yform];
+        let $yform = markitup._yform['yform'];
         if( !$yform ) {
-            $yform = markitupYformConnectionCreate( markitup.focused.closest('.markitup_markdown') );
-            markitup._yform[yform] = $yform;
+            $yform = markitupYformConnectionCreate( markitup.closest('.markitup_markdown') );
+            markitup._yform['yform'] = $yform;
         }
         $yform.done = false;
-        var dokument = openYFormDataset($yform.id, table+'.id', 'index.php?page=yform/manager/data_edit&table_name=rex_kv30_'+table );
+        var dokument = openYFormDataset($yform.id, table+'.id', 'index.php?page=yform/manager/data_edit&table_name='+table );
 
         $(dokument).on('rex:YForm_selectData', function (event, id) {
             event.preventDefault();
@@ -203,8 +203,6 @@ function markitupYformOpen( id, tablename, data_id ){
             });
             $yform.done = true;
         });
-
-
     }
 //End - functions for markdown
 

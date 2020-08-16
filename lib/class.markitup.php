@@ -122,7 +122,7 @@
 
         public static function replaceYFormLink( $content )
         {
-            $callback = function( $link ) { return 'javascript:void();'; };
+            $callback = function( $link ) { return 'javascript:void(0);'; };
             if( rex::isBackend() && rex::getUser() )
             {
                 if( rex::getUser() )
