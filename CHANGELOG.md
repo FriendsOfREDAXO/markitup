@@ -1,5 +1,21 @@
 # Changelog
 
+## [3.5.2](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.5.2) – 25.08.2020
+
+### Features ([#111](https://github.com/FriendsOfREDAXO/markitup/pull/113))
+
+- Enhanced `markitup::yformLinkInUse`
+  limit reported inUse-Items to n items per table
+- Support for own InUse-Queries: `markitup::yformInUseWhere`
+  get a tailored where-clause 
+  
+See section »Editor integrieren« within documentation for infos on how to use the feature!
+  
+### Bugfixes
+
+- Fehlerkorrekturen zu YForm-Support ([#111](https://github.com/FriendsOfREDAXO/markitup/pull/113))
+
+
 ## [3.5.1](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.5.1) – 16.08.2020
 
 ### Bugfixes
