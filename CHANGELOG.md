@@ -1,6 +1,6 @@
 # Changelog
 
-## [3.5.2](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.5.2) – 25.08.2020
+## [3.6.0](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.5.2) – 25.08.2020
 
 ### Features ([#111](https://github.com/FriendsOfREDAXO/markitup/pull/113))
 
