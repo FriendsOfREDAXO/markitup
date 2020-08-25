@@ -4,6 +4,12 @@
 
         static $yform_callback = null;
 
+        static $type_in_scope = [
+            'varchar' => 'Type LIKE \'varchar%\'',
+            'text' => 'Type = \'text\'',
+            'mediumtext' => 'Type = \'mediumtext\'',
+        ];
+
         public static function insertProfile($name, $description = '', $type = '', $minheight = '300', $maxheight = '800', $urltype = 'relative', $markitupButtons = '')
         {
             $sql = rex_sql::factory();
@@ -168,7 +174,7 @@
             elseif( 2 === $tableset || 3 == $tableset )
             {
                 try {
-                    $tableset = $sql->getArray('SELECT id, table_name FROM rex_yform_fields',[],PDO::FETCH_KEY_PAIR);
+                    $tableset = $sql->getArray('SELECT id, table_name FROM rex_yform_table',[],PDO::FETCH_KEY_PAIR);
                 } catch (\Exception $e) {
                     $tableset = []; // insb. falls es rex_yform_fields nicht gibt ($tableset = [frei angegeben])
                 }
@@ -186,35 +192,57 @@
             // Wenn $fullResult angefordert ist, werden alle Tabellen durchlaufen und je Tabelle mit
             // gefundenem Link die Satznummern zurückgemeldet.
             // Ansonsten wird beim ersten Fund beendet
-            $limit = true !== $fullResult ? 'LIMIT 1' : '';
-            $result = [];
+            $limit = ' LIMIT 1';
+            if( true == $fullResult )
+            {
+                $limit = '';
+            }
+            elseif( is_numeric($fullResult) )
+            {
+                $limit = ' LIMIT '.$fullResult;
+                $fullResult = true;
+            }
+            else {
+                $fullResult = false;
+            }
 
+            $result = [];
             foreach( $tableset as $table ){
 
-                // Alle Felder ermitteln, deren Typen mit varchar(xx) oder text sind.
-                try {
-                    $qry = 'SHOW FIELDS FROM '.$sql->escapeIdentifier($table).' WHERE Type LIKE \'varchar%\' OR Type = \'text\'';
-                    $fields = array_column( $sql->getArray( $qry ), 'Field');
-                    if( !$fields ) continue;
-                } catch (\Exception $e) {
-                    continue; // Falls es die Tabelle nicht gibt; relevant für
-                }
-
-                // Je Feld die Abfrage aufbauen, ob der Link dort vorkommt.
-                foreach( $fields as &$field )
-                {
-                    $field = 'LOCATE(\'yform:'.$table_name.'/'.$data_id.'\','.$sql->escapeIdentifier($field).')';
-                }
-                $qry = 'SELECT id FROM '.$sql->escapeIdentifier($table).' WHERE '.implode(' OR ',$fields ).$limit;
+                $where = self::yformInUseWhere ( $table, $table_name, $data_id );
+                $qry = 'SELECT id FROM '.$sql->escapeIdentifier($table).' WHERE '.$where.$limit;
                 if( $inUse = $sql->getArray( $qry ) )
                 {
-                    if( $limit ) return true;
+                    if( !$fullResult ) return true;
                     $result[$table] = array_column( $inUse, 'id' );
                 }
             }
 
             if( $result ) return $result;
             return false;
+        }
+
+        static function yformInUseWhere ( $target_table, $locator_table, $locator_id, $fields_in_scope=null, $type_in_scope=null ){
+            // Alle Felder ermitteln, deren Typen mit varchar(xx), text etc. sind.
+            $sql = rex_sql::factory();
+            try {
+                $condition = [];
+                if( null === $type_in_scope ) $type_in_scope = self::$type_in_scope;
+                if( is_array($type_in_scope) ) $condition[] = implode(' OR ',$type_in_scope);
+                if( is_array($fields_in_scope) ) $condition[] = 'Field IN (\''.implode('\',\'',$fields_in_scope).'\')';
+                if( !$condition ) return '';
+                $qry = 'SHOW FIELDS FROM '.$sql->escapeIdentifier($target_table).' WHERE (' . implode(') AND (',$condition) .')';
+                $fields = array_column( $sql->getArray( $qry ), 'Field');
+            } catch (\Exception $e) {
+                return ''; // Falls es die Tabelle nicht gibt;
+            }
+
+            // Je Feld die Abfrage aufbauen, ob der Link dort vorkommt.
+            foreach( $fields as &$field )
+            {
+                $field = 'LOCATE(\'yform:'.$locator_table.'/'.$locator_id.'\','.$sql->escapeIdentifier($field).')';
+            }
+            return implode( ' OR ',$fields );
         }
 
     }

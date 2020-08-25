@@ -290,12 +290,12 @@ wobei wiederum xxx der Name aus dem Profil ist bzw. der Tabellenname ohne führe
 
 Beispiel:
 ```
-profiles_buttons_yform_option_artikel = Artikel
-profiles_buttons_yform_option_kunden = Kunden
-profiles_buttons_yform_option_bestellung = Bestellung
+profiles_buttons_yform_option_shop_artikel = Artikel
+profiles_buttons_yform_option_shop_kunden = Kunden
+profiles_buttons_yform_option_shop_bestellung = Bestellung
 ```
 
-Hat man den Datensatz ausgewählt, wird ein Link-Eintrag im Editorfeld erzeugt, dessen URL dem Schema `yform:rex_xxx/nnn` folgt. Dabei ist xxx der Name des Eintrags und nnn die Satznummer (Feld `id`) des ausgewählten Datensatzes.
+Hat man den Datensatz ausgewählt, wird ein Link-Eintrag im Editorfeld erzeugt, dessen URL dem Schema `yform:rex_xxx/nnn` folgt. Dabei ist xxx der Name der Tabelle und nnn die Satznummer (Feld `id`) des ausgewählten Datensatzes.
 
 ```
 /yform:rex_shop_artikel/22
@@ -305,7 +305,7 @@ Für die Ausgabe werden die Pseudo-URLs in eine konkrete Url umgewandelt. Dabei 
 
 #### URL-Auflösung im Frondend
 
-Per default werden die Links umgewandelt in 'javascript&colon;void();', also neutralisiert.
+Per default werden die Links umgewandelt in 'javascript&colon;void(0);', also neutralisiert.
 
 Über eine eigenen Callback-Funktion können die individuellen Links erzeugt werden. Die Callback-Methode erhält ein
 preg-match-Array mit den Elementen `table_name` und `id`. Die Funktion muss daraus die URL aufbauen und den String
@@ -347,10 +347,19 @@ markitup::$yform_callback = function ($link) {
 Es steht eine Funktion zur Verfügung, mit der Yform-Links in den Textfeldern überprüft werden können
 
 ```php
-markitup::yformLinkInUse( $table_name, $data_id, $tableset=null, $fullResult=false )
+markitup::yformLinkInUse( $table_name, $data_id, $tableset=null, $result=false )
 ```
-Die Funktion überprüft für die angegebenen Tabllen in den Feldern vom Typ `text` und vom Typ `varchar...`, ob
-in ihnen der zu prüfende Link vorkommt.  
+Die Funktion überprüft für die angegebenen Tabellen (`$tableset`) in den Feldern vom Typ `text`, `mediumtext` und `varchar...`, ob
+in ihnen der zu prüfende Link (`$table_name, $data_id`) vorkommt.
+
+Für `$type_in_scope` ist in der Klasse `markitup` die Vorgabe
+```php
+static $type_in_scope = [
+    'varchar' => 'Type LIKE \'varchar%\'',
+    'text' => 'Type = \'text\'',
+    'mediumtext' => 'Type = \'mediumtext\'',
+];
+```
 
 Beispiel:
 - Aus der YForm-Tabelle `rex_shop_kunde` soll der Datensatz `123` wird gelöscht werden.
@@ -362,7 +371,7 @@ Beispiel:
 | $table_name | Der Name der Tabelle, deren Eintrag geprüft wird | rex_shop_kunde |
 | $data_id | Die ID des Datensatzes, der geprüft wird | 123 |
 | $tableset | Die Liste der Tabellen, in denen nach dem Link gesucht wird | 1 |
-| $fullResult | wenn TRUE werden die IDs aller gefundenen referenzen zurückgemeldet, sonst nur TRUE/FALSE |  |
+| $result | Suchverhalten (false,true,Zahl) |  |
 
 
 Für `$tableset` gibt es die Varianten
@@ -373,9 +382,10 @@ Für `$tableset` gibt es die Varianten
 - `['tabelle_1',...]` = nur die Liste der angegebenen Tabellen durchsuchen.
 - alle anderen Eingaben => keine Suche, Rückmeldung ist `false` = nicht in Benutzung
 
-Im Normalfall bricht die Funktion nach dem ersten gefundenen Eintrag bereits mit TRUE ab.
-Mit `$fullResult = true` wird stets eine Suche über alle angegebenen Tabellen durchgeführt und alle
-gefundenen Einträge als Array der Satznummern (id) zurückgemeldet.
+Im Normalfall bricht die Funktion nach dem ersten gefundenen Eintrag bereits mit `return true` ab.
+Mit `$esult = true` wird stets eine Suche über alle angegebenen Tabellen durchgeführt und alle
+gefundenen Einträge als Array der Satznummern (id) zurückgemeldet. Alternativ kann auch eine Zahl angegeben werden
+`$result = 4`; dann werden je Tabelle maximal n (hier 4) IDs zurückgemeldet.
 
 Die Funktion kann z.B. über den Extension-Point `YFORM_DATA_DELETE` genutzt werden; im Beispiel wird die YForm-Tabelle `rex_shop_kunde` überwacht:
 
@@ -386,6 +396,41 @@ Die Funktion kann z.B. über den Extension-Point `YFORM_DATA_DELETE` genutzt wer
     return !markitup::yformLinkInUse( $table_name, $ep->getParam('data_id'), 1 );
 });
 ```
+
+&uarr; [zurück zur Übersicht](#top)
+
+#### Id is in Use - Löschen absichern in eigenen Abfragen
+
+Zusätzlich zur allgemeinen Methode `markitup::yformLinkInUse(...)` kann man einfach eigene Abfragen
+konzipieren. Hierzu liefert die Methode
+```php
+markitup::yformInUseWhere( $target_table, $table_name, $data_id, $type_in_scope=null, $fields_in_scope=null )
+```
+eine massgeschneiderte Where-Klausel. Z.B. Kann die Suche nach YForm-Links mit der Suche nach anderen
+Löschausschlußkriterien in derselben Tabelle kombiniert werden oder die recht pauschale Vorgehensweise
+von `yformLinkInUse` feiner eingestellt werden.
+
+| Parameter | Erklärung | Beispiel |
+|--|--|--|
+| $target_table | Der Name der Tabelle, in der nach dem Link gesucht wird | rex_article_slice |
+| $table_name | Der Name der Tabelle, deren Eintrag geprüft wird | rex_shop_kunde |
+| $data_id | Die ID des Datensatzes, der geprüft wird | 123 |
+| $type_in_scope | Array; legt fest, welche Feldtypen durchsucht werden | ['Type LIKE "%text"'] |
+| $fields_in_scope | Array; legt fest, welche Felder durchsucht werden | ['value1','value2'] |
+
+Alle Elemente in `$type_in_scope` bzw. `$fields_in_scope` sind ODER-verknüpft. Beide untereinander sind
+jedoch UND-verknüpft.
+
+Die `target_table` wird für die Suche nach den Feldern benutzt, die die angegeben Typen haben, und
+um sicherzustellen, dass die Felder ($`fields_in_scope`) in der Tabelle vorkommen.
+
+Ist `$type_in_scope` nicht angegeben (`null`), wird auf `markitup::$type_in_scope` zurückgegriffen. Ein leerer
+`$type_in_scope` muss als `[]` angegeben werden.
+
+* Wird nur `$type_in_scope` angegeben, werden alle Felder der angegebenen Typen untersucht.
+* Wird nur `$fields_in_scope` angegeben und `$type_in_scope` ist leer (`[]`), werden alle angegebenen Felder untersucht.
+* Werden beide angegeben, werden nur Felder untersucht, die einem der angegebenen Typen entsprechen UND in der Feldliste vorkommen.
+
 
 &uarr; [zurück zur Übersicht](#top)
 
