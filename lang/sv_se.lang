@@ -87,6 +87,10 @@ markitup_profiles_buttons_underline = Understryken
 markitup_profiles_buttons_underline_description = Understryka markerat text
 markitup_profiles_buttons_unorderedlist = Osorterat lista
 markitup_profiles_buttons_unorderedlist_description = Infogar osorterat lista
+markitup_profiles_buttons_yform = Databas
+markitup_profiles_buttons_yform_description1 = YForm-Link => yform [namn / tabellnamn | ...]
+markitup_profiles_buttons_yform_description2 = Utelämna "rex_" från tabellnamnet!
+markitup_profiles_buttons_yform_description3 = Sätt in "markitup_profiles_buttons_yform_option_name" i egen lang-fil
 
 #subpage snippets
 markitup_snippets = Snippets
