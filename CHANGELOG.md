@@ -1,4 +1,18 @@
-# Changelog
+# MarkItUp Changelog
+
+## [3.7.0](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.7.0) – 19.10.2021
+
+### Features
+
+- Dressed up for new dark mode (REDAXO 5.13) 🦇
+
+
+## [3.6.1](https://github.com/FriendsOfREDAXO/markitup/releases/tag/v3.6.1) – 06.05.2021
+
+### Bugfixes
+
+- Update autosize
+
 
 ## [3.6.0](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.5.2) – 25.08.2020
 
