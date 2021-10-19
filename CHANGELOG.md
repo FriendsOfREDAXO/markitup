@@ -1,5 +1,12 @@
 # MarkItUp Changelog
 
+## [3.7.1](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.7.1) – 19.10.2021
+
+### Bugfixes
+
+- Fix invalid `package.yml` file
+
+
 ## [3.7.0](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.7.0) – 19.10.2021
 
 ### Features
