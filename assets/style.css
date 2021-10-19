@@ -245,3 +245,52 @@
 	box-shadow: none;
 	border: 1px solid #eee;
 }
+
+
+
+body.rex-theme-dark .markItUpContainer .markItUpHeader {
+    background-color: #202b35;
+    border-color: #151c22;
+}
+
+body.rex-theme-dark .markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu ul {
+    border-top-color: #151c22;
+}
+
+body.rex-theme-dark .markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li {
+    background-color: #1b232c;
+}
+
+body.rex-theme-dark .markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li > a {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+body.rex-theme-dark .markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li > a:hover {
+    background-color: inherit;
+    color: #7abaec;
+}
+
+@media (prefers-color-scheme: dark) {
+
+    body.rex-has-theme:not(.rex-theme-light) .markItUpContainer .markItUpHeader {
+        background-color: #202b35;
+        border-color: #151c22;
+    }
+
+    body.rex-has-theme:not(.rex-theme-light) .markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu ul {
+        border-top-color: #151c22;
+    }
+
+    body.rex-has-theme:not(.rex-theme-light) .markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li {
+        background-color: #1b232c;
+    }
+
+    body.rex-has-theme:not(.rex-theme-light) .markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li > a {
+        color: rgba(255, 255, 255, 0.75);
+    }
+
+    body.rex-has-theme:not(.rex-theme-light) .markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li > a:hover {
+        background-color: inherit;
+        color: #7abaec;
+    }
+}
