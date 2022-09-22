@@ -1,0 +1,14 @@
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+*.iml
+modules.xml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/encodings.xml
+*.ipr
+.DS_Store
+vendor/composer/*
+vendor/autoload.php
