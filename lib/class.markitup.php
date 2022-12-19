@@ -133,7 +133,7 @@
             {
                 if( rex::getUser() )
                 {
-                    $callback = self::$yform_callback ?: 'self::createYFormLink';
+                    $callback = self::$yform_callback ?: (__class__.'::createYFormLink');
                 }
             }
             elseif( self::$yform_callback )
