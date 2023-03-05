@@ -1,5 +1,26 @@
 # MarkItUp Changelog
 
+## [3.7.4](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.7.4) – 05.03.2023
+
+### Bugfixes
+
+- Deprecated-Warning mitigiert
+
+
+## [3.7.3](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.7.3) – 26.09.2022
+
+### Bugfixes
+
+- unnötiges require entfernt
+
+
+## [3.7.2](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.7.2) – 22.09.2022
+
+### Bugfixes
+
+- Textile via composer
+
+
 ## [3.7.1](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.7.1) – 19.10.2021
 
 ### Bugfixes
