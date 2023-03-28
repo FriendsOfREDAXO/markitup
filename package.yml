@@ -1,5 +1,5 @@
 package: markitup
-version: '3.7.4'
+version: '3.8.0'
 author: Friends Of REDAXO
 supportpage: github.com/FriendsOfREDAXO/markitup
 
@@ -11,6 +11,29 @@ page:
         profiles: { title: 'translate:profiles', perm: 'markitup[profiles]' }
         snippets: { title: 'translate:snippets', perm: 'markitup[snippets]' }
         overview: { title: 'translate:description', subPath: README.md }
+        docs:
+            title: Hilfe
+            subPath: README.md
+            icon: rex-icon fa-info-circle
+            itemclass: pull-right
+            perm: markitup[docs]
+            subpages:
+                integration:
+                    title: Integration
+                    subPath: docs/howto_integration.md
+                    icon: rex-icon fa-info-circle
+                textile:
+                    title: Markdown
+                    subPath: docs/howto_markdown.md
+                    icon: rex-icon fa-info-circle
+                markdown:
+                    title: Textile
+                    subPath: docs/howto_textile.md
+                    icon: rex-icon fa-info-circle
+                faq:
+                    title: FAQ
+                    subPath: docs/help.md
+                    icon: rex-icon fa-info-circle
 
 conflicts:
     packages:
