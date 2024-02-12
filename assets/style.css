@@ -56,7 +56,7 @@
 
 .markItUpContainer .markItUpHeader > ul > li > a:before {
 	color:#9ca5b2;
-	font-family: 'FontAwesome';
+	font-family: "Font Awesome 6 Free",FontAwesome;
 	font-size: 14px;
 	position:relative;
 }
