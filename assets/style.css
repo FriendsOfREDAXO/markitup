@@ -59,6 +59,7 @@
 	font-family: "Font Awesome 6 Free",FontAwesome;
 	font-size: 14px;
 	position:relative;
+	font-weight: 900;
 }
 
 .markItUpContainer .markItUpHeader > ul > li > a:after {
