@@ -76,7 +76,7 @@ if(!rex_addon::get('markitup')->isAvailable()) {
 <?php
 	use FriendsOfRedaxo\MarkItUp\MarkItUp;
 	if ('REX_VALUE[id=1 isset=1]') {
-	echo MarkItUp::parseOutput ('markdown', 'REX_VALUE[id=1 output="html"]');
+		echo MarkItUp::parseOutput ('markdown', 'REX_VALUE[id=1 output="html"]');
 	}
 ?>
 ```
@@ -96,18 +96,18 @@ if(!rex_addon::get('markitup')->isAvailable()) {
 // instanziieren
 $mform = new MForm();
 
-	// Text
-	$mform->addTextAreaField(2, array('label'=>'Text', 'class'=>'markitupEditor-markdown_full'));
+// Text
+$mform->addTextAreaField(2, ['label'=>'Text', 'class'=>'markitupEditor-markdown_full']);
 
 
-	// Ausrichtung Text
-	$mform->addSelectField(10,array(0 => 'zentriert', 1 => 'links-bündig', 2 => 'rechts-bündig'), array('label'=>'Ausrichtung Text', "default-value" => "1"));
+// Ausrichtung Text
+$mform->addSelectField(10,[0 => 'zentriert', 1 => 'links-bündig', 2 => 'rechts-bündig'], ['label'=>'Ausrichtung Text', 'default-value' => '1']);
 
 
 // get formular
 echo $mform->show();
 
-	?>
+?>
 ```
 
 
@@ -115,46 +115,53 @@ echo $mform->show();
 
 ```php
 <?php
-	use FriendsOfRedaxo\MarkItUp\MarkItUp;
+use FriendsOfRedaxo\MarkItUp\MarkItUp;
 
-	$txtalign = "REX_VALUE[10]";
-	$text = "REX_VALUE[id=2 output=html]";
+$txtalign = 'REX_VALUE[10]';
+$text = 'REX_VALUE[id=2 output=html]';
 
-	// ########## Ausgabe Backend
-	if(rex::isBackend()) {
+// ########## Ausgabe Backend
+if(rex::isBackend()) {
 
-	echo "<div class=\"row\"><div class=\"col-lg-12\">";
+	echo '<div class="row"><div class="col-lg-12">';
 	echo MarkItUp::parseOutput ('markdown', $text);
-	echo "</div></div>";
+	echo '</div></div>';
 
-	echo "<br><br>";
+	echo '<br /><br />';
 
 
-	echo "Ausrichtung des Textes: ";
-			if ($txtalign == "0") { echo "zentriert "; }
-			elseif ($txtalign == "1") { echo "links "; }
-			elseif ($txtalign == "2") { echo "rechts "; }
+	echo 'Ausrichtung des Textes: ';
+    if ($txtalign == '0') { 
+		echo 'zentriert ';
+	} elseif ($txtalign == '1') { 
+		echo 'links ';
+	} elseif ($txtalign == '2') {
+		echo 'rechts ';
 	}
+}
 
+// ########## Ausgabe Frontend
+else {
 
-	// ########## Ausgabe Frontend
-	else {
+	// row
+	echo '<div class="row">',PHP_EOL;
 
-		// row
-		echo "<div class=\"row\">\n";
-
-		// column
-		echo "<div class=\"column ";
-			if ($txtalign == "0") { echo "txtalign-center "; }
-			elseif ($txtalign == "1") { echo "txtalign-left "; }
-			elseif ($txtalign == "2") { echo "txtalign-right "; }
-		echo "small-100 medium-100 large-100 xlarge-100\">\n";
-
-		// Text			
-		echo MarkItUp::parseOutput ('markdown', $text);
-
-		echo "</div>\n</div>\n\n";
+	// column
+	echo '<div class="column ';
+	if ($txtalign == '0') {
+		echo 'txtalign-center ';
+	} elseif ($txtalign == '1') {
+		echo 'txtalign-left ';
+	} elseif ($txtalign == '2') {
+		echo 'txtalign-right ';
 	}
+	echo 'small-100 medium-100 large-100 xlarge-100">',PHP_EOL;
+
+	// Text			
+	echo MarkItUp::parseOutput ('markdown', $text);
+
+	echo '</div>',PHP_EOL,'</div>',PHP_EOL,PHP_EOL;
+}
 ?>
 ```
 
@@ -189,10 +196,10 @@ if(!rex_addon::get('markitup')->isAvailable()) {
 
 ```php
 <?php
-	use FriendsOfRedaxo\MarkItUp\MarkItUp;
-	if ('REX_VALUE[id=1 isset=1]') {
+use FriendsOfRedaxo\MarkItUp\MarkItUp;
+if ('REX_VALUE[id=1 isset=1]') {
 	echo MarkItUp::parseOutput ('textile', 'REX_VALUE[id=1 output="html"]');
-	}
+}
 ?>
 ```
 
@@ -211,13 +218,11 @@ if(!rex_addon::get('markitup')->isAvailable()) {
 // instanziieren
 $mform = new MForm();
 
-	// Text
-	$mform->addTextAreaField(2, array('label'=>'Text', 'class'=>'markitupEditor-textile_default'));
+// Text
+$mform->addTextAreaField(2, ['label'=>'Text', 'class'=>'markitupEditor-textile_default']);
 
-
-	// Ausrichtung Text
-	$mform->addSelectField(10,array(0 => 'zentriert', 1 => 'links-bündig', 2 => 'rechts-bündig'), array('label'=>'Ausrichtung Text', "default-value" => "1"));
-
+// Ausrichtung Text
+$mform->addSelectField(10,[0 => 'zentriert', 1 => 'links-bündig', 2 => 'rechts-bündig'], ['label'=>'Ausrichtung Text', 'default-value' => '1']);
 
 // get formular
 echo $mform->show();
@@ -230,46 +235,54 @@ echo $mform->show();
 
 ```php
 <?php
-	use FriendsOfRedaxo\MarkItUp\MarkItUp;
+use FriendsOfRedaxo\MarkItUp\MarkItUp;
 
-	$txtalign = "REX_VALUE[10]";
-	$text = "REX_VALUE[id=2 output=html]";
+$txtalign = 'REX_VALUE[10]';
+$text = 'REX_VALUE[id=2 output=html]';
 
-	// ########## Ausgabe Backend
-	if(rex::isBackend()) {
+// ########## Ausgabe Backend
+if(rex::isBackend()) {
 
-	echo "<div class=\"row\"><div class=\"col-lg-12\">";
+	echo '<div class="row"><div class="col-lg-12">';
 	echo MarkItUp::parseOutput ('textile', $text);
-	echo "</div></div>";
+	echo '</div></div>';
 
-	echo "<br><br>";
+	echo '<br /><br />';
 
 
-	echo "Ausrichtung des Textes: ";
-			if ($txtalign == "0") { echo "zentriert "; }
-			elseif ($txtalign == "1") { echo "links "; }
-			elseif ($txtalign == "2") { echo "rechts "; }
+	echo 'Ausrichtung des Textes: ';
+	if ($txtalign == '0') {
+		echo 'zentriert ';
+	} elseif ($txtalign == '1') {
+		echo 'links ';
+	} elseif ($txtalign == '2') {
+		echo 'rechts ';
 	}
+}
 
 
-	// ########## Ausgabe Frontend
-	else {
+// ########## Ausgabe Frontend
+else {
 
-		// row
-		echo "<div class=\"row\">\n";
+	// row
+	echo '<div class="row">',PHP_EOL;
 
-		// column
-		echo "<div class=\"column ";
-			if ($txtalign == "0") { echo "txtalign-center "; }
-			elseif ($txtalign == "1") { echo "txtalign-left "; }
-			elseif ($txtalign == "2") { echo "txtalign-right "; }
-		echo "small-100 medium-100 large-100 xlarge-100\">\n";
-
-		// Text			
-		echo MarkItUp::parseOutput ('textile', $text);
-
-		echo "</div>\n</div>\n\n";
+	// column
+	echo '<div class="column ';
+	if ($txtalign == '0') {
+		echo 'txtalign-center ';
+	} elseif ($txtalign == '1') {
+		echo 'txtalign-left ';
+	} elseif ($txtalign == '2') {
+		echo 'txtalign-right ';
 	}
+	echo 'small-100 medium-100 large-100 xlarge-100">',PHP_EOL;
+
+	// Text			
+	echo MarkItUp::parseOutput ('textile', $text);
+
+	echo '</div>',PHP_EOL,'</div>',PHP_EOL,PHP_EOL;
+}
 ?>
 ```
 
@@ -374,7 +387,7 @@ Das Beispiel zeigt gleich zwei Punkte:
 
 ```PHP
 use FriendsOfRedaxo\MarkItUp\MarkItUp
-MarkItUp::$yform_callback = function ($link) {
+MarkItUp::$yform_callback = static function ($link) {
     if( rex:isBackend() ) {
         return MarkItUp::createYFormLink( $link );
     }
@@ -431,7 +444,7 @@ gefundenen Einträge als Array der Satznummern (id) zurückgemeldet. Alternativ 
 Die Funktion kann z.B. über den Extension-Point `YFORM_DATA_DELETE` genutzt werden; im Beispiel wird die YForm-Tabelle `rex_shop_kunde` überwacht:
 
 ```php
-\rex_extension::register('YFORM_DATA_DELETE', function( \rex_extension_point $ep ){
+\rex_extension::register('YFORM_DATA_DELETE', static function( \rex_extension_point $ep ){
     $table_name = $ep->getParam('table')->getTablename();
     if( 'rex_shop_kunde' !== $table_name ) return true;
     return FriendsOfRedaxo\MarkItUp\MarkItUp::yformLinkInUse( $table_name, $ep->getParam('data_id'), 1 );
