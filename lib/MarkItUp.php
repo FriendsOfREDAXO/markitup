@@ -6,7 +6,6 @@ use Exception;
 use PDO;
 use rex;
 use rex_i18n;
-use rex_path;
 use rex_sql;
 use rex_sql_exception;
 
@@ -39,7 +38,6 @@ class Markitup
             $sql->insert();
             $lastId = $sql->getLastId();
             // Profilbezogenes JS/CSS generieren
-            include_once rex_path::addon('markitup', 'functions/cache_markitup_profiles.php');
             $result = Cache::update();
             return $result ? $result : $lastId;
         } catch (rex_sql_exception $e) {
@@ -97,7 +95,6 @@ class Markitup
             $sql->insert();
             $lastId = $sql->getLastId();
             // Profilbezogenes JS/CSS generieren
-            include_once rex_path::addon('markitup', 'functions/cache_markitup_profiles.php');
             $result = Cache::update();
             return $result ? $result : $lastId;
         } catch (rex_sql_exception $e) {
@@ -123,12 +120,10 @@ class Markitup
 
         switch ($type) {
             case 'markdown':
-                require_once rex_path::addon('markitup', 'lib/class.markitup_markdown.php'); // todo: use $this
                 $parser = new Markdown();
                 return self::replaceYFormLink($parser->text($content));
                 break;
             case 'textile':
-                require_once rex_path::addon('markitup', 'lib/class.markitup_textile.php'); // todo: use $this
                 $parser = new Textile();
                 return self::replaceYFormLink($parser->custom_parse($content));
                 break;

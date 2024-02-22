@@ -45,12 +45,10 @@ if ('' == $func) {
     // Wenn ein Snippet erfolgreich gespeichert wurde (add|edit)
     // werden die darauf basierenden Dateien markitup_profiles.[css|js] neu angelegt
 
-    rex_extension::register('REX_FORM_SAVED', function ($ep) {
-        include_once $this->getPath('functions/cache_markitup_profiles.php');
+    rex_extension::register('REX_FORM_SAVED', static function ($ep) {
         echo Cache::update();
     });
-    rex_extension::register('REX_FORM_DELETED', function ($ep) {
-        include_once $this->getPath('functions/cache_markitup_profiles.php');
+    rex_extension::register('REX_FORM_DELETED', static function ($ep) {
         echo Cache::update();
     });
 
