@@ -1,5 +1,17 @@
 # MarkItUp Changelog
 
+## [3.8.0](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.8.0) – xx.xx.2024
+
+### Features
+
+- Umstellung auf Namespaces in Vorbereitung auf REDAXO 6.0 mit Installation via Composer
+  - Namespace `FriendsOfRedaxo\MarkItUp`
+  - Klassen- und Funktionsnamen ohne Prefix `markitup_` und ggf. in CamelCase-Schreibweise
+  - Klassennamen als Dateinamen im Lib-Verzeichnis
+  - Die alten Klassen und Funktionen ko-existieren als Alias-Elemente mit Vermerk "deprecated"
+  
+### Bugfixes
+
 ## [3.7.4](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.7.4) – 05.03.2023
 
 ### Bugfixes

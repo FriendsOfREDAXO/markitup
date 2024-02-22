@@ -1,5 +1,5 @@
 package: markitup
-version: '3.7.6'
+version: '3.8.0'
 author: Friends Of REDAXO
 supportpage: github.com/FriendsOfREDAXO/markitup
 
@@ -8,9 +8,15 @@ page:
     perm: markitup[]
     pjax: true
     subpages:
-        profiles: { title: 'translate:profiles', perm: 'markitup[profiles]' }
-        snippets: { title: 'translate:snippets', perm: 'markitup[snippets]' }
-        overview: { title: 'translate:description', subPath: README.md }
+        profiles: 
+            title: 'translate:profiles'
+            perm: 'markitup[profiles]'
+        snippets: 
+            title: 'translate:snippets'
+            perm: 'markitup[snippets]'
+        overview: 
+            title: 'translate:description'
+            subPath: README.md
 
 conflicts:
     packages:
