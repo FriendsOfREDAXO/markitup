@@ -12,16 +12,39 @@ Weitere Informationen und Features:
 * [Editoren mit Links auf YForm-Tabellen](#yform)
 * [Weitere Modul-Beispiele](#beispiele)
 
+MarkItUp liegt im Namespace `FriendsOfRedaxo\MarkItUp`. Die i.d.R. benutzen Methoden sind in der Klasse `MarkItUp`
+zusammengefasst. Der Aufruf erfolgt entweder über den vollständigen Namen inkl. Namespace
+
+```php
+echo FriendsOfRedaxo\MarkItUp\MarkItUp::parseOutput ('textile', $text);
+```
+
+oder indem die Klasse einmalig am Anfang der Datei oder des Moduls eingebunden wird und später nur über den
+Klassennamen adressiert werden kann.
+
+```php
+use FriendsOfRedaxo\MarkItUp\MarkItUp;
+...
+echo MarkItUp::parseOutput ('textile', $text);
+```
+
+In den Beispilen sind beide Varianten zu finden.
+
+> Die vorherigen Klassen und Funktionen sind b.a.W. parallel verfügbar, aber als `deprecated` gekennzeichnet.
+Die Umstellung auf die Namespace-Variante ist Voraussetzung für die Nutzung von MarkItUp mit REDAXO 6.   
+
+
 
 <a name="editoren"></a>
-### Einschränken der Funktionen in den Editoren
+## Einschränken der Funktionen in den Editoren
 
 Für den laufenden Betrieb empfielt es sich, die Editoren zu minimalisieren auf die Funktionen, die der Redakteur wirklich braucht. Das macht die Pflege deutlich komfortabler und auch die dadurch entstehenden Internetseiten werden konsistenter und "sauberer" im Code.
 
 Beispiel für einen minimalisierten textile-Editor:
 
-	groupheading[2|3|4|5|6], grouplink[internal|external|mailto|file], unorderedlist, orderedlist, sup, sub
-
+```
+groupheading[2|3|4|5|6], grouplink[internal|external|mailto|file], unorderedlist, orderedlist, sup, sub
+```
 
 
 <a name="markdown"></a>
@@ -33,27 +56,30 @@ Beispiel für einen minimalisierten textile-Editor:
 
 Die entsprechende css-Klasse für den Editor vergibst Du unter [Profile](/redaxo/index.php?page=markitup/profiles).
 
-	<?php
-	if(!rex_addon::get('markitup')->isAvailable()) {
-		echo rex_view::error('Dieses Modul ben&ouml;tigt das "markitUp!" Addon.');
-	}
-	?>
-	<div class="form-group">
-	  <label class="col-sm-2">Text</label>
-	  <div class="col-sm-10">
-		<textarea class="form-control markitupEditor-markdown_full" id="value-1" name="REX_INPUT_VALUE[1]">REX_VALUE[1]</textarea>
-	  </div>
+```php
+<?php
+if(!rex_addon::get('markitup')->isAvailable()) {
+	echo rex_view::error('Dieses Modul ben&ouml;tigt das "markitUp!" Addon.');
+}
+?>
+<div class="form-group">
+	<label class="col-sm-2">Text</label>
+	<div class="col-sm-10">
+	<textarea class="form-control markitupEditor-markdown_full" id="value-1" name="REX_INPUT_VALUE[1]">REX_VALUE[1]</textarea>
 	</div>
-
+</div>
+```
 
 #### Ausgabe-Modul
 
-	<?php
-	  if ('REX_VALUE[id=1 isset=1]') {
-		echo markitup::parseOutput ('markdown', 'REX_VALUE[id=1 output="html"]');
-	  }
-	?>
-
+```php
+<?php
+	use FriendsOfRedaxo\MarkItUp\MarkItUp;
+	if ('REX_VALUE[id=1 isset=1]') {
+	echo MarkItUp::parseOutput ('markdown', 'REX_VALUE[id=1 output="html"]');
+	}
+?>
+```
 
 ### mit MForm
 
@@ -61,73 +87,76 @@ Die entsprechende css-Klasse für den Editor vergibst Du unter [Profile](/redaxo
 
 Die entsprechende css-Klasse für den Editor vergibst Du unter [Profile](/redaxo/index.php?page=markitup/profiles).
 
-	<?php
-	if(!rex_addon::get('markitup')->isAvailable()) {
-		echo rex_view::error('Dieses Modul ben&ouml;tigt das "markitup" Addon sowie das Profil markitupEditor-markdown_full.');
-	}
+```php
+<?php
+if(!rex_addon::get('markitup')->isAvailable()) {
+	echo rex_view::error('Dieses Modul ben&ouml;tigt das "markitup" Addon sowie das Profil markitupEditor-markdown_full.');
+}
 
-	// instanziieren
-	$mform = new MForm();
+// instanziieren
+$mform = new MForm();
 
-		// Text
-		$mform->addTextAreaField(2, array('label'=>'Text', 'class'=>'markitupEditor-markdown_full'));
-
-
-		// Ausrichtung Text
-		$mform->addSelectField(10,array(0 => 'zentriert', 1 => 'links-bündig', 2 => 'rechts-bündig'), array('label'=>'Ausrichtung Text', "default-value" => "1"));
+	// Text
+	$mform->addTextAreaField(2, array('label'=>'Text', 'class'=>'markitupEditor-markdown_full'));
 
 
-	// get formular
-	echo $mform->show();
+	// Ausrichtung Text
+	$mform->addSelectField(10,array(0 => 'zentriert', 1 => 'links-bündig', 2 => 'rechts-bündig'), array('label'=>'Ausrichtung Text', "default-value" => "1"));
+
+
+// get formular
+echo $mform->show();
 
 	?>
-
+```
 
 
 #### Ausgabe-Modul
 
-	<?php
+```php
+<?php
+	use FriendsOfRedaxo\MarkItUp\MarkItUp;
 
-		$txtalign = "REX_VALUE[10]";
-		$text = "REX_VALUE[id=2 output=html]";
+	$txtalign = "REX_VALUE[10]";
+	$text = "REX_VALUE[id=2 output=html]";
 
-		// ########## Ausgabe Backend
-		if(rex::isBackend()) {
+	// ########## Ausgabe Backend
+	if(rex::isBackend()) {
 
-		echo "<div class=\"row\"><div class=\"col-lg-12\">";
-		echo markitup::parseOutput ('markdown', $text);
-		echo "</div></div>";
+	echo "<div class=\"row\"><div class=\"col-lg-12\">";
+	echo MarkItUp::parseOutput ('markdown', $text);
+	echo "</div></div>";
 
-		echo "<br><br>";
-
-
-		echo "Ausrichtung des Textes: ";
-				if ($txtalign == "0") { echo "zentriert "; }
-				elseif ($txtalign == "1") { echo "links "; }
-				elseif ($txtalign == "2") { echo "rechts "; }
-		}
+	echo "<br><br>";
 
 
-		// ########## Ausgabe Frontend
-		else {
+	echo "Ausrichtung des Textes: ";
+			if ($txtalign == "0") { echo "zentriert "; }
+			elseif ($txtalign == "1") { echo "links "; }
+			elseif ($txtalign == "2") { echo "rechts "; }
+	}
 
-			// row
-			echo "<div class=\"row\">\n";
 
-			// column
-			echo "<div class=\"column ";
-				if ($txtalign == "0") { echo "txtalign-center "; }
-				elseif ($txtalign == "1") { echo "txtalign-left "; }
-				elseif ($txtalign == "2") { echo "txtalign-right "; }
-			echo "small-100 medium-100 large-100 xlarge-100\">\n";
+	// ########## Ausgabe Frontend
+	else {
 
-			// Text			
-			echo markitup::parseOutput ('markdown', $text);
+		// row
+		echo "<div class=\"row\">\n";
 
-			echo "</div>\n</div>\n\n";
-		}
-	?>
+		// column
+		echo "<div class=\"column ";
+			if ($txtalign == "0") { echo "txtalign-center "; }
+			elseif ($txtalign == "1") { echo "txtalign-left "; }
+			elseif ($txtalign == "2") { echo "txtalign-right "; }
+		echo "small-100 medium-100 large-100 xlarge-100\">\n";
 
+		// Text			
+		echo MarkItUp::parseOutput ('markdown', $text);
+
+		echo "</div>\n</div>\n\n";
+	}
+?>
+```
 
 &uarr; [zurück zur Übersicht](#top)
 
@@ -142,27 +171,30 @@ Die entsprechende css-Klasse für den Editor vergibst Du unter [Profile](/redaxo
 
 Die entsprechende css-Klasse für den Editor vergibst Du unter [Profile](/redaxo/index.php?page=markitup/profiles).
 
-	<?php
-	if(!rex_addon::get('markitup')->isAvailable()) {
-		echo rex_view::error('Dieses Modul ben&ouml;tigt das "markitUp!" Addon.');
-	}
-	?>
-	<div class="form-group">
-	  <label class="col-sm-2">Text</label>
-	  <div class="col-sm-10">
-		<textarea class="form-control markitupEditor-textile_full" id="value-1" name="REX_INPUT_VALUE[1]">REX_VALUE[1]</textarea>
-	  </div>
+```php
+<?php
+if(!rex_addon::get('markitup')->isAvailable()) {
+	echo rex_view::error('Dieses Modul ben&ouml;tigt das "markitUp!" Addon.');
+}
+?>
+<div class="form-group">
+	<label class="col-sm-2">Text</label>
+	<div class="col-sm-10">
+	<textarea class="form-control markitupEditor-textile_full" id="value-1" name="REX_INPUT_VALUE[1]">REX_VALUE[1]</textarea>
 	</div>
-
+</div>
+```
 
 #### Ausgabe-Modul
 
-	<?php
-	  if ('REX_VALUE[id=1 isset=1]') {
-		echo markitup::parseOutput ('textile', 'REX_VALUE[id=1 output="html"]');
-	  }
-	?>
-
+```php
+<?php
+	use FriendsOfRedaxo\MarkItUp\MarkItUp;
+	if ('REX_VALUE[id=1 isset=1]') {
+	echo MarkItUp::parseOutput ('textile', 'REX_VALUE[id=1 output="html"]');
+	}
+?>
+```
 
 ### mit MForm
 
@@ -170,72 +202,76 @@ Die entsprechende css-Klasse für den Editor vergibst Du unter [Profile](/redaxo
 
 Die entsprechende css-Klasse für den Editor vergibst Du unter [Profile](/redaxo/index.php?page=markitup/profiles).
 
-	<?php
-	if(!rex_addon::get('markitup')->isAvailable()) {
-		echo rex_view::error('Dieses Modul ben&ouml;tigt das "markitup" Addon sowie das Profil markitupEditor-textile_default.');
-	}
+```php
+<?php
+if(!rex_addon::get('markitup')->isAvailable()) {
+	echo rex_view::error('Dieses Modul ben&ouml;tigt das "markitup" Addon sowie das Profil markitupEditor-textile_default.');
+}
 
-	// instanziieren
-	$mform = new MForm();
+// instanziieren
+$mform = new MForm();
 
-		// Text
-		$mform->addTextAreaField(2, array('label'=>'Text', 'class'=>'markitupEditor-textile_default'));
-
-
-		// Ausrichtung Text
-		$mform->addSelectField(10,array(0 => 'zentriert', 1 => 'links-bündig', 2 => 'rechts-bündig'), array('label'=>'Ausrichtung Text', "default-value" => "1"));
+	// Text
+	$mform->addTextAreaField(2, array('label'=>'Text', 'class'=>'markitupEditor-textile_default'));
 
 
-	// get formular
-	echo $mform->show();
+	// Ausrichtung Text
+	$mform->addSelectField(10,array(0 => 'zentriert', 1 => 'links-bündig', 2 => 'rechts-bündig'), array('label'=>'Ausrichtung Text', "default-value" => "1"));
 
-	?>
 
+// get formular
+echo $mform->show();
+
+?>
+```
 
 
 #### Ausgabe-Modul
 
-	<?php
+```php
+<?php
+	use FriendsOfRedaxo\MarkItUp\MarkItUp;
 
-		$txtalign = "REX_VALUE[10]";
-		$text = "REX_VALUE[id=2 output=html]";
+	$txtalign = "REX_VALUE[10]";
+	$text = "REX_VALUE[id=2 output=html]";
 
-		// ########## Ausgabe Backend
-		if(rex::isBackend()) {
+	// ########## Ausgabe Backend
+	if(rex::isBackend()) {
 
-		echo "<div class=\"row\"><div class=\"col-lg-12\">";
-		echo markitup::parseOutput ('textile', $text);
-		echo "</div></div>";
+	echo "<div class=\"row\"><div class=\"col-lg-12\">";
+	echo MarkItUp::parseOutput ('textile', $text);
+	echo "</div></div>";
 
-		echo "<br><br>";
-
-
-		echo "Ausrichtung des Textes: ";
-				if ($txtalign == "0") { echo "zentriert "; }
-				elseif ($txtalign == "1") { echo "links "; }
-				elseif ($txtalign == "2") { echo "rechts "; }
-		}
+	echo "<br><br>";
 
 
-		// ########## Ausgabe Frontend
-		else {
+	echo "Ausrichtung des Textes: ";
+			if ($txtalign == "0") { echo "zentriert "; }
+			elseif ($txtalign == "1") { echo "links "; }
+			elseif ($txtalign == "2") { echo "rechts "; }
+	}
 
-			// row
-			echo "<div class=\"row\">\n";
 
-			// column
-			echo "<div class=\"column ";
-				if ($txtalign == "0") { echo "txtalign-center "; }
-				elseif ($txtalign == "1") { echo "txtalign-left "; }
-				elseif ($txtalign == "2") { echo "txtalign-right "; }
-			echo "small-100 medium-100 large-100 xlarge-100\">\n";
+	// ########## Ausgabe Frontend
+	else {
 
-			// Text			
-			echo markitup::parseOutput ('textile', $text);
+		// row
+		echo "<div class=\"row\">\n";
 
-			echo "</div>\n</div>\n\n";
-		}
-	?>
+		// column
+		echo "<div class=\"column ";
+			if ($txtalign == "0") { echo "txtalign-center "; }
+			elseif ($txtalign == "1") { echo "txtalign-left "; }
+			elseif ($txtalign == "2") { echo "txtalign-right "; }
+		echo "small-100 medium-100 large-100 xlarge-100\">\n";
+
+		// Text			
+		echo MarkItUp::parseOutput ('textile', $text);
+
+		echo "</div>\n</div>\n\n";
+	}
+?>
+```
 
 &uarr; [zurück zur Übersicht](#top)
 
@@ -245,7 +281,9 @@ Die entsprechende css-Klasse für den Editor vergibst Du unter [Profile](/redaxo
 
 Über die Clip-Funktion können eigene Textbausteine im Editor bereitgestellt werden. Hier ein Basisbeispiel aus dem mitgelieferten Profil "markdown_full":
 
-    bold,code,clips[Snippetname1=Snippettext1|Snippetname2=Snippettext2],deleted,emaillink, ....
+```
+bold,code,clips[Snippetname1=Snippettext1|Snippetname2=Snippettext2],deleted,emaillink, ....
+```
 
 ![snippets](snippet.jpg)
 
@@ -278,7 +316,9 @@ Hier ein Basisbeispiel für die Tabellen
 
 Das einleitende "rex_" wird weggelassen; daraus ergibt sich der Name des Eintrags im Profil:
 
-    ...,yform[shop_artikel|shop_kunde|shop_bestellung],...
+```
+...,yform[shop_artikel|shop_kunde|shop_bestellung],...
+```
 
 Aus diesem Profileintrag wird ein Dropdown-Menu erstellt. Klickt man den Eintrag an, wird ein Auswahl-Popup der Tabelle "rex_xxx" angezeigt, wobei xxx der jeweilige Name des Eintrags ist.
 
@@ -328,14 +368,15 @@ Alternativ kann der Link auch über die Callback-Funktion erzeugt werden.
 #### URL-Auflösung mit Callback
 
 Das Beispiel zeigt gleich zwei Punkte:
-- Die Callback-Funktion wird über Zuweisung an `markitup::$yform_callback` festgelegt.
+- Die Callback-Funktion wird über Zuweisung an `MarkItUp::$yform_callback` festgelegt.
 - Die Funktion erzeugt im Backend den Standard-Link und im Frontend einen individuellen.
 - Wenn keine Berechtigung im Frontend vorliegt, wird ein Null-Link erzeugt.
 
 ```PHP
-markitup::$yform_callback = function ($link) {
+use FriendsOfRedaxo\MarkItUp\MarkItUp
+MarkItUp::$yform_callback = function ($link) {
     if( rex:isBackend() ) {
-        return markitup::createYFormLink( $link );
+        return MarkItUp::createYFormLink( $link );
     }
     if( .... autorisiert ....) return 'http://mydomain/daten/'.$link['table_name'].'/edit/'.$link['id'];
     return rex_article::getNotfoundArticle()->getUrl();
@@ -347,7 +388,7 @@ markitup::$yform_callback = function ($link) {
 Es steht eine Funktion zur Verfügung, mit der Yform-Links in den Textfeldern überprüft werden können
 
 ```php
-markitup::yformLinkInUse( $table_name, $data_id, $tableset=null, $result=false )
+FriendsOfRedaxo\MarkItUp\MarkItUp::yformLinkInUse( $table_name, $data_id, $tableset=null, $result=false )
 ```
 Die Funktion überprüft für die angegebenen Tabellen (`$tableset`) in den Feldern vom Typ `text`, `mediumtext` und `varchar...`, ob
 in ihnen der zu prüfende Link (`$table_name, $data_id`) vorkommt.
@@ -393,7 +434,7 @@ Die Funktion kann z.B. über den Extension-Point `YFORM_DATA_DELETE` genutzt wer
 \rex_extension::register('YFORM_DATA_DELETE', function( \rex_extension_point $ep ){
     $table_name = $ep->getParam('table')->getTablename();
     if( 'rex_shop_kunde' !== $table_name ) return true;
-    return !markitup::yformLinkInUse( $table_name, $ep->getParam('data_id'), 1 );
+    return FriendsOfRedaxo\MarkItUp\MarkItUp::yformLinkInUse( $table_name, $ep->getParam('data_id'), 1 );
 });
 ```
 
@@ -404,7 +445,7 @@ Die Funktion kann z.B. über den Extension-Point `YFORM_DATA_DELETE` genutzt wer
 Zusätzlich zur allgemeinen Methode `markitup::yformLinkInUse(...)` kann man einfach eigene Abfragen
 konzipieren. Hierzu liefert die Methode
 ```php
-markitup::yformInUseWhere( $target_table, $table_name, $data_id, $type_in_scope=null, $fields_in_scope=null )
+FriendsOfRedaxo\MarkItUp\MarkItUp::yformInUseWhere( $target_table, $table_name, $data_id, $type_in_scope=null, $fields_in_scope=null )
 ```
 eine massgeschneiderte Where-Klausel. Z.B. Kann die Suche nach YForm-Links mit der Suche nach anderen
 Löschausschlußkriterien in derselben Tabelle kombiniert werden oder die recht pauschale Vorgehensweise
