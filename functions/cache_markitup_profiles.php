@@ -16,17 +16,16 @@
  * @deprecated 4.0.0 Aufrufe auf "FriendsOfRedaxo\MarkItUp\Cache::update" (Namespace) umstellen
  * @see https://github.com/orgs/FriendsOfREDAXO/discussions/40
  */
-function markitup_cache_update( )
+function markitup_cache_update()
 {
-    return \FriendsOfRedaxo\MarkItUp\Cache::update();
+    return FriendsOfRedaxo\MarkItUp\Cache::update();
 }
-
 
 /**
  * @deprecated 4.0.0 Aufrufe auf "FriendsOfRedaxo\MarkItUp\Cache::defineButtons" (Namespace) umstellen
  * @see https://github.com/orgs/FriendsOfREDAXO/discussions/40
  */
-function markitup_cache_defineButtons($type, $profileButtons, $languageSet) {
-
-    return \FriendsOfRedaxo\MarkItUp\Cache::defineButtons($type, $profileButtons, $languageSet);
+function markitup_cache_defineButtons($type, $profileButtons, $languageSet)
+{
+    return FriendsOfRedaxo\MarkItUp\Cache::defineButtons($type, $profileButtons, $languageSet);
 }
