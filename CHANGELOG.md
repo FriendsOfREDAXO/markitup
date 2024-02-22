@@ -12,6 +12,8 @@
   - Dokumentation angepasst:
     - README-Dateien
     - `plugins/documentation/docs/de_de/howto_integration.md` ("Editor integrieren")
+- Da MarkItUp ohnehin für Markdown den Core-Vendor benutzt, ist die eigene Markdown-Klasse auf
+  "deprecated" gesetzt. Die Formatierung ist auf `rex_markdown` umgestellt.
   
 ### Bugfixes
 
