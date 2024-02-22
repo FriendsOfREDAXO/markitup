@@ -23,4 +23,6 @@ conflicts:
         textile: '*'
 
 requires:
-    redaxo: '^5.2.0'
+    php:
+        version: '>=8.1'
+    redaxo: '^5.15.0'
