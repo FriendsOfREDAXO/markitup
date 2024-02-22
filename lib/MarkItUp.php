@@ -22,6 +22,7 @@ class Markitup
         'mediumtext' => 'Type = \'mediumtext\'',
     ];
 
+
     public static function insertProfile($name, $description = '', $type = '', $minheight = '300', $maxheight = '800', $urltype = 'relative', $markitupButtons = '')
     {
         $sql = rex_sql::factory();

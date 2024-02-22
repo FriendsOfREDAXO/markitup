@@ -34,9 +34,19 @@ Module output:
 
 ```php
 <?php
-  echo markitup::parseOutput ('markdown', 'REX_VALUE[id=1 output="html"]');
+  use FriendsOfRedaxo\MarkItUp\MarkItUp;
+  echo MarkItUp::parseOutput ('markdown', 'REX_VALUE[id=1 output="html"]');
 ?>
 ```
+
+or
+
+```php
+<?php
+  echo FriendsOfRedaxo\MarkItUp\MarkItUp::parseOutput ('markdown', 'REX_VALUE[id=1 output="html"]');
+?>
+```
+
 
 ## Textile
 
@@ -57,7 +67,16 @@ Module output:
 
 ```php
 <?php
-  echo markitup::parseOutput ('textile', 'REX_VALUE[id=1 output="html"]');
+  use FriendsOfRedaxo\MarkItUp\MarkItUp;
+  echo MarkItUp::parseOutput ('textile', 'REX_VALUE[id=1 output="html"]');
+?>
+```
+
+or
+
+```php
+<?php
+  echo FriendsOfRedaxo\MarkItUp\MarkItUp::parseOutput ('textile', 'REX_VALUE[id=1 output="html"]');
 ?>
 ```
 
@@ -67,10 +86,11 @@ Example code for use in templates, modules or AddOns:
 
 ```php
 <?php
-  if (!markitup::profileExists('simple')) {
+  use FriendsOfRedaxo\MarkItUp\MarkItUp;
+  if (!MarkItUp::profileExists('simple')) {
 
     // name, description, type (markdown/textile), min height, max height, url type (relative/absolute), buttons
-    markitup::insertProfile ('simple', 'Simple editor', 'textile', 300, 800, 'relative', 'bold,italic');
+    MarkItUp::insertProfile ('simple', 'Simple editor', 'textile', 300, 800, 'relative', 'bold,italic');
   }
 ?>
 ```

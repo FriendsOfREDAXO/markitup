@@ -1,6 +1,6 @@
 # MarkItUp Changelog
 
-## [3.8.0](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.8.0) – xx.xx.2024
+## 3.8.0-beta1 – 22.02.2024
 
 ### Features
 
@@ -9,6 +9,9 @@
   - Klassen- und Funktionsnamen ohne Prefix `markitup_` und ggf. in CamelCase-Schreibweise
   - Klassennamen als Dateinamen im Lib-Verzeichnis
   - Die alten Klassen und Funktionen ko-existieren als Alias-Elemente mit Vermerk "deprecated"
+  - Dokumentation angepasst:
+    - README-Dateien
+    - `plugins/documentation/docs/de_de/howto_integration.md` ("Editor integrieren")
   
 ### Bugfixes
 
