@@ -17,6 +17,27 @@ page:
         overview: 
             title: 'translate:description'
             subPath: README.md
+        manual: 
+            title: 'translate:manual'
+            icon: rex-icon fa-book
+            perm: 'admin[]'
+            subpages:
+                intro:
+                    title: 'translate:markitup_manual_intro'
+                    icon: rex-icon rex-icon-info
+                    subPath: main_intro.md
+                textile:
+                    title: 'translate:markitup_manual_textile'
+                    icon: rex-icon rex-icon-article
+                    subPath: howto_textile.md
+                markdown:
+                    title: 'translate:markitup_manual_markdown'
+                    icon: rex-icon rex-icon-article
+                    subPath: howto_markdown.md
+                developer:
+                    title: 'translate:markitup_manual_developer'
+                    icon: rex-icon fa-code
+                    subPath: howto_integration.md
 
 conflicts:
     packages:

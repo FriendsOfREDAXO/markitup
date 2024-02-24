@@ -120,3 +120,10 @@ perm_general_markitup[profiles] = Rechte für die Seite 'Profile' des MarkItUp-A
 
 #subpage description
 markitup_description = Erklärung
+
+# Handbuch (ex Plugin)
+markitup_manual = Handbuch
+markitup_manual_intro = Übersicht
+markitup_manual_textile = Textile
+markitup_manual_markdown = Markdown
+markitup_manual_developer = Integration

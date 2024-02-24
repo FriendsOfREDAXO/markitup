@@ -93,3 +93,10 @@ perm_general_markitup[profiles] = Permissões da página "Perfis" do MarkItUp-Ad
 
 #subpage description
 markitup_description = Descrição
+
+# manual (ex Plugin)
+markitup_manual = Manual
+markitup_manual_intro = Visão geral
+markitup_manual_textile = Textile
+markitup_manual_markdown = Markdown
+markitup_manual_developer = Integração

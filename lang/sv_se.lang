@@ -120,3 +120,10 @@ perm_general_markitup[profiles] = Rättigheter för sidan 'Profiles' av MarkItUp
 
 #subpage description
 markitup_description = Förklaring
+
+# manual (ex Plugin)
+markitup_manual = Manuell
+markitup_manual_intro = Översikt
+markitup_manual_textile = Textile
+markitup_manual_markdown = Markdown
+markitup_manual_developer = Integration

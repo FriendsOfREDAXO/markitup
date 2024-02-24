@@ -116,3 +116,10 @@ perm_general_markitup[profiles] = Derechos para la página 'Perfil' del compleme
 
 #subpage description
 markitup_description = Descripción
+
+# Handbuch (ex Plugin)
+markitup_manual = Manual
+markitup_manual_intro = Descripción general
+markitup_manual_textile = Textile
+markitup_manual_markdown = Markdown
+markitup_manual_developer = Integración
