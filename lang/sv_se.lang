@@ -126,4 +126,6 @@ markitup_manual = Manuell
 markitup_manual_intro = Översikt
 markitup_manual_textile = Textile
 markitup_manual_markdown = Markdown
+markitup_manual_faq = FAQ
 markitup_manual_developer = Integration
+markitup_manual_404 = Tyvärr, sidan hittades inte!

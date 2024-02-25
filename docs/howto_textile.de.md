@@ -2,26 +2,6 @@
 
 Hier findest Du die snippets für die Auszeichnungssprache textile - jeweils mit Ausgabe (= Vorschau) und dem einzugebendem Code:
 
-- [Überschriften](#ueberschriften)
-- [Texte formatieren](#texte)
-	- [Font-Formate](#formate)
-	- [Ausrichten in der Zeile](#ausrichten)
-	- [Hoch-/Tief-Stellen von Texten](#sub)
-- [Listen](#listen)
-	- [ungeordnete Listen](#ungeordnet)
-	- [geordnete Listen](#geordnet)
-- [Links](#links)
-- [Anker](#anker)
-	- [Anker definieren](#anker-definieren)
-	- [Text auf Anker verlinken](#anker-link)
-	- [Inhaltsverzeichnis erstellen](#inhalt)	
-- [Zitieren](#zitieren) (in REX auch Hinweise)
-- [Bilder](#images)
-- [Tabellen](#tabellen)
-- [Code](#code)
-
----
-
 Quelle für diese Anleitung und viele weitere Tipps & Tricks:
 [www.rexdev.de/cheatsheets/textile](http://rexdev.de/cheatsheets/textile.html)
 [www.txstyle.org](http://txstyle.org)

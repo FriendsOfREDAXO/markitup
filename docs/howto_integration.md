@@ -285,7 +285,7 @@ echo $mform->show();
 bold,code,clips[Snippetname1=Snippettext1|Snippetname2=Snippettext2],deleted,emaillink, ....
 ```
 
-![snippets](../assets/addons/markitup//docs/de/snippet.jpg)
+![snippets](../assets/addons/markitup//docs/snippet.de.jpg)
 
 Klick auf "Snippetname1" würde an der Cursorposition den Text "Snippettext1" einfügen. Komplexe oder größere Textbausteine sprengen schnell den Rahmen des Möglichen,
 wenn man sie in der Profil-Konfiguration einbaut. Ergänzend kann in der Tabelle "Snippets" eine Textbausteinbibliothek erfasst werden.

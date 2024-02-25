@@ -3,44 +3,68 @@
 Die Seiten sind so wie sie jetzt sind aus der Auflösung des **documentation**-Plugins
 entstanden. Die neue Struktur ermöglicht grundsätzlich ebenfalls Mehrsprachigkeit.
 Zusätzlich kann das Handbuch über die Berechtigung `markitup[manual]` auch anderen
-Benutzerrollen zugewiesen werden.
+Benutzerrollen als dem Admin zugewiesen werden.
 
 ## Verzeichnisse und Dateien
 
-Basis ist das Verzeichnis `/redaxo/src/addons/markitup/docs`. 
+Basis ist das Verzeichnis `..../redaxo/src/addons/markitup/docs`. 
 
-Je gewünschter Backend-Sprache muss ein Unterverzeichnis angelegt werden. Der
-Verzeichnisname ist der jeweilige Sprach-Code (`de`, `es`, `en`, ...).
+Dort werden die Dateien (Markdown, 'xxx.md') unter dem Namen abgelegt, mit dem die
+Seite in der `package.yml`eingetragen wird. 
 
 Beispiel:
 
-- `/redaxo/src/addons/markitup/docs/de`
+- Datei: `..../redaxo/src/addons/markitup/docs/main_intro.md`
+- package.yml: `subPath: docs/main_intro.md`
 
+Sollten die Teste auch zukünftig in anderen Backend-Sprachen angeboten werden,
+müssen die sprachbezogenen Versionen zusätzlich vor dem Suffix den Sprachcode aufweisen:
+
+Beispiel:
+
+- Datei: `..../redaxo/src/addons/markitup/docs/main_intro.en.md`
+- package.yml: `subPath: docs/main_intro.md`
+
+REDAXO sucht zunächst nach der Datei zum aktuellen Sprach-Code (`main_intro.en.md`)
+und dann nach der Datei ohne Sprachcode (`main_intro.md`).
 
 Sofern in die Markdown-Dateien Bilder eingebunden sind, müssen diese in einem
 ähnliche Verzeichnis unter den Assets liegen. Konkret sind das
 
-- `/redaxo/src/addons/markitup/assets/docs` im Addon
-- `/assets/addons/markitup/docs` nach Installation.
+Beispiel:
 
-Für sprachbezogene Bilder werden hier wiederum Unterverzeichnisse je Sprache angelegt.
+- `..../redaxo/src/addons/markitup/assets/docs` im Addon
+- `..../assets/addons/markitup/docs` nach Installation.
+
+Sprachbezogene Bilddateien müssen wiederum je Sprache passende Dateinamen haben,
+aus denen die Sprachzugehörigkeit hervor geht. Hier greift kein Fallback wie bei
+MD-Dateien. 
+
+Beispiel:
+
+- für deutschsprachige Texte: `snippet.de.jpg`
+- im Addon; `..../redaxo/src/addons/markitup/assets/docs/snippet.de.jpg`
+- Assets: `..../assets/addons/markitup/docs/snippet.de.jpg` (nach Installation)
+
 Die Verweise aus den Markdown-Dateien auf die Bilder erfolgen als
 
 ```markdown
-![snippets](../assets/addons/markitup//docs/de/snippet.jpg)
+![snippets](../assets/addons/markitup//docs/snippet.de.jpg)
 ```
 
 Nicht sprachspezifische Bilder, die für alle Sprachvarianten genutzt werden,
-sollen direkt im docs-Verzeichnis liegen:
+sollten ebenfalls als "für alle" gekennzeichnet sein.
+
+Beispiel:
 
 ```markdown
-![logo](../assets/addons/markitup//docs/logo.jpg)
+![logo](../assets/addons/markitup/docs/logo.__.jpg)
 ```
 
 ## package.yml
 
 Die Seiten selbst werden als normale Addon-Seiten in der `package.yml`
-definiert. 
+definiert. Die übergeordnete Seite ist `manual`.
 ```yml
 page:
     ...
@@ -54,34 +78,23 @@ page:
                 intro:
                     title: 'translate:markitup_manual_intro'
                     icon: rex-icon rex-icon-info
-                    subPath: main_intro.md
+                    subPath: docs/main_intro.md
                 textile:
                     title: 'translate:markitup_manual_textile'
                     icon: rex-icon rex-icon-article
-                    subPath: howto_textile.md
+                    subPath: docs/howto_textile.md
                 markdown:
                     title: 'translate:markitup_manual_markdown'
                     icon: rex-icon rex-icon-article
-                    subPath: howto_markdown.md
+                    subPath: docs/howto_markdown.md
+                faq:
+                    title: 'translate:markitup_manual_faq'
+                    icon: rex-icon fa-exclamation-circle
+                    subPath: docs/faq.md
                 developer:
                     title: 'translate:markitup_manual_developer'
-                    icon: rex-icon fa-code
+                    icon: docs/rex-icon fa-code
+                    perm: admin[]
                     subPath: howto_integration.md
 ```
-
-Unter `subPath` wird nur der Dateiname angegeben!
-
-Die `pages/index.php` des Addons hat zusätzlichen Code, der aus der aktuellen Sprache
-und ggf. den Fallback-Sprachen ermittelt, welches Sprachverzeichnis herangezogen wird.
-
-Beispiel:
-- aktuelle Sprache: `de`
-- Verzeichnis `docs/de` gefunden
-- Bilde die Pfadnamen als `...../redaxo/src/addons/markitup/docs/de/«subPath»`
-
-Beispiel:
-- aktuelle Sprache: `se`
-- Verzeichnis `docs/se` nicht gefunden
-- suche eines der Fallback-Sprachen-Verzeichnisse; fündig bei `docs/de`
-- Bilde die Pfadnamen als `...../redaxo/src/addons/markitup/docs/de/«subPath»`
 

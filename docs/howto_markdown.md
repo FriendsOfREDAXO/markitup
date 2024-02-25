@@ -2,23 +2,6 @@
 
 Hier findest Du die snippets für die Auszeichnungssprache markdown - jeweils mit Ausgabe (= Vorschau) und dem einzugebendem Code:
 
-- [Überschriften](#ueberschriften)
-- [Texte formatieren](#texte)
-	- [Font-Formate](#formate)
-	- [Hoch-/Tief-Stellen von Texten](#sub)
-- [Links](#links)
-- [Anker](#anker)
-	- [Anker definieren](#anker-definieren)
-	- [Text auf Anker verlinken](#anker-link)
-	- [Inhaltsverzeichnis erstellen](#inhalt)
-- [Listen](#listen)
-- [Tabellen](#tabellen)
-- [Code](#code)
-- [Zitieren](#zitieren) (in REX auch Hinweise)
-- [Bilder](#images)
-
----
-
 Quellen für diese Anleitung:
 
 [Daring Fireball: Markdown Syntax Documentation](https://daringfireball.net/projects/markdown/syntax)

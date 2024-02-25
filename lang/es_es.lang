@@ -122,4 +122,6 @@ markitup_manual = Manual
 markitup_manual_intro = Descripción general
 markitup_manual_textile = Textile
 markitup_manual_markdown = Markdown
+markitup_manual_faq = FAQ
 markitup_manual_developer = Integración
+markitup_manual_404 = Lo sentimos, ¡página no encontrada!
