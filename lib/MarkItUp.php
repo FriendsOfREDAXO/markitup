@@ -52,8 +52,6 @@ class Markitup
 
     public static function profileExists($name)
     {
-        dump(get_defined_vars());
-        
         $sql = rex_sql::factory();
         $profile = $sql->setQuery('SELECT `name` FROM `' . rex::getTable('markitup_profiles') . '` WHERE `name` = ' . $sql->escape($name) . '')->getArray();
         unset($sql);
@@ -151,7 +149,7 @@ class Markitup
     public static function replaceYFormLink($content)
     {
         $callback = static function ($link) { return 'javascript:void(0);'; };
-        if (rex::isBackend() && null !==rex::getUser()) {
+        if (rex::isBackend() && rex::getUser()) {
             $callback = self::$yform_callback ?: (__CLASS__ . '::createYFormLink');
         } elseif (self::$yform_callback) {
             $callback = self::$yform_callback;
@@ -175,7 +173,6 @@ class Markitup
         // $tableset = 1        =>  Nur Core-Tabellen article, article_slice und media betrachten
         // $tableset = 2        =>  Nur YForm-Tabellen betrachten
         // $tableset = [...]    =>  Nur die angegebenen Tabellen betrachten
-        /** @var null|int|array<mixed> $tableset */
         if (null === $tableset) {
             $tableset = $sql->getTables();
         } elseif (is_array($tableset)) {
@@ -201,7 +198,7 @@ class Markitup
         // gefundenem Link die Satznummern zurückgemeldet.
         // Ansonsten wird beim ersten Fund beendet
         $limit = ' LIMIT 1';
-        if (true === $fullResult) {
+        if (true == $fullResult) {
             $limit = '';
         } elseif (is_numeric($fullResult)) {
             $limit = ' LIMIT ' . $fullResult;

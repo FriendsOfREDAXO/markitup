@@ -11,8 +11,6 @@ use rex_i18n;
 use rex_list;
 use rex_sql;
 
-use function count;
-
 /** @var rex_addon $this */
 
 $func = rex_request('func', 'string');
@@ -74,7 +72,7 @@ if ('' === $func) {
         if (0 === count($profiles)) {
             return true;
         }
-        if ($profiles[0]['id'] == $id) {
+        if ($profiles[0]['id'] === $id) {
             return true;
         }
         return false;

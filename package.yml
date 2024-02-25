@@ -14,9 +14,36 @@ page:
         snippets: 
             title: 'translate:snippets'
             perm: 'markitup[snippets]'
-        overview: 
-            title: 'translate:description'
-            subPath: README.md
+        manual: 
+            title: 'translate:manual_a'
+            icon: rex-icon fa-book
+            perm: 'markitup[manual]'
+            subpages:
+                intro:
+                    title: 'translate:manual_intro'
+                    icon: rex-icon rex-icon-info
+                    subPath: docs/main_intro.md
+                textile:
+                    title: 'translate:manual_textile'
+                    icon: rex-icon rex-icon-article
+                    subPath: docs/howto_textile.md
+                markdown:
+                    title: 'translate:manual_markdown'
+                    icon: rex-icon rex-icon-article
+                    subPath: docs/howto_markdown.md
+        developer: 
+            title: 'translate:manual_b'
+            icon: rex-icon fa-book
+            perm: 'markitup[developer]'
+            subpages:
+                developer:
+                    title: 'translate:manual_developer'
+                    icon: rex-icon fa-code
+                    subPath: docs/howto_integration.md
+                faq:
+                    title: 'translate:manual_faq'
+                    icon: rex-icon fa-exclamation-circle
+                    subPath: docs/faq.md
 
 conflicts:
     packages:
@@ -24,5 +51,5 @@ conflicts:
 
 requires:
     php:
-        version: '>=8.1'
+        version: '^8.1'
     redaxo: '^5.15.0'

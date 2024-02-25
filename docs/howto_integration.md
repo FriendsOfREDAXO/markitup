@@ -74,10 +74,10 @@ if(!rex_addon::get('markitup')->isAvailable()) {
 
 ```php
 <?php
-	use FriendsOfRedaxo\MarkItUp\MarkItUp;
-	if ('REX_VALUE[id=1 isset=1]') {
-		echo MarkItUp::parseOutput ('markdown', 'REX_VALUE[id=1 output="html"]');
-	}
+use FriendsOfRedaxo\MarkItUp\MarkItUp;
+if ('REX_VALUE[id=1 isset=1]') {
+	echo MarkItUp::parseOutput ('markdown', 'REX_VALUE[id=1 output="html"]');
+}
 ?>
 ```
 
@@ -103,10 +103,8 @@ $mform->addTextAreaField(2, ['label'=>'Text', 'class'=>'markitupEditor-markdown_
 // Ausrichtung Text
 $mform->addSelectField(10,[0 => 'zentriert', 1 => 'links-bündig', 2 => 'rechts-bündig'], ['label'=>'Ausrichtung Text', 'default-value' => '1']);
 
-
 // get formular
 echo $mform->show();
-
 ?>
 ```
 
@@ -117,8 +115,8 @@ echo $mform->show();
 <?php
 use FriendsOfRedaxo\MarkItUp\MarkItUp;
 
-$txtalign = 'REX_VALUE[10]';
-$text = 'REX_VALUE[id=2 output=html]';
+$txtalign = "REX_VALUE[10]";
+$text = "REX_VALUE[id=2 output=html]";
 
 // ########## Ausgabe Backend
 if(rex::isBackend()) {
@@ -131,36 +129,29 @@ if(rex::isBackend()) {
 
 
 	echo 'Ausrichtung des Textes: ';
-    if ($txtalign == '0') { 
-		echo 'zentriert ';
-	} elseif ($txtalign == '1') { 
-		echo 'links ';
-	} elseif ($txtalign == '2') {
-		echo 'rechts ';
-	}
+	if ($txtalign == '0') { echo 'zentriert '; }
+	elseif ($txtalign == '1') { echo 'links '; }
+	elseif ($txtalign == '2') { echo 'rechts '; }
 }
+
 
 // ########## Ausgabe Frontend
 else {
 
 	// row
-	echo '<div class="row">',PHP_EOL;
+	echo '<div class="row">'.PHP_EOL;
 
 	// column
 	echo '<div class="column ';
-	if ($txtalign == '0') {
-		echo 'txtalign-center ';
-	} elseif ($txtalign == '1') {
-		echo 'txtalign-left ';
-	} elseif ($txtalign == '2') {
-		echo 'txtalign-right ';
-	}
+	if ($txtalign == '0') { echo 'txtalign-center '; }
+	elseif ($txtalign == '1') { echo 'txtalign-left '; }
+	elseif ($txtalign == '2') { echo 'txtalign-right '; }
 	echo 'small-100 medium-100 large-100 xlarge-100">',PHP_EOL;
 
 	// Text			
 	echo MarkItUp::parseOutput ('markdown', $text);
 
-	echo '</div>',PHP_EOL,'</div>',PHP_EOL,PHP_EOL;
+	echo '</div>',PHP_EOL,'</div>',PHP_EOL,ÜHP_EOL;
 }
 ?>
 ```
@@ -221,12 +212,12 @@ $mform = new MForm();
 // Text
 $mform->addTextAreaField(2, ['label'=>'Text', 'class'=>'markitupEditor-textile_default']);
 
+
 // Ausrichtung Text
 $mform->addSelectField(10,[0 => 'zentriert', 1 => 'links-bündig', 2 => 'rechts-bündig'], ['label'=>'Ausrichtung Text', 'default-value' => '1']);
 
 // get formular
 echo $mform->show();
-
 ?>
 ```
 
@@ -237,8 +228,8 @@ echo $mform->show();
 <?php
 use FriendsOfRedaxo\MarkItUp\MarkItUp;
 
-$txtalign = 'REX_VALUE[10]';
-$text = 'REX_VALUE[id=2 output=html]';
+$txtalign = "REX_VALUE[10]";
+$text = "REX_VALUE[id=2 output=html]";
 
 // ########## Ausgabe Backend
 if(rex::isBackend()) {
@@ -251,37 +242,28 @@ if(rex::isBackend()) {
 
 
 	echo 'Ausrichtung des Textes: ';
-	if ($txtalign == '0') {
-		echo 'zentriert ';
-	} elseif ($txtalign == '1') {
-		echo 'links ';
-	} elseif ($txtalign == '2') {
-		echo 'rechts ';
-	}
+	if ($txtalign == '0') { echo 'zentriert '; }
+	elseif ($txtalign == '1') { echo 'links '; }
+	elseif ($txtalign == '2') { echo 'rechts '; }
 }
 
 
 // ########## Ausgabe Frontend
 else {
 
-	// row
-	echo '<div class="row">',PHP_EOL;
+	echo '<div class="row">'.PHP_EOL;
 
 	// column
 	echo '<div class="column ';
-	if ($txtalign == '0') {
-		echo 'txtalign-center ';
-	} elseif ($txtalign == '1') {
-		echo 'txtalign-left ';
-	} elseif ($txtalign == '2') {
-		echo 'txtalign-right ';
-	}
+	if ($txtalign == '0') { echo 'txtalign-center '; }
+	elseif ($txtalign == '1') { echo 'txtalign-left '; }
+	elseif ($txtalign == '2') { echo 'txtalign-right '; }
 	echo 'small-100 medium-100 large-100 xlarge-100">',PHP_EOL;
 
 	// Text			
 	echo MarkItUp::parseOutput ('textile', $text);
 
-	echo '</div>',PHP_EOL,'</div>',PHP_EOL,PHP_EOL;
+	echo '</div>',PHP_EOL,'</div>',PHP_EOL,ÜHP_EOL;
 }
 ?>
 ```
@@ -298,7 +280,7 @@ else {
 bold,code,clips[Snippetname1=Snippettext1|Snippetname2=Snippettext2],deleted,emaillink, ....
 ```
 
-![snippets](snippet.jpg)
+![snippets](../assets/addons/markitup//docs/snippet.de.jpg)
 
 Klick auf "Snippetname1" würde an der Cursorposition den Text "Snippettext1" einfügen. Komplexe oder größere Textbausteine sprengen schnell den Rahmen des Möglichen,
 wenn man sie in der Profil-Konfiguration einbaut. Ergänzend kann in der Tabelle "Snippets" eine Textbausteinbibliothek erfasst werden.
@@ -403,6 +385,7 @@ Es steht eine Funktion zur Verfügung, mit der Yform-Links in den Textfeldern ü
 ```php
 FriendsOfRedaxo\MarkItUp\MarkItUp::yformLinkInUse( $table_name, $data_id, $tableset=null, $result=false )
 ```
+
 Die Funktion überprüft für die angegebenen Tabellen (`$tableset`) in den Feldern vom Typ `text`, `mediumtext` und `varchar...`, ob
 in ihnen der zu prüfende Link (`$table_name, $data_id`) vorkommt.
 

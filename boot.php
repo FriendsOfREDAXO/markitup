@@ -3,9 +3,9 @@
 namespace FriendsOfRedaxo\MarkItUp;
 
 use rex;
+use rex_addon;
 use rex_i18n;
 use rex_view;
-use rex_addon;
 
 /** @var rex_addon $this */
 
