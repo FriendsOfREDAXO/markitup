@@ -12,10 +12,6 @@ use rex_sql_exception;
 use function in_array;
 use function is_array;
 
-/**
- * @api
- * @package FriendsOfRedaxo\MarkItUp
- */
 class Markitup
 {
     public static $yform_callback;
@@ -52,8 +48,6 @@ class Markitup
 
     public static function profileExists($name)
     {
-        dump(get_defined_vars());
-        
         $sql = rex_sql::factory();
         $profile = $sql->setQuery('SELECT `name` FROM `' . rex::getTable('markitup_profiles') . '` WHERE `name` = ' . $sql->escape($name) . '')->getArray();
         unset($sql);
@@ -151,8 +145,10 @@ class Markitup
     public static function replaceYFormLink($content)
     {
         $callback = static function ($link) { return 'javascript:void(0);'; };
-        if (rex::isBackend() && null !==rex::getUser()) {
-            $callback = self::$yform_callback ?: (__CLASS__ . '::createYFormLink');
+        if (rex::isBackend() && rex::getUser()) {
+            if (rex::getUser()) {
+                $callback = self::$yform_callback ?: (__CLASS__ . '::createYFormLink');
+            }
         } elseif (self::$yform_callback) {
             $callback = self::$yform_callback;
         }
@@ -175,20 +171,19 @@ class Markitup
         // $tableset = 1        =>  Nur Core-Tabellen article, article_slice und media betrachten
         // $tableset = 2        =>  Nur YForm-Tabellen betrachten
         // $tableset = [...]    =>  Nur die angegebenen Tabellen betrachten
-        /** @var null|int|array<mixed> $tableset */
         if (null === $tableset) {
             $tableset = $sql->getTables();
         } elseif (is_array($tableset)) {
             // void
         } elseif (1 === $tableset) {
             $tableset = ['rex_article', 'rex_article_slice', 'rex_media'];
-        } elseif (2 === $tableset || 3 === $tableset) {
+        } elseif (2 === $tableset || 3 == $tableset) {
             try {
                 $tableset = $sql->getArray('SELECT id, table_name FROM rex_yform_table', [], PDO::FETCH_KEY_PAIR);
             } catch (Exception $e) {
                 $tableset = []; // insb. falls es rex_yform_fields nicht gibt ($tableset = [frei angegeben])
             }
-            if (3 === $tableset) {
+            if (3 == $tableset) {
                 $tableset[] = 'rex_article';
                 $tableset[] = 'rex_article_slice';
                 $tableset[] = 'rex_media';
@@ -201,7 +196,7 @@ class Markitup
         // gefundenem Link die Satznummern zurückgemeldet.
         // Ansonsten wird beim ersten Fund beendet
         $limit = ' LIMIT 1';
-        if (true === $fullResult) {
+        if (true == $fullResult) {
             $limit = '';
         } elseif (is_numeric($fullResult)) {
             $limit = ' LIMIT ' . $fullResult;
@@ -243,7 +238,7 @@ class Markitup
             if (is_array($fields_in_scope)) {
                 $condition[] = 'Field IN (\'' . implode('\',\'', $fields_in_scope) . '\')';
             }
-            if (0 === count($condition)) {
+            if (!$condition) {
                 return '';
             }
             $qry = 'SHOW FIELDS FROM ' . $sql->escapeIdentifier($target_table) . ' WHERE (' . implode(') AND (', $condition) . ')';

@@ -3,7 +3,6 @@
 namespace FriendsOfRedaxo\MarkItUp;
 
 use rex;
-use rex_addon;
 use rex_extension;
 use rex_form;
 use rex_fragment;
@@ -11,13 +10,9 @@ use rex_i18n;
 use rex_list;
 use rex_sql;
 
-use function count;
-
-/** @var rex_addon $this */
-
 $func = rex_request('func', 'string');
 
-if ('' === $func) {
+if ('' == $func) {
     $list = rex_list::factory("SELECT `id`, `name`, `description`, `type`, CONCAT('markitupEditor-',`name`) as `cssclass` FROM `" . rex::getTable('markitup_profiles') . '` ORDER BY `name` ASC');
     $list->addTableAttribute('class', 'table-striped');
     $list->setNoRowsMessage($this->i18n('profiles_norowsmessage'));
@@ -44,7 +39,7 @@ if ('' === $func) {
     $content = $fragment->parse('core/page/section.php');
 
     echo $content;
-} elseif ('add' === $func || 'edit' === $func) {
+} elseif ('add' == $func || 'edit' == $func) {
     // Wenn ein Profil erfolgreich gespeichert wurde (add|edit)
     // werden die darauf basierenden Dateien markitup_profiles.[css|js] neu angelegt
 
@@ -57,9 +52,9 @@ if ('' === $func) {
 
     $id = rex_request('id', 'int');
 
-    if ('edit' === $func) {
+    if ('edit' == $func) {
         $formLabel = $this->i18n('profiles_formcaption_edit');
-    } elseif ('add' === $func) {
+    } elseif ('add' == $func) {
         $formLabel = $this->i18n('profiles_formcaption_add');
     }
 
@@ -71,7 +66,7 @@ if ('' === $func) {
     $field->getValidator()->add('notEmpty', $this->i18n('validate_empty', $this->i18n('profiles_label_name')));
     $field->getValidator()->add('custom', $this->i18n('validate_unique', $this->i18n('profiles_label_name')), static function ($value) use ($id) {
         $profiles = rex_sql::factory()->getArray('SELECT id FROM ' . rex::getTable('markitup_profiles') . ' WHERE name LIKE :name LIMIT 1', [':name' => $value]);
-        if (0 === count($profiles)) {
+        if (!$profiles) {
             return true;
         }
         if ($profiles[0]['id'] == $id) {
@@ -215,7 +210,7 @@ if ('' === $func) {
 		', );
     // End - add markitup_buttons-field
 
-    if ('edit' === $func) {
+    if ('edit' == $func) {
         $form->addParam('id', $id);
     }
 
