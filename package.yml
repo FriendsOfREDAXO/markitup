@@ -14,9 +14,6 @@ page:
         snippets: 
             title: 'translate:snippets'
             perm: 'markitup[snippets]'
-        overview: 
-            title: 'translate:description'
-            subPath: README.md
         manual: 
             title: 'translate:manual'
             icon: rex-icon fa-book
@@ -34,14 +31,23 @@ page:
                     title: 'translate:markitup_manual_markdown'
                     icon: rex-icon rex-icon-article
                     subPath: docs/howto_markdown.md
-                faq:
-                    title: 'translate:markitup_manual_faq'
-                    icon: rex-icon fa-exclamation-circle
-                    subPath: docs/faq.md
+        developer: 
+            title: 'translate:developer'
+            icon: rex-icon fa-book
+            perm: 'markitup[developer]'
+            subpages:
                 developer:
                     title: 'translate:markitup_manual_developer'
                     icon: rex-icon fa-code
                     subPath: docs/howto_integration.md
+                faq:
+                    title: 'translate:markitup_manual_faq'
+                    icon: rex-icon fa-exclamation-circle
+                    subPath: docs/faq.md
+        overview: 
+            title: 'translate:description'
+            itemClass: pull-right
+            subPath: README.md
 
 conflicts:
     packages:

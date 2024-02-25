@@ -122,10 +122,10 @@ perm_general_markitup[profiles] = Rechte für die Seite 'Profile' des MarkItUp-A
 markitup_description = Erklärung
 
 # Handbuch (ex Plugin)
-markitup_manual = Handbuch
+markitup_manual_a = Handbuch
+markitup_manual_b = Entwickler
 markitup_manual_intro = Übersicht
 markitup_manual_textile = Textile
 markitup_manual_markdown = Markdown
 markitup_manual_faq = FAQ
 markitup_manual_developer = Integration
-markitup_manual_404 = Sorry, Seite nicht gefunden!

@@ -2,7 +2,7 @@
 
 Die Seiten sind so wie sie jetzt sind aus der Auflösung des **documentation**-Plugins
 entstanden. Die neue Struktur ermöglicht grundsätzlich ebenfalls Mehrsprachigkeit.
-Zusätzlich kann das Handbuch über die Berechtigung `markitup[manual]` auch anderen
+Zusätzlich kann das Handbuch über die Berechtigungsverwaltung auch anderen
 Benutzerrollen als dem Admin zugewiesen werden.
 
 ## Verzeichnisse und Dateien
@@ -71,7 +71,7 @@ page:
     subpages:
         ...
         manual: 
-            title: 'translate:manual'
+            title: 'translate:manual_a'
             icon: rex-icon fa-book
             perm: 'markitup[manual]'
             subpages:
@@ -87,14 +87,29 @@ page:
                     title: 'translate:markitup_manual_markdown'
                     icon: rex-icon rex-icon-article
                     subPath: docs/howto_markdown.md
+        developer: 
+            title: 'translate:manual_b'
+            icon: rex-icon fa-book
+            perm: 'markitup[developer]'
+            subpages:
+                developer:
+                    title: 'translate:markitup_manual_developer'
+                    icon: rex-icon fa-code
+                    subPath: docs/howto_integration.md
                 faq:
                     title: 'translate:markitup_manual_faq'
                     icon: rex-icon fa-exclamation-circle
                     subPath: docs/faq.md
-                developer:
-                    title: 'translate:markitup_manual_developer'
-                    icon: docs/rex-icon fa-code
-                    perm: admin[]
-                    subPath: howto_integration.md
+        overview: 
+            title: 'translate:description'
+            itemClass: pull-right
+            subPath: README.md
 ```
+
+## Berechtigungen
+
+Die bisherigen Berechtigungen `snippets` und `profiles` werden um zwei Handbuch-Berechtigungen ergänzt:
+
+- `markitup[manual]`: die Handbuchseiten, die sich an Autoren / Redakteure (Texte erfassen)
+- `markitup[developer]`: die Handbuchseiten, die sich an Entwickler richtet (Module)
 

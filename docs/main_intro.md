@@ -27,10 +27,10 @@ via [http://markitup.jaysalvat.com](http://markitup.jaysalvat.com)
 ### Adaption für REDAXO und AddOn-Entwicklung
 
 Vielen Dank an das FOR-Team @FriendsOfREDAXO, insbesondere an
-Thomas Kaegi (@phoebusryan)
-Dirk Schürjohann (@schuer)
-Gregor Harlan (@gharlan)
-Franziska Köppe (@madiko)
+- Thomas Kaegi (@phoebusryan)
+- Dirk Schürjohann (@schuer)
+- Gregor Harlan (@gharlan)
+- Franziska Köppe (@madiko)
 
 ---
 
