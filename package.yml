@@ -44,14 +44,12 @@ page:
                     title: 'translate:markitup_manual_faq'
                     icon: rex-icon fa-exclamation-circle
                     subPath: docs/faq.md
-        overview: 
-            title: 'translate:description'
-            itemClass: pull-right
-            subPath: README.md
 
 conflicts:
     packages:
         textile: '*'
 
 requires:
-    redaxo: '^5.2.0'
+    php:
+        version: `^8.1`
+    redaxo: '^5.15.0'
