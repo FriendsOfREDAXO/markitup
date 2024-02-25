@@ -12,6 +12,10 @@ use rex_sql_exception;
 use function in_array;
 use function is_array;
 
+/**
+ * @api
+ * @package FriendsOfRedaxo\MarkItUp
+ */
 class Markitup
 {
     public static $yform_callback;
@@ -146,9 +150,7 @@ class Markitup
     {
         $callback = static function ($link) { return 'javascript:void(0);'; };
         if (rex::isBackend() && rex::getUser()) {
-            if (rex::getUser()) {
-                $callback = self::$yform_callback ?: (__CLASS__ . '::createYFormLink');
-            }
+            $callback = self::$yform_callback ?: (__CLASS__ . '::createYFormLink');
         } elseif (self::$yform_callback) {
             $callback = self::$yform_callback;
         }
@@ -177,13 +179,13 @@ class Markitup
             // void
         } elseif (1 === $tableset) {
             $tableset = ['rex_article', 'rex_article_slice', 'rex_media'];
-        } elseif (2 === $tableset || 3 == $tableset) {
+        } elseif (2 === $tableset || 3 === $tableset) {
             try {
                 $tableset = $sql->getArray('SELECT id, table_name FROM rex_yform_table', [], PDO::FETCH_KEY_PAIR);
             } catch (Exception $e) {
                 $tableset = []; // insb. falls es rex_yform_fields nicht gibt ($tableset = [frei angegeben])
             }
-            if (3 == $tableset) {
+            if (3 === $tableset) {
                 $tableset[] = 'rex_article';
                 $tableset[] = 'rex_article_slice';
                 $tableset[] = 'rex_media';
@@ -238,7 +240,7 @@ class Markitup
             if (is_array($fields_in_scope)) {
                 $condition[] = 'Field IN (\'' . implode('\',\'', $fields_in_scope) . '\')';
             }
-            if (!$condition) {
+            if (0 === count($condition)) {
                 return '';
             }
             $qry = 'SHOW FIELDS FROM ' . $sql->escapeIdentifier($target_table) . ' WHERE (' . implode(') AND (', $condition) . ')';

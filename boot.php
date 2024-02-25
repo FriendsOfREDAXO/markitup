@@ -3,8 +3,11 @@
 namespace FriendsOfRedaxo\MarkItUp;
 
 use rex;
+use rex_addon;
 use rex_i18n;
 use rex_view;
+
+/** @var rex_addon $this */
 
 if (rex::isBackend()) {
     // Ressourcen einbinden
