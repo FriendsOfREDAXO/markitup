@@ -10,9 +10,9 @@
   - Freischalten über Berechtigungen (`markitup[manual]`, `markitup[developer]`)
 - Voraussetzungen angehoben: PHP 8.1 und REDAXO 5.15
 
-### Features (zusätzlich zu beta1)
+### Bugfix
 
-- Beim Update auf 3.8 wurde die Cache.php nicht gefunden da nun im Namespace (@madiko)
+- Beim Update auf 3.8beta1 wurde die Cache.php nicht gefunden da nun im Namespace (@madiko)
 
 ## 3.8.0-beta1 – 22.02.2024
 
