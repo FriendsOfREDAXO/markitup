@@ -1,5 +1,19 @@
 # MarkItUp Changelog
 
+## 3.8.0-beta2 – 29.02.2024
+
+### Features (zusätzlich zu beta1)
+
+- Documentation-Plugin aufgelöst. 
+  - Die Handbuchseiten werden in der `package.yml`) als SubPages angelegt
+  - Umgruppiert: Handbuch für Autoren und Handbuch für Entwickler
+  - Freischalten über Berechtigungen (`markitup[manual]`, `markitup[developer]`)
+- Voraussetzungen angehoben: PHP 8.1 und REDAXO 5.15
+
+### Bugfix
+
+- Beim Update auf 3.8beta1 wurde die Cache.php nicht gefunden da nun im Namespace (@madiko)
+
 ## 3.8.0-beta1 – 22.02.2024
 
 ### Features
