@@ -30,4 +30,5 @@ rex_sql_table::get(rex::getTable('markitup_snippets'))
     ->ensure();
 
 // Profilbezogenes JS|CSS neu generieren
+include __DIR__ . '/lib/Cache.php';
 echo Cache::update();
