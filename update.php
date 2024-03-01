@@ -3,6 +3,8 @@
 namespace FriendsOfRedaxo\MarkItUp;
 
 use rex;
+use rex_dir;
+use rex_path;
 use rex_sql_column;
 use rex_sql_table;
 
@@ -28,6 +30,9 @@ rex_sql_table::get(rex::getTable('markitup_snippets'))
     ->ensureColumn(new rex_sql_column('description', 'text', false, ''))
     ->ensureColumn(new rex_sql_column('content', 'text'))
     ->ensure();
+
+// das ggf. noch vorhandene alte Plugin-Verzeichnis löschen
+rex_dir::delete(rex_path::plugin('markitup', 'documentation'));
 
 // Profilbezogenes JS|CSS neu generieren
 include __DIR__ . '/lib/Cache.php';
