@@ -1,5 +1,13 @@
 # MarkItUp Changelog
 
+## 3.8.0-beta3 – 02.04.2024
+
+### Features (zusätzlich zu beta1)
+
+### Bugfix
+
+- Plugin beim Update löschen
+
 ## 3.8.0-beta2 – 29.02.2024
 
 ### Features (zusätzlich zu beta1)
