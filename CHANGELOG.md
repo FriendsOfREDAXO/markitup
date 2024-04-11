@@ -1,43 +1,31 @@
 # MarkItUp Changelog
 
-## 3.8.0-beta3 – 02.04.2024
+## [3.8.0](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.8.0) – 11.04.2024
+
+> Bitte unbedingt beachten. Mit diesem Release erfolgt die Umstellung auf den Namespace `FriendsOfRedaxo\MarkItUp`. Für eine kurze Übergangszeit stehen weiterhin die alten Klassennamen zur Verfügung, sind aber als "deprecated" markiert. Das soll die Umstellung erleichtern. Mit Relase 4.0 werden diese Convenience-Klassen entfallen. Release 4 ist für Ende Juni vorgesehen! 
 
 ### Features (zusätzlich zu beta1)
 
-### Bugfix
-
-- Plugin beim Update löschen
-
-## 3.8.0-beta2 – 29.02.2024
-
-### Features (zusätzlich zu beta1)
-
-- Documentation-Plugin aufgelöst. 
-  - Die Handbuchseiten werden in der `package.yml`) als SubPages angelegt
-  - Umgruppiert: Handbuch für Autoren und Handbuch für Entwickler
-  - Freischalten über Berechtigungen (`markitup[manual]`, `markitup[developer]`)
-- Voraussetzungen angehoben: PHP 8.1 und REDAXO 5.15
-
-### Bugfix
-
-- Beim Update auf 3.8beta1 wurde die Cache.php nicht gefunden da nun im Namespace (@madiko)
-
-## 3.8.0-beta1 – 22.02.2024
-
-### Features
-
-- Umstellung auf Namespaces in Vorbereitung auf REDAXO 6.0 mit Installation via Composer
+- Umstellung auf Namespaces in Vorbereitung auf REDAXO 6.0 (mit Installation via Composer)
   - Namespace `FriendsOfRedaxo\MarkItUp`
-  - Klassen- und Funktionsnamen ohne Prefix `markitup_` und ggf. in CamelCase-Schreibweise
-  - Klassennamen als Dateinamen im Lib-Verzeichnis
-  - Die alten Klassen und Funktionen ko-existieren als Alias-Elemente mit Vermerk "deprecated"
+  - Klassen- und Funktionsnamen nun ohne Prefix `markitup_` und in CamelCase-Schreibweise
+    - `markitup_markdown` wird zu `FriendsOfRedaxo\MarkItUp\Markdown`
+    - `markitup_textile` wird zu  `FriendsOfRedaxo\MarkItUp\Textile`
+    - `markitup` wird zu `FriendsOfRedaxo\MarkItUp\Markitup`
+    - `cache` wird zu `FriendsOfRedaxo\MarkItUp\Cache`
+  - Klassennamen gleichlautend und -geschrieben als Dateinamen im Lib-Verzeichnis
+  - Die alten Klassen und Funktionen ko-existieren als Alias-Elemente mit Vermerk "deprecated"; mit Release 4 entfallen die Alias-Elemente!
   - Dokumentation angepasst:
     - README-Dateien
-    - `plugins/documentation/docs/de_de/howto_integration.md` ("Editor integrieren")
-- Da MarkItUp ohnehin für Markdown den Core-Vendor benutzt, ist die eigene Markdown-Klasse auf
-  "deprecated" gesetzt. Die Formatierung ist auf `rex_markdown` umgestellt.
-  
-### Bugfixes
+    - `docs/de_de/howto_integration.md` ("Editor integrieren")
+- Da MarkItUp ohnehin für Markdown den Core-Vendor benutzt  (`class Markdown extends Parsedown`), ist die eigene Klasse `Markdown` auf "deprecated" gesetzt und wird ebenfalls mit Release 4 ersetzt.
+- Documentation-Plugin aufgelöst. 
+  - Die Handbuchseiten werden in der `package.yml`) als SubPages angelegt
+  - Inhalte umgruppiert: Handbuch für Autoren und Handbuch für Entwickler
+  - Freischalten über Berechtigungen (`markitup[manual]`, `markitup[developer]`); bisher war das Handbuch auf Admins beschränkt.
+  - Plugin beim Update löschen
+- Voraussetzungen angehoben: PHP 8.1 und REDAXO 5.15
+
 
 ## [3.7.4](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.7.4) – 05.03.2023
 
