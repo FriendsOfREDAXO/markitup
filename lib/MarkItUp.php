@@ -6,11 +6,14 @@ use Exception;
 use PDO;
 use rex;
 use rex_i18n;
+use rex_markdown;
 use rex_sql;
 use rex_sql_exception;
 
+use function count;
 use function in_array;
 use function is_array;
+use function is_callable;
 
 /**
  * @api
@@ -18,18 +21,23 @@ use function is_array;
  */
 class Markitup
 {
+    /** @var callable */
     public static $yform_callback;
 
+    /** @var array<string,string> */
     public static $type_in_scope = [
         'varchar' => 'Type LIKE \'varchar%\'',
         'text' => 'Type = \'text\'',
         'mediumtext' => 'Type = \'mediumtext\'',
     ];
 
-
-    public static function insertProfile($name, $description = '', $type = '', $minheight = '300', $maxheight = '800', $urltype = 'relative', $markitupButtons = '')
+    /**
+     * NOTICE: Die Methode ist vermutlich überflüssig. Sie wird innerhalb des Addons an keiner Stelle aufgerufen.
+     */
+    public static function insertProfile(string $name, string $description = '', string $type = '', string $minheight = '300', string $maxheight = '800', string $urltype = 'relative', string $markitupButtons = ''): string
     {
         $sql = rex_sql::factory();
+        // TODO: SQL verbessern
         $sql->setTable(rex::getTablePrefix() . 'markitup_profiles');
         $sql->setValue('name', $name);
         $sql->setValue('description', $description);
@@ -44,15 +52,16 @@ class Markitup
             $lastId = $sql->getLastId();
             // Profilbezogenes JS/CSS generieren
             $result = Cache::update();
-            return $result ? $result : $lastId;
+            return '' === $result ? $lastId : $result;
         } catch (rex_sql_exception $e) {
             return $e->getMessage();
         }
     }
 
-    public static function profileExists($name)
+    public static function profileExists(string $name): bool
     {
         $sql = rex_sql::factory();
+        // TODO: SQL verbessern
         $profile = $sql->setQuery('SELECT `name` FROM `' . rex::getTable('markitup_profiles') . '` WHERE `name` = ' . $sql->escape($name) . '')->getArray();
         unset($sql);
 
@@ -62,15 +71,15 @@ class Markitup
         return false;
     }
 
-    public static function insertSnippet($name, $lang, $snippet, $description = '')
+    public static function insertSnippet(string $name, string $lang, string $snippet, string $description = ''): string
     {
-        if (!$name) {
+        if ('' === $name) {
             return rex_i18n::msg('markitup_validate_empty', rex_i18n::msg('markitup_snippets_label_name'));
         }
-        if (!$lang) {
+        if ('' === $lang) {
             return rex_i18n::msg('markitup_validate_empty', rex_i18n::msg('markitup_snippets_label_lang'));
         }
-        if (!$snippet) {
+        if ('' === $snippet) {
             return rex_i18n::msg('markitup_validate_empty', rex_i18n::msg('markitup_snippets_label_content'));
         }
 
@@ -101,25 +110,26 @@ class Markitup
             $lastId = $sql->getLastId();
             // Profilbezogenes JS/CSS generieren
             $result = Cache::update();
-            return $result ? $result : $lastId;
+            return '' === $result ? $lastId : $result;
         } catch (rex_sql_exception $e) {
             return $e->getMessage();
         }
     }
 
-    public static function snippetExists($name, $lang)
+    public static function snippetExists(string $name, string $lang): bool|int
     {
         $sql = rex_sql::factory();
+        // TODO: SQL verbessern
         $snippet = $sql->getArray('SELECT `id` FROM `' . rex::getTable('markitup_snippets') . '` WHERE `name` LIKE :name AND `lang` LIKE :lang', [':name' => $name, ':lang' => $lang]);
         unset($sql);
 
-        if ($snippet) {
+        if (0 < count($snippet)) {
             return $snippet[0]['id'];
         }
         return false;
     }
 
-    public static function parseOutput($type, $content)
+    public static function parseOutput(string $type, string $content): bool|string
     {
         $content = str_replace('<br />', '', $content);
 
@@ -129,28 +139,28 @@ class Markitup
                  * Der alte Code (bis V3.7) setze auf der eigenen Markdown-Klasse auf.
                  * Da Markdown in längst im REDAXO-Core steht (rex_markdown) und auch
                  * MarkItUp den Core-Vendor nutzt, kann man auch gleich auf rex_markdown gehen.
-                 * 
+                 *
                  * TODO: alten Code entfernen
                  */
-                $parser = \rex_markdown::factory();
+                $parser = rex_markdown::factory();
                 return self::replaceYFormLink($parser->parse($content));
-                //$parser = new Markdown();
-                //return self::replaceYFormLink($parser->text($content));
+                // $parser = new Markdown();
+                // return self::replaceYFormLink($parser->text($content));
                 break;
             case 'textile':
-                $parser = new Textile();
-                return self::replaceYFormLink($parser->custom_parse($content));
+                return self::replaceYFormLink(Textile::custom_parse($content));
                 break;
         }
 
         return false;
     }
 
-    public static function replaceYFormLink($content)
+    public static function replaceYFormLink(string $content): string
     {
         $callback = static function ($link) { return 'javascript:void(0);'; };
-        if (rex::isBackend() && rex::getUser()) {
-            $callback = self::$yform_callback ?: (__CLASS__ . '::createYFormLink');
+        if (rex::isBackend() && null !== rex::getUser()) {
+            // TODO: umstellen auf moderne Schreibweise
+            $callback = is_callable(self::$yform_callback) ? self::$yform_callback : (__CLASS__ . '::createYFormLink');
         } elseif (self::$yform_callback) {
             $callback = self::$yform_callback;
         }
@@ -160,12 +170,17 @@ class Markitup
             $content);
     }
 
-    public static function createYFormLink($link)
+    public static function createYFormLink(string $link): string
     {
         return 'javascript:markitupYformOpen( \'' . random_int(1000000, 999999999) . '\', \'' . $link[1] . '\', \'' . $link[2] . '\' );';
     }
 
-    public static function yformLinkInUse($table_name, $data_id, $tableset = null, $fullResult = false)
+    /**
+     * @param array<string>|int|null $tableset
+     * @ param bool $fullResult
+     * @return array<int>|bool
+     */
+    public static function yformLinkInUse(string $table_name, int $data_id, array|int|null $tableset = null, bool|int $fullResult = false): array|bool
     {
         $sql = rex_sql::factory();
 
@@ -180,7 +195,9 @@ class Markitup
         } elseif (1 === $tableset) {
             $tableset = ['rex_article', 'rex_article_slice', 'rex_media'];
         } elseif (2 === $tableset || 3 === $tableset) {
+            // FIXME: Murks ist das! tableset=3 kommt nie zur Wirkung. Rauswerfen
             try {
+                // TODO: SQL verbessern
                 $tableset = $sql->getArray('SELECT id, table_name FROM rex_yform_table', [], PDO::FETCH_KEY_PAIR);
             } catch (Exception $e) {
                 $tableset = []; // insb. falls es rex_yform_fields nicht gibt ($tableset = [frei angegeben])
@@ -210,8 +227,10 @@ class Markitup
         $result = [];
         foreach ($tableset as $table) {
             $where = self::yformInUseWhere($table, $table_name, $data_id);
+            // TODO: SQL verbessern
             $qry = 'SELECT id FROM ' . $sql->escapeIdentifier($table) . ' WHERE ' . $where . $limit;
-            if ($inUse = $sql->getArray($qry)) {
+            $inUse = $sql->getArray($qry);
+            if (0 < count($inUse)) {
                 if (!$fullResult) {
                     return true;
                 }
@@ -219,13 +238,18 @@ class Markitup
             }
         }
 
-        if ($result) {
+        if (0 < count($result)) {
             return $result;
         }
         return false;
     }
 
-    public static function yformInUseWhere($target_table, $locator_table, $locator_id, $fields_in_scope = null, $type_in_scope = null)
+    /**
+     * @param mixed $locator_id
+     * @param array<string>|null $fields_in_scope
+     * @param array<string>|null $type_in_scope
+     */
+    public static function yformInUseWhere(string $target_table, string $locator_table, $locator_id, ?array $fields_in_scope = null, ?array $type_in_scope = null): string
     {
         // Alle Felder ermitteln, deren Typen mit varchar(xx), text etc. sind.
         $sql = rex_sql::factory();
@@ -243,6 +267,7 @@ class Markitup
             if (0 === count($condition)) {
                 return '';
             }
+            // TODO: SQL verbessern
             $qry = 'SHOW FIELDS FROM ' . $sql->escapeIdentifier($target_table) . ' WHERE (' . implode(') AND (', $condition) . ')';
             $fields = array_column($sql->getArray($qry), 'Field');
         } catch (Exception $e) {

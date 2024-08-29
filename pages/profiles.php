@@ -68,6 +68,7 @@ if ('' === $func) {
     $field->setLabel($this->i18n('profiles_label_name'));
     $field->getValidator()->add('notEmpty', $this->i18n('validate_empty', $this->i18n('profiles_label_name')));
     $field->getValidator()->add('custom', $this->i18n('validate_unique', $this->i18n('profiles_label_name')), static function ($value) use ($id) {
+        // TODO: SQL verbessern ?
         $profiles = rex_sql::factory()->getArray('SELECT id FROM ' . rex::getTable('markitup_profiles') . ' WHERE name LIKE :name LIMIT 1', [':name' => $value]);
         if (0 === count($profiles)) {
             return true;

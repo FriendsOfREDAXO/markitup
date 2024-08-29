@@ -6,6 +6,7 @@ use Netcarver\Textile\Parser;
 
 class Textile extends Parser
 {
+    /** @var array<self> */
     private static $instances = [];
 
     public function __construct($doctype = 'xhtml')
@@ -17,13 +18,17 @@ class Textile extends Parser
         $this->restricted_url_schemes[] = 'yform';
     }
 
-    public static function custom_parse($code, $restricted = false, $doctype = 'xhtml')
+    /**
+     * @api
+     */
+    public static function custom_parse(string $code, bool $restricted = false, string $doctype = 'xhtml'): string
     {
         $instance = self::getInstance($doctype);
+        // TODO: Code übersichtlicher
         return $restricted ? $instance->setRestricted(true)->parse($code) : $instance->setRestricted(false)->parse($code);
     }
 
-    private static function getInstance($doctype = 'xhtml')
+    private static function getInstance(string $doctype = 'xhtml'): self
     {
         if (!isset(self::$instances[$doctype])) {
             self::$instances[$doctype] = new self($doctype);
