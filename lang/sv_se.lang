@@ -1,7 +1,7 @@
 markitup_title = MarkItUp Editor
 
 #cache message
-markitup_cache = {1} inte uppdaterat
+markitup_cache = {0} inte uppdaterat
 
 #subpage profiles
 markitup_profiles = Profiler

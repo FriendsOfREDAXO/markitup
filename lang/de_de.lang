@@ -1,7 +1,7 @@
 markitup_title = MarkItUp Editor
 
 #cache message
-markitup_cache = {1} konnte nicht geändert werden.
+markitup_cache = {0} konnte nicht geändert werden.
 
 #subpage profiles
 markitup_profiles = Profile

@@ -88,6 +88,7 @@ if ('' === $func) {
     }
     $select->setSize(1);
     $field->getValidator()->add('custom', $this->i18n('validate_unique', $this->i18n('snippets_label_name') . ' + ' . $this->i18n('snippets_label_lang')), static function ($value) use ($nfield, $id) {
+        // TODO: SQL verbessern ?
         $snippets = rex_sql::factory()->getArray('SELECT id FROM ' . rex::getTable('markitup_snippets') . ' WHERE name LIKE :name && lang LIKE :lang LIMIT 1', [':name' => $value, ':lang' => $nfield->getValue()]);
         if (0 === count($snippets)) {
             return true;

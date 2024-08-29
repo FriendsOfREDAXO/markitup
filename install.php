@@ -37,6 +37,7 @@ $tableName = rex::getTable('markitup_profiles');
 $sql = rex_sql::factory();
 
 $sql->setTable($tableName);
+// TODO: SQL verbessern
 $sql->setWhere('id=1 OR id=2');
 $sql->delete();
 
