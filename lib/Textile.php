@@ -24,8 +24,8 @@ class Textile extends Parser
     public static function custom_parse(string $code, bool $restricted = false, string $doctype = 'xhtml'): string
     {
         $instance = self::getInstance($doctype);
-        // TODO: Code übersichtlicher
-        return $restricted ? $instance->setRestricted(true)->parse($code) : $instance->setRestricted(false)->parse($code);
+        $instance->setRestricted($restricted);
+        return $instance->parse($code);
     }
 
     private static function getInstance(string $doctype = 'xhtml'): self

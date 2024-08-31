@@ -13,7 +13,6 @@ use rex_sql_exception;
 use function count;
 use function in_array;
 use function is_array;
-use function is_callable;
 
 /**
  * @api
@@ -37,8 +36,7 @@ class Markitup
     public static function insertProfile(string $name, string $description = '', string $type = '', string $minheight = '300', string $maxheight = '800', string $urltype = 'relative', string $markitupButtons = ''): string
     {
         $sql = rex_sql::factory();
-        // TODO: SQL verbessern
-        $sql->setTable(rex::getTablePrefix() . 'markitup_profiles');
+        $sql->setTable(rex::getTable('markitup_profiles'));
         $sql->setValue('name', $name);
         $sql->setValue('description', $description);
         $sql->setValue('type', $type);
@@ -60,15 +58,11 @@ class Markitup
 
     public static function profileExists(string $name): bool
     {
-        $sql = rex_sql::factory();
-        // TODO: SQL verbessern
-        $profile = $sql->setQuery('SELECT `name` FROM `' . rex::getTable('markitup_profiles') . '` WHERE `name` = ' . $sql->escape($name) . '')->getArray();
-        unset($sql);
-
-        if (!empty($profile)) {
-            return true;
-        }
-        return false;
+        $profile = rex_sql::factory()
+            ->setTable(rex::getTable('markitup_profiles'))
+            ->setWhere('name = :name', [':name' => $name])
+            ->select('id');
+        return 0 < $profile->getRows();
     }
 
     public static function insertSnippet(string $name, string $lang, string $snippet, string $description = ''): string
@@ -118,15 +112,16 @@ class Markitup
 
     public static function snippetExists(string $name, string $lang): bool|int
     {
-        $sql = rex_sql::factory();
-        // TODO: SQL verbessern
-        $snippet = $sql->getArray('SELECT `id` FROM `' . rex::getTable('markitup_snippets') . '` WHERE `name` LIKE :name AND `lang` LIKE :lang', [':name' => $name, ':lang' => $lang]);
-        unset($sql);
+        $snippets = rex_sql::factory()
+            ->setTable(rex::getTable('markitup_snippets'))
+            ->setWhere('`name` LIKE :name AND `lang` LIKE :lang', [':name' => $name, ':lang' => $lang])
+            ->select('id');
 
-        if (0 < count($snippet)) {
-            return $snippet[0]['id'];
+        if (0 === $snippets->getRows()) {
+            return false;
         }
-        return false;
+
+        return $snippets->getValue('id');
     }
 
     public static function parseOutput(string $type, string $content): bool|string
@@ -159,11 +154,12 @@ class Markitup
     {
         $callback = static function ($link) { return 'javascript:void(0);'; };
         if (rex::isBackend() && null !== rex::getUser()) {
-            // TODO: umstellen auf moderne Schreibweise
-            $callback = is_callable(self::$yform_callback) ? self::$yform_callback : (__CLASS__ . '::createYFormLink');
+            $callback = self::$yform_callback ?: self::createYFormLink(...);
         } elseif (self::$yform_callback) {
             $callback = self::$yform_callback;
         }
+        dump(get_defined_vars());
+
         return preg_replace_callback(
             '/yform:(?<table_name>[a-z0-9_]+)\/(?<id>\d+)/',
             $callback,
@@ -177,7 +173,6 @@ class Markitup
 
     /**
      * @param array<string>|int|null $tableset
-     * @ param bool $fullResult
      * @return array<int>|bool
      */
     public static function yformLinkInUse(string $table_name, int $data_id, array|int|null $tableset = null, bool|int $fullResult = false): array|bool
@@ -195,17 +190,12 @@ class Markitup
         } elseif (1 === $tableset) {
             $tableset = ['rex_article', 'rex_article_slice', 'rex_media'];
         } elseif (2 === $tableset || 3 === $tableset) {
-            // FIXME: Murks ist das! tableset=3 kommt nie zur Wirkung. Rauswerfen
             try {
-                // TODO: SQL verbessern
-                $tableset = $sql->getArray('SELECT id, table_name FROM rex_yform_table', [], PDO::FETCH_KEY_PAIR);
+                $sql->setTable(rex::getTable('yform_table'));
+                $sql->select('id, table_name');
+                $tableset = $sql->getArray(fetchType: PDO::FETCH_KEY_PAIR);
             } catch (Exception $e) {
                 $tableset = []; // insb. falls es rex_yform_fields nicht gibt ($tableset = [frei angegeben])
-            }
-            if (3 === $tableset) {
-                $tableset[] = 'rex_article';
-                $tableset[] = 'rex_article_slice';
-                $tableset[] = 'rex_media';
             }
         } else {
             $tableset = [];
@@ -227,7 +217,6 @@ class Markitup
         $result = [];
         foreach ($tableset as $table) {
             $where = self::yformInUseWhere($table, $table_name, $data_id);
-            // TODO: SQL verbessern
             $qry = 'SELECT id FROM ' . $sql->escapeIdentifier($table) . ' WHERE ' . $where . $limit;
             $inUse = $sql->getArray($qry);
             if (0 < count($inUse)) {
@@ -267,8 +256,8 @@ class Markitup
             if (0 === count($condition)) {
                 return '';
             }
-            // TODO: SQL verbessern
-            $qry = 'SHOW FIELDS FROM ' . $sql->escapeIdentifier($target_table) . ' WHERE (' . implode(') AND (', $condition) . ')';
+            $where = '(' . implode(') AND (', $condition) . ')';
+            $qry = 'SHOW FIELDS FROM ' . $sql->escapeIdentifier($target_table) . ' WHERE ' . $where;
             $fields = array_column($sql->getArray($qry), 'Field');
         } catch (Exception $e) {
             return ''; // Falls es die Tabelle nicht gibt;
