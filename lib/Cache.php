@@ -35,9 +35,15 @@ class Cache
             ->setQuery('SELECT `name`, `type`, `minheight`, `maxheight`, `markitup_buttons` FROM `' . rex::getTable('markitup_profiles') . '` ORDER BY `name` ASC')
             ->getArray();
 
-        // Liste der Sprachen, die in "snippets" vorkommen plus '--' (=Fallback bzw. für alle anderen)
+        /**
+         * Liste der Sprachen, die in "snippets" vorkommen plus '--' (=Fallback bzw. für alle anderen).
+         * @var array<string> $languages
+         */
         $languages = rex_sql::factory()
             ->setQuery('SELECT DISTINCT `lang` FROM `' . rex::getTable('markitup_snippets') . '`')
+            // REXSTAN: Parameter $fetchType of method rex_sql::getArray() expects 2|3|12, 7 given.
+            // Es liegt daran, dass in rex_sql nur wenige der PDO::Fetch... hinterlegt sind. Ignorierbar.
+            // @phpstan-ignore-next-line
             ->getArray(fetchType: PDO::FETCH_COLUMN);
         $languages = array_unique(array_merge(['--'], $languages));
         $fallback = array_unique(
@@ -181,8 +187,8 @@ class Cache
             $buttonString .= '{';
 
             foreach (['name', 'key', 'openWith', 'closeWith', 'className', 'replaceWith'] as $property) {
-                if (!empty($markItUpButtons[$profileButton][$property])) {
-                    if (in_array($property, ['openWith', 'closeWith'])) {
+                if (isset($markItUpButtons[$profileButton][$property])) {
+                    if (in_array($property, ['openWith', 'closeWith'], true)) {
                         $buttonString .= '  ' . $property . ":'" . $markItUpButtons[$profileButton][$property][$type] . "'," . PHP_EOL;
                     } elseif ('replaceWith' === $property) {
                         $buttonString .= '  ' . $property . ':' . $markItUpButtons[$profileButton][$property][$type] . ',' . PHP_EOL;
@@ -195,7 +201,7 @@ class Cache
             }
 
             // Start - dropdown
-            if (!empty($options)) {
+            if (0 < count($options)) {
                 $buttonString .= '  dropMenu: [';
 
                 foreach ($options as $option) {
@@ -207,7 +213,7 @@ class Cache
                         }
                     } else {
                         foreach (['name', 'key', 'openWith', 'closeWith', 'replaceWith'] as $property) {
-                            if (!empty($markItUpButtons[$profileButton]['children'][$option][$property])) {
+                            if (isset($markItUpButtons[$profileButton]['children'][$option][$property])) {
                                 if (in_array($property, ['openWith', 'closeWith'], true)) {
                                     $buttonString .= '  ' . $property . ':\'' . $markItUpButtons[$profileButton]['children'][$option][$property][$type] . '\',' . PHP_EOL;
                                 } else {

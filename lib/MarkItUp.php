@@ -4,6 +4,7 @@ namespace FriendsOfRedaxo\MarkItUp;
 
 use Exception;
 use PDO;
+use Random\RandomException;
 use rex;
 use rex_i18n;
 use rex_markdown;
@@ -20,8 +21,8 @@ use function is_array;
  */
 class Markitup
 {
-    /** @var callable */
-    public static $yform_callback;
+    /** @var ?callable */
+    public static $yform_callback = null;
 
     /** @var array<string,string> */
     public static $type_in_scope = [
@@ -88,7 +89,7 @@ class Markitup
                 array_merge(rex_i18n::getLocales(), ['--']),
             ),
         );
-        if (!in_array($lang, $languages)) {
+        if (!in_array($lang, $languages, true)) {
             return rex_i18n::msg('markitup_validate_invalid', rex_i18n::msg('markitup_snippets_label_lang'));
         }
 
@@ -154,11 +155,10 @@ class Markitup
     {
         $callback = static function ($link) { return 'javascript:void(0);'; };
         if (rex::isBackend() && null !== rex::getUser()) {
-            $callback = self::$yform_callback ?: self::createYFormLink(...);
-        } elseif (self::$yform_callback) {
+            $callback = is_callable(self::$yform_callback) ? self::$yform_callback : self::createYFormLink(...);
+        } elseif (is_callable(self::$yform_callback)) {
             $callback = self::$yform_callback;
         }
-        dump(get_defined_vars());
 
         return preg_replace_callback(
             '/yform:(?<table_name>[a-z0-9_]+)\/(?<id>\d+)/',
@@ -166,14 +166,17 @@ class Markitup
             $content);
     }
 
-    public static function createYFormLink(string $link): string
+    /**
+     * @param string[] $link 
+     */
+    public static function createYFormLink(array $link): string
     {
         return 'javascript:markitupYformOpen( \'' . random_int(1000000, 999999999) . '\', \'' . $link[1] . '\', \'' . $link[2] . '\' );';
     }
 
     /**
      * @param array<string>|int|null $tableset
-     * @return array<int>|bool
+     * @return array<string,int[]>|bool
      */
     public static function yformLinkInUse(string $table_name, int $data_id, array|int|null $tableset = null, bool|int $fullResult = false): array|bool
     {
@@ -184,21 +187,28 @@ class Markitup
         // $tableset = 2        =>  Nur YForm-Tabellen betrachten
         // $tableset = [...]    =>  Nur die angegebenen Tabellen betrachten
         if (null === $tableset) {
-            $tableset = $sql->getTables();
+            /** @var list<string> $tables */
+            $tables = $sql->getTables();
         } elseif (is_array($tableset)) {
             // void
+            /** @var list<string> $tables */
+            $tables = $tableset;
         } elseif (1 === $tableset) {
-            $tableset = ['rex_article', 'rex_article_slice', 'rex_media'];
+            /** @var list<string> $tables */
+            $tables = ['rex_article', 'rex_article_slice', 'rex_media'];
         } elseif (2 === $tableset || 3 === $tableset) {
             try {
                 $sql->setTable(rex::getTable('yform_table'));
                 $sql->select('id, table_name');
-                $tableset = $sql->getArray(fetchType: PDO::FETCH_KEY_PAIR);
+                /** @var list<string> $tables */
+                $tables = $sql->getArray(fetchType: PDO::FETCH_KEY_PAIR);
             } catch (Exception $e) {
-                $tableset = []; // insb. falls es rex_yform_fields nicht gibt ($tableset = [frei angegeben])
+                /** @var list<string> $tables */
+                $tables = []; // insb. falls es rex_yform_fields nicht gibt ($tableset = [frei angegeben])
             }
         } else {
-            $tableset = [];
+            /** @var list<string> $tables */
+            $tables = [];
         }
 
         // Wenn $fullResult angefordert ist, werden alle Tabellen durchlaufen und je Tabelle mit
@@ -214,8 +224,11 @@ class Markitup
             $fullResult = false;
         }
 
+        /**
+         * @var array<string,int[]> $result
+         */
         $result = [];
-        foreach ($tableset as $table) {
+        foreach ($tables as $table) {
             $where = self::yformInUseWhere($table, $table_name, $data_id);
             $qry = 'SELECT id FROM ' . $sql->escapeIdentifier($table) . ' WHERE ' . $where . $limit;
             $inUse = $sql->getArray($qry);
@@ -223,7 +236,9 @@ class Markitup
                 if (!$fullResult) {
                     return true;
                 }
-                $result[$table] = array_column($inUse, 'id');
+                /** @var int[] $idList */
+                $idList = array_column($inUse, 'id');
+                $result[$table] = $idList;
             }
         }
 
@@ -244,15 +259,18 @@ class Markitup
         $sql = rex_sql::factory();
         try {
             $condition = [];
+            
             if (null === $type_in_scope) {
                 $type_in_scope = self::$type_in_scope;
             }
-            if (is_array($type_in_scope)) {
+            if( 0 < count($type_in_scope)) {
                 $condition[] = implode(' OR ', $type_in_scope);
             }
+
             if (is_array($fields_in_scope)) {
                 $condition[] = 'Field IN (\'' . implode('\',\'', $fields_in_scope) . '\')';
             }
+            
             if (0 === count($condition)) {
                 return '';
             }
