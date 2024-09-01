@@ -16,8 +16,11 @@ if (rex::isBackend()) {
     rex_view::addJsFile($this->getAssetsUrl('autosize.min.js'));
     rex_view::addJsFile($this->getAssetsUrl('scripts.js'));
     rex_view::addCssFile($this->getAssetsUrl('style.css'));
-    if (file_exists($this->getAssetsPath('skin.css'))) {
-        rex_view::addCssFile($this->getAssetsUrl('skin.css'));
+
+    // custom css - updatesicher
+    $project = rex_addon::get('project');
+    if (file_exists($project->getAssetsPath('skin.css'))) {
+        rex_view::addCssFile($project->getAssetsUrl('skin.css'));
     }
 
     $language = array_unique(
