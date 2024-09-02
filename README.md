@@ -105,10 +105,3 @@ MIT Lizenz, siehe [LICENSE.md](https://github.com/FriendsOfREDAXO/markitup/blob/
 
 * <http://www.redaxo.org>
 * <https://github.com/FriendsOfREDAXO>
-
-## Credits
-
-Danke an Contributor #1:
-
-* [Christoph Böcker](https://github.com/christophboecker)
-
