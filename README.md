@@ -94,3 +94,21 @@ Example code for use in templates, modules or AddOns:
   }
 ?>
 ```
+
+## Lizenz
+
+MIT Lizenz, siehe [LICENSE.md](https://github.com/alexplusde/neues/blob/master/LICENSE)  
+
+## Autoren
+
+### FriendsOfREDAXO
+
+* <http://www.redaxo.org>
+* <https://github.com/FriendsOfREDAXO>
+
+## Credits
+
+Danke an Contributor #1:
+
+* [Christoph Böcker](https://github.com/christophboecker)
+
