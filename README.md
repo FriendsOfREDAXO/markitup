@@ -97,7 +97,7 @@ Example code for use in templates, modules or AddOns:
 
 ## Lizenz
 
-MIT Lizenz, siehe [LICENSE.md](https://github.com/alexplusde/neues/blob/master/LICENSE)  
+MIT Lizenz, siehe [LICENSE.md](https://github.com/FriendsOfREDAXO/markitup/blob/main/LICENSE)  
 
 ## Autoren
 
