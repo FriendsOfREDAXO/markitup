@@ -16,7 +16,7 @@ use rex_sql;
 $func = rex_request('func', 'string');
 
 if ('' === $func) {
-    $list = rex_list::factory("SELECT `id`, `name`, `description`, `type`, CONCAT('markitupEditor-',`name`) as `cssclass` FROM `" . rex::getTable('markitup_profiles') . '` ORDER BY `name` ASC');
+    $list = rex_list::factory('SELECT `id`, `name`, `description`, `type`, CONCAT("markitupEditor-",`name`) as `cssclass` FROM `' . rex::getTable('markitup_profiles') . '` ORDER BY `name` ASC');
     $list->addTableAttribute('class', 'table-striped');
     $list->setNoRowsMessage($this->i18n('profiles_norowsmessage'));
 
@@ -68,15 +68,11 @@ if ('' === $func) {
     $field->setLabel($this->i18n('profiles_label_name'));
     $field->getValidator()->add('notEmpty', $this->i18n('validate_empty', $this->i18n('profiles_label_name')));
     $field->getValidator()->add('custom', $this->i18n('validate_unique', $this->i18n('profiles_label_name')), static function ($value) use ($id) {
-        // TODO: SQL verbessern ?
-        $profiles = rex_sql::factory()->getArray('SELECT id FROM ' . rex::getTable('markitup_profiles') . ' WHERE name LIKE :name LIMIT 1', [':name' => $value]);
-        if (0 === count($profiles)) {
-            return true;
-        }
-        if ($profiles[0]['id'] === $id) {
-            return true;
-        }
-        return false;
+        $profiles = rex_sql::factory()
+            ->setTable(rex::getTable('markitup_profiles'))
+            ->setWhere('name LIKE :name', [':name' => $value])
+            ->select('id');
+        return 0 === $profiles->getRows() || $id === $profiles->getValue('id');
     });
     // End - add name-field
 

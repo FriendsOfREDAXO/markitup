@@ -31,17 +31,21 @@ class Cache
     {
         $message = '';
 
-        // TODO: SQL verbessern
         $profiles = rex_sql::factory()
             ->setQuery('SELECT `name`, `type`, `minheight`, `maxheight`, `markitup_buttons` FROM `' . rex::getTable('markitup_profiles') . '` ORDER BY `name` ASC')
             ->getArray();
 
-        // Liste der Sprachen, die in "snippets" vorkommen plus '--' (=Fallback bzw. für alle anderen)
-        // TODO: SQL verbessern
+        /**
+         * Liste der Sprachen, die in "snippets" vorkommen plus '--' (=Fallback bzw. für alle anderen).
+         * @var array<string> $languages
+         */
         $languages = rex_sql::factory()
             ->setQuery('SELECT DISTINCT `lang` FROM `' . rex::getTable('markitup_snippets') . '`')
-            ->getArray();
-        $languages = array_unique(array_merge(['--'], array_column($languages, 'lang')));
+            // REXSTAN: Parameter $fetchType of method rex_sql::getArray() expects 2|3|12, 7 given.
+            // Es liegt daran, dass in rex_sql nur wenige der PDO::Fetch... hinterlegt sind. Ignorierbar.
+            // @phpstan-ignore-next-line
+            ->getArray(fetchType: PDO::FETCH_COLUMN);
+        $languages = array_unique(array_merge(['--'], $languages));
         $fallback = array_unique(
             array_map(
                 static function ($l) { return substr($l, 0, 2); },
@@ -138,7 +142,6 @@ class Cache
                         if (str_contains($parameter, '=')) {
                             [$key, $value] = explode('=', $parameter);
                             $label = strtolower($value);
-                            // TODO: SQL verbessern
                             $snippets = rex_sql::factory()->getArray('SELECT lang, content FROM ' . rex::getTable('markitup_snippets') . ' WHERE name like :name', [':name' => $label], PDO::FETCH_KEY_PAIR);
                             if (0 < count($snippets)) {
                                 foreach ($languageSet as $language) {
@@ -160,8 +163,7 @@ class Cache
                         $options[] = $table;
                         $data[$table] = [
                             'name' => 'profiles_buttons_yform_option_' . $table,
-                            // TODO: sprintf
-                            'replaceWith' => [$type => 'function(h) {return btn' . ucfirst($type) . 'YformCallback(h,"' . rex::getTable($table) . '");}'],
+                            'replaceWith' => [$type => sprintf('function(h) {return btn%sYformCallback(h,"%s");}', ucfirst($type), rex::getTable($table))],
                         ];
                         if (!rex_i18n::hasMsg('markitup_' . $data[$table]['name'])) {
                             rex_i18n::addMsg('markitup_' . $data[$table]['name'], $table);
@@ -185,21 +187,21 @@ class Cache
             $buttonString .= '{';
 
             foreach (['name', 'key', 'openWith', 'closeWith', 'className', 'replaceWith'] as $property) {
-                if (!empty($markItUpButtons[$profileButton][$property])) {
+                if (isset($markItUpButtons[$profileButton][$property])) {
                     if (in_array($property, ['openWith', 'closeWith'], true)) {
-                        $buttonString .= '  ' . $property . ':\'' . $markItUpButtons[$profileButton][$property][$type] . ':\'' . PHP_EOL;
+                        $buttonString .= '  ' . $property . ":'" . $markItUpButtons[$profileButton][$property][$type] . "'," . PHP_EOL;
                     } elseif ('replaceWith' === $property) {
                         $buttonString .= '  ' . $property . ':' . $markItUpButtons[$profileButton][$property][$type] . ',' . PHP_EOL;
                     } elseif ('name' === $property) {
-                        $buttonString .= '  ' . $property . ':\'' . rex_i18n::msg('markitup_' . $markItUpButtons[$profileButton][$property]) . ':\'' . PHP_EOL;
+                        $buttonString .= '  ' . $property . ':\'' . rex_i18n::msg('markitup_' . $markItUpButtons[$profileButton][$property]) . '\',' . PHP_EOL;
                     } else {
-                        $buttonString .= '  ' . $property . ':\'' . $markItUpButtons[$profileButton][$property] . ':\'' . PHP_EOL;
+                        $buttonString .= '  ' . $property . ':\'' . $markItUpButtons[$profileButton][$property] . '\',' . PHP_EOL;
                     }
                 }
             }
 
             // Start - dropdown
-            if (!empty($options)) {
+            if (0 < count($options)) {
                 $buttonString .= '  dropMenu: [';
 
                 foreach ($options as $option) {
@@ -207,20 +209,20 @@ class Cache
 
                     if (is_array($option)) {
                         foreach ($option as $property => $value) {
-                            $buttonString .= '  ' . $property . ':\'' . $value . ':\'';
+                            $buttonString .= '  ' . $property . ':\'' . $value . '\',';
                         }
                     } else {
                         foreach (['name', 'key', 'openWith', 'closeWith', 'replaceWith'] as $property) {
-                            if (!empty($markItUpButtons[$profileButton]['children'][$option][$property])) {
+                            if (isset($markItUpButtons[$profileButton]['children'][$option][$property])) {
                                 if (in_array($property, ['openWith', 'closeWith'], true)) {
-                                    $buttonString .= '  ' . $property . ':\'' . $markItUpButtons[$profileButton]['children'][$option][$property][$type] . ':\'' . PHP_EOL;
+                                    $buttonString .= '  ' . $property . ':\'' . $markItUpButtons[$profileButton]['children'][$option][$property][$type] . '\',' . PHP_EOL;
                                 } else {
                                     if ('name' === $property) {
                                         $buttonString .= '  ' . $property . ':\'' . rex_i18n::msg('markitup_' . $markItUpButtons[$profileButton]['children'][$option][$property]) . "'," . PHP_EOL;
                                     } elseif ('replaceWith' === $property) {
                                         $buttonString .= '  ' . $property . ':' . $markItUpButtons[$profileButton]['children'][$option][$property][$type] . ',' . PHP_EOL;
                                     } else {
-                                        $buttonString .= '  ' . $property . ':\'' . $markItUpButtons[$profileButton]['children'][$option][$property] . ':\'' . PHP_EOL;
+                                        $buttonString .= '  ' . $property . ':\'' . $markItUpButtons[$profileButton]['children'][$option][$property] . '\',' . PHP_EOL;
                                     }
                                 }
                             }
