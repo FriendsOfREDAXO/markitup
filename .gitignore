@@ -12,3 +12,5 @@ modules.xml
 .DS_Store
 vendor/composer/*
 vendor/autoload.php
+/composer.lock
+/.php-cs-fixer.cache
