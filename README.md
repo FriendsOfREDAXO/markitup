@@ -95,6 +95,14 @@ Example code for use in templates, modules or AddOns:
 ?>
 ```
 
+## Use your own CSS
+
+If you want, you can use your own "skin". Place your `skin.css` file in `/assets/addons/project/` and add this code to your `/src/addons/project/boot.php` file:
+
+```php
+rex_view::addCssFile(rex_url::addonAssets('project', 'skin.css'));
+```
+
 ## Lizenz
 
 MIT Lizenz, siehe [LICENSE.md](https://github.com/FriendsOfREDAXO/markitup/blob/main/LICENSE)  
