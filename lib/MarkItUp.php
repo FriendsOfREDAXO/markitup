@@ -135,17 +135,11 @@ class Markitup
                  * Der alte Code (bis V3.7) setze auf der eigenen Markdown-Klasse auf.
                  * Da Markdown in längst im REDAXO-Core steht (rex_markdown) und auch
                  * MarkItUp den Core-Vendor nutzt, kann man auch gleich auf rex_markdown gehen.
-                 *
-                 * TODO: alten Code entfernen
                  */
                 $parser = rex_markdown::factory();
                 return self::replaceYFormLink($parser->parse($content));
-                // $parser = new Markdown();
-                // return self::replaceYFormLink($parser->text($content));
-                break;
             case 'textile':
                 return self::replaceYFormLink(Textile::custom_parse($content));
-                break;
         }
 
         return false;

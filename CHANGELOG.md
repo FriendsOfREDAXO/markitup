@@ -1,5 +1,18 @@
 # MarkItUp Changelog
 
+## [4.0.0] Work in Progress
+
+- Abschluß der Umstellung auf Namespace; als "deprecated" markierte Elemte entfernt
+  - Funktionen:
+    - `markitup_cache_update()` => `FriendsOfRedaxo\MarkItUp\Cache::update`
+    - `markitup_cache_defineButtons(...)` => `FriendsOfRedaxo\MarkItUp\Cache::defineButtons(...)`
+  - Klassen:
+    - `markitup_markdown` => `rex_markdown`
+    - `markitup_textile` =>  `FriendsOfRedaxo\MarkItUp\Textile`
+    - `markitup` => `FriendsOfRedaxo\MarkItUp\Markitup`
+    - `cache` => `FriendsOfRedaxo\MarkItUp\Cache`
+
+
 ## [3.8.0](https://github.com/FriendsOfREDAXO/markitup/releases/tag/3.8.0) – 11.04.2024
 
 > Bitte unbedingt beachten. Mit diesem Release erfolgt die Umstellung auf den Namespace `FriendsOfRedaxo\MarkItUp`. Für eine kurze Übergangszeit stehen weiterhin die alten Klassennamen zur Verfügung, sind aber als "deprecated" markiert. Das soll die Umstellung erleichtern. Mit Relase 4.0 werden diese Convenience-Klassen entfallen. Release 4 ist für Ende Juni vorgesehen! 
