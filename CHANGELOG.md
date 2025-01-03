@@ -1,7 +1,9 @@
 # MarkItUp Changelog
 
-## [4.0.0] Work in Progress
+## [4.0.1](https://github.com/FriendsOfREDAXO/markitup/releases/tag/4.0.1) - 03.01.2024
 
+- Bugfix beim Einbinden von YForm-Links; Die Auswahlliste wurde nach einer YForm-Änderung nicht mehr angzeigt
+  
 - Abschluß der Umstellung auf Namespace; als "deprecated" markierte Elemte entfernt
   - Funktionen:
     - `markitup_cache_update()` => `FriendsOfRedaxo\MarkItUp\Cache::update`
