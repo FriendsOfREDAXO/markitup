@@ -43,14 +43,9 @@ function markitupYformConnectionCreate( container ) {
     return $yform;
 }
 
-function markitupYformOpen( id, tablename, data_id ){
-    newWindow(
-        'y'+id,
-        'index.php?page=yform/manager/data_edit&table_name='+tablename+'&rex_yform_manager_popup=1&func=edit&data_id='+data_id,
-        1200,
-        Math.max(screen.height*0.75,800),
-//        ',status=no,resizable=yes,nav=no'
-    );
+function markitupYformOpen( id, targetfield, url ){
+	let newWindowLink = url + '&rex_yform_manager_opener[id]='+id+'&rex_yform_manager_opener[field]='+targetfield+'&rex_yform_manager_opener[multiple]=0';
+	return newWindow( id, newWindowLink, 1200,800,',status=yes,resizable=yes');
 }
 
 //Start - functions for markdown
@@ -192,7 +187,7 @@ function markitupYformOpen( id, tablename, data_id ){
             markitup._yform['yform'] = $yform;
         }
         $yform.done = false;
-        var dokument = openYFormDataset($yform.id, table+'.id', 'index.php?page=yform/manager/data_edit&table_name='+table );
+        var dokument = markitupYformOpen($yform.id, table+'.id', 'index.php?page=yform/manager/data_edit&table_name='+table );
 
         $(dokument).on('rex:YForm_selectData', function (event, id) {
             event.preventDefault();
@@ -371,7 +366,7 @@ function markitupYformOpen( id, tablename, data_id ){
             markitup._yform[table] = $yform;
         }
         $yform.done = false;
-        var dokument = openYFormDataset($yform.id, table+'.id', 'index.php?page=yform/manager/data_edit&table_name='+table );
+        var dokument = markitupYformOpen($yform.id, table+'.id', 'index.php?page=yform/manager/data_edit&table_name='+table );
 
         $(dokument).on('rex:YForm_selectData', function (event, id) {
             event.preventDefault();
