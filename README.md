@@ -105,11 +105,11 @@ rex_view::addCssFile(rex_url::addonAssets('project', 'skin.css'));
 
 ## Lizenz
 
-MIT Lizenz, siehe [LICENSE.md](https://github.com/FriendsOfREDAXO/markitup/blob/main/LICENSE)  
+MIT Lizenz, siehe [LICENSE](https://github.com/FriendsOfREDAXO/markitup/blob/main/LICENSE)  
 
-## Autoren
+## Autor
 
-### FriendsOfREDAXO
+**FriendsOfREDAXO**
 
 * <http://www.redaxo.org>
 * <https://github.com/FriendsOfREDAXO>
