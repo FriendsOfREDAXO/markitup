@@ -1,19 +1,21 @@
-var currentLanguage = $('html').attr('lang');
+var currentLanguage = document.documentElement.lang || 'en';
 
-var markitupLanguagestrings = new Object();
-markitupLanguagestrings['de'] = new Object();
-markitupLanguagestrings['en'] = new Object();
-
-markitupLanguagestrings['de']['linktext'] = 'Linktext?';
-markitupLanguagestrings['en']['linktext'] = 'Linktext?';
-markitupLanguagestrings['de']['linkurl'] = 'URL?';
-markitupLanguagestrings['en']['linkurl'] = 'URL?';
-markitupLanguagestrings['de']['linkemailaddress'] = 'E-Mail Adresse?';
-markitupLanguagestrings['en']['linkemailaddress'] = 'Emailaddress?';
-markitupLanguagestrings['de']['tablecolumns'] = 'Wie viele Spalten?';
-markitupLanguagestrings['en']['tablecolumns'] = 'How many cols?';
-markitupLanguagestrings['de']['tablerows'] = 'Wie viele Zeilen?';
-markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
+var markitupLanguagestrings = {
+	de: {
+		linktext: 'Linktext?',
+		linkurl: 'URL?',
+		linkemailaddress: 'E-Mail Adresse?',
+		tablecolumns: 'Wie viele Spalten?',
+		tablerows: 'Wie viele Zeilen?'
+	},
+	en: {
+		linktext: 'Linktext?',
+		linkurl: 'URL?',
+		linkemailaddress: 'Emailaddress?',
+		tablecolumns: 'How many cols?',
+		tablerows: 'How many rows?'
+	}
+};
 
 //Start - temporary functions to prevent errors
 	function btnImageCallbackInsert() {
@@ -25,27 +27,30 @@ markitupLanguagestrings['en']['tablerows'] = 'How many rows?';
 	}
 //End - temporary functions to prevent errors
 
-// Support for YForm; provide necessary callback-helper
-function markitupYformConnectionCreate( container ) {
-    let $yform = {};
-    // id erzeugen
-    $yform.id = Math.floor( Math.random( ) * 1000000000000 + 1000000000000 );
-    // Input 1 erzeugen: YFORM_DATASET_SELECT
-    $yform.SELECT = document.createElement( 'input' );
-    $yform.SELECT.classList.add('hidden');
-    $yform.SELECT.id = 'YFORM_DATASET_SELECT_' + $yform.id;
-    container.append( $yform.SELECT );
-    // Input 2 erzeugen: YFORM_DATASET_FIELD
-    $yform.FIELD = document.createElement( 'input' );
-    $yform.FIELD.classList.add('hidden');
-    $yform.FIELD.id = 'YFORM_DATASET_FIELD_' + $yform.id;
-    container.append( $yform.SELECT );
-    return $yform;
+// Support for YForm - modernized connection helper
+function markitupYformConnectionCreate(container) {
+    const yform = {
+        id: Math.floor(Math.random() * 1000000000000 + 1000000000000)
+    };
+    
+    // Create Input 1: YFORM_DATASET_SELECT
+    yform.SELECT = document.createElement('input');
+    yform.SELECT.classList.add('hidden');
+    yform.SELECT.id = 'YFORM_DATASET_SELECT_' + yform.id;
+    container.appendChild(yform.SELECT);
+    
+    // Create Input 2: YFORM_DATASET_FIELD  
+    yform.FIELD = document.createElement('input');
+    yform.FIELD.classList.add('hidden');
+    yform.FIELD.id = 'YFORM_DATASET_FIELD_' + yform.id;
+    container.appendChild(yform.FIELD);
+    
+    return yform;
 }
 
-function markitupYformOpen( id, targetfield, url ){
-	let newWindowLink = url + '&rex_yform_manager_opener[id]='+id+'&rex_yform_manager_opener[field]='+targetfield+'&rex_yform_manager_opener[multiple]=0';
-	return newWindow( id, newWindowLink, 1200,800,',status=yes,resizable=yes');
+function markitupYformOpen(id, targetfield, url) {
+	const newWindowLink = url + '&rex_yform_manager_opener[id]='+id+'&rex_yform_manager_opener[field]='+targetfield+'&rex_yform_manager_opener[multiple]=0';
+	return newWindow(id, newWindowLink, 1200, 800, ',status=yes,resizable=yes');
 }
 
 //Start - functions for markdown

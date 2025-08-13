@@ -1,7 +1,57 @@
+/* Light Theme (Default) */
 .markItUpContainer .markItUpHeader {
-	background-color: #324050;
-	border: 1px solid #eee;
+	background-color: #f8f9fa;
+	border: 1px solid #e9ecef;
 	border-bottom: 0px;
+}
+
+.markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li {
+	background-color: #ffffff;
+	border: 1px solid #e9ecef;
+}
+
+.markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li > a {
+	color: #495057;
+}
+
+.markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li > a:hover {
+	background-color: #e9ecef;
+	color: #007bff;
+}
+
+.markItUpContainer .markItUpHeader > ul > li.markItUpSeparator {
+	background-color: #dee2e6;
+}
+
+.markItUpContainer textarea {
+	background-color: #ffffff;
+	border: 1px solid #e9ecef;
+	color: #495057;
+}
+
+/* Force light theme */
+body.rex-theme-light .markItUpContainer .markItUpHeader {
+	background-color: #f8f9fa !important;
+	border-color: #e9ecef !important;
+}
+
+body.rex-theme-light .markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li {
+	background-color: #ffffff !important;
+}
+
+body.rex-theme-light .markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li > a {
+	color: #495057 !important;
+}
+
+body.rex-theme-light .markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li > a:hover {
+	background-color: #e9ecef !important;
+	color: #007bff !important;
+}
+
+body.rex-theme-light .markItUpContainer textarea {
+	background-color: #ffffff !important;
+	border-color: #e9ecef !important;
+	color: #495057 !important;
 }
 
 .markItUpContainer .markItUpHeader ul {
@@ -249,6 +299,7 @@
 
 
 
+/* Dark Theme */
 body.rex-theme-dark .markItUpContainer .markItUpHeader {
     background-color: #202b35;
     border-color: #151c22;
@@ -271,8 +322,18 @@ body.rex-theme-dark .markItUpContainer .markItUpHeader > ul > li.markItUpDropMen
     color: #7abaec;
 }
 
-@media (prefers-color-scheme: dark) {
+body.rex-theme-dark .markItUpContainer textarea {
+    background-color: #1b232c;
+    border-color: #151c22;
+    color: rgba(255, 255, 255, 0.87);
+}
 
+body.rex-theme-dark .markItUpContainer .markItUpSeparator {
+    background-color: #434c56;
+}
+
+/* Auto Dark Theme (respects system preference) */
+@media (prefers-color-scheme: dark) {
     body.rex-has-theme:not(.rex-theme-light) .markItUpContainer .markItUpHeader {
         background-color: #202b35;
         border-color: #151c22;
@@ -293,5 +354,27 @@ body.rex-theme-dark .markItUpContainer .markItUpHeader > ul > li.markItUpDropMen
     body.rex-has-theme:not(.rex-theme-light) .markItUpContainer .markItUpHeader > ul > li.markItUpDropMenu > ul > li > a:hover {
         background-color: inherit;
         color: #7abaec;
+    }
+
+    body.rex-has-theme:not(.rex-theme-light) .markItUpContainer textarea {
+        background-color: #1b232c;
+        border-color: #151c22;
+        color: rgba(255, 255, 255, 0.87);
+    }
+
+    body.rex-has-theme:not(.rex-theme-light) .markItUpContainer .markItUpSeparator {
+        background-color: #434c56;
+    }
+}
+
+/* High contrast theme support */
+@media (prefers-contrast: high) {
+    .markItUpContainer .markItUpHeader > ul > li > a {
+        border: 2px solid transparent;
+    }
+    
+    .markItUpContainer .markItUpHeader > ul > li > a:focus {
+        outline: 2px solid;
+        outline-offset: 2px;
     }
 }
