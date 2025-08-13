@@ -3,9 +3,10 @@
 Hier findest Du die snippets für die Auszeichnungssprache textile - jeweils mit Ausgabe (= Vorschau) und dem einzugebendem Code:
 
 Quelle für diese Anleitung und viele weitere Tipps & Tricks:
-[www.rexdev.de/cheatsheets/textile](http://rexdev.de/cheatsheets/textile.html)
-[www.txstyle.org](http://txstyle.org)
+[www.textile-lang.com](https://textile-lang.com/)
 
+Code für PHP textile:
+[www.github.com/textile/php-textile](https://github.com/textile/php-textile)
 
 <a name="ueberschriften"></a>
 ## Überschriften
