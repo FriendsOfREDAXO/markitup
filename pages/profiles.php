@@ -81,14 +81,22 @@ if ('' === $func) {
     $field->setLabel($this->i18n('profiles_label_description'));
     // End - add description-field
 
-    // Start - add minheight-field
+    // Start - add minheight-field with validation
     $field = $form->addTextField('minheight');
     $field->setLabel($this->i18n('profiles_label_minheight'));
+    $field->getValidator()->add('notEmpty', $this->i18n('validate_empty', $this->i18n('profiles_label_minheight')));
+    $field->getValidator()->add('custom', $this->i18n('profiles_label_minheight_validation'), static function ($value) {
+        return is_numeric($value) && $value >= 50 && $value <= 2000;
+    });
     // End - add minheight-field
 
-    // Start - add maxheight-field
+    // Start - add maxheight-field with validation
     $field = $form->addTextField('maxheight');
     $field->setLabel($this->i18n('profiles_label_maxheight'));
+    $field->getValidator()->add('notEmpty', $this->i18n('validate_empty', $this->i18n('profiles_label_maxheight')));
+    $field->getValidator()->add('custom', $this->i18n('profiles_label_maxheight_validation'), static function ($value) {
+        return is_numeric($value) && $value >= 50 && $value <= 2000;
+    });
     // End - add maxheight-field
 
     // Start - add urltype-field
@@ -122,94 +130,54 @@ if ('' === $func) {
 					&nbsp;
 				</dt>
 				<dd>
-					<p><a href="javascript:void(0);" onclick="$(\'#rex-markitup-buttons-help\').toggle(\'fast\');">Zeige/verberge Hilfe</a></p>
-					<div id="rex-markitup-buttons-help" style="display:none">' .
-                    '<b>bold</b><br>' .
-                    $this->i18n('profiles_buttons_bold_description') . '<br>' .
-                    '<br>' .
-                    '<b>clips[Snippetname1=Snippettext1|Snippetname2=Snippettext2]</b><br>' .
-                    $this->i18n('profiles_buttons_clips_description') . '<br>' .
-                    '<br>' .
-                    '<b>deleted</b><br>' .
-                    $this->i18n('profiles_buttons_deleted_description') . '<br>' .
-                    '<br>' .
-                    '<b>emaillink</b><br>' .
-                    $this->i18n('profiles_buttons_emaillink_description') . '<br>' .
-                    '<br>' .
-                    '<b>externallink</b><br>' .
-                    $this->i18n('profiles_buttons_externallink_description') . '<br>' .
-                    '<br>' .
-                    '<b>internallink</b><br>' .
-                    $this->i18n('profiles_buttons_internallink_description') . '<br>' .
-                    '<br>' .
-                    '<b>italic</b><br>' .
-                    $this->i18n('profiles_buttons_italic_description') . '<br>' .
-                    '<br>' .
-                    '<b>groupheading[1|2|3|4|5|6]</b><br>' .
-                    $this->i18n('profiles_buttons_groupheading_description') . '<br>' .
-                    '<br>' .
-                    '<b>grouplink[file|internal|external|mailto]</b><br>' .
-                    $this->i18n('profiles_buttons_grouplink_description') . '<br>' .
-                    '<br>' .
-                    '<b>heading1</b><br>' .
-                    $this->i18n('profiles_buttons_heading1_description') . '<br>' .
-                    '<br>' .
-                    '<b>heading2</b><br>' .
-                    $this->i18n('profiles_buttons_heading2_description') . '<br>' .
-                    '<br>' .
-                    '<b>heading3</b><br>' .
-                    $this->i18n('profiles_buttons_heading3_description') . '<br>' .
-                    '<br>' .
-                    '<b>heading4</b><br>' .
-                    $this->i18n('profiles_buttons_heading4_description') . '<br>' .
-                    '<br>' .
-                    '<b>heading5</b><br>' .
-                    $this->i18n('profiles_buttons_heading5_description') . '<br>' .
-                    '<br>' .
-                    '<b>heading6</b><br>' .
-                    $this->i18n('profiles_buttons_heading6_description') . '<br>' .
-                    '<br>' .
-                    '<b>media</b><br>' .
-                    $this->i18n('profiles_buttons_media_description') . '<br>' .
-                    '<br>' .
-                    '<b>medialink</b><br>' .
-                    $this->i18n('profiles_buttons_medialink_description') . '<br>' .
-                    '<br>' .
-                    '<b>orderedlist</b><br>' .
-                    $this->i18n('profiles_buttons_orderedlist_description') . '<br>' .
-                    '<br>' .
-                    '<b>paragraph</b><br>' .
-                    $this->i18n('profiles_buttons_paragraph_description') . '<br>' .
-                    '<br>' .
-                    '<b>quote</b><br>' .
-                    $this->i18n('profiles_buttons_quote_description') . '<br>' .
-                    '<br>' .
-                    '<b>sub</b><br>' .
-                    $this->i18n('profiles_buttons_sub_description') . '<br>' .
-                    '<br>' .
-                    '<b>sup</b><br>' .
-                    $this->i18n('profiles_buttons_sup_description') . '<br>' .
-                    '<br>' .
-                    '<b>table</b><br>' .
-                    $this->i18n('profiles_buttons_table_description') . '<br>' .
-                    '<br>' .
-                    '<b>underline</b><br>' .
-                    $this->i18n('profiles_buttons_underline_description') . '<br>' .
-                    '<br>' .
-                    '<b>unorderedlist</b><br>' .
-                    $this->i18n('profiles_buttons_unorderedlist_description') . '<br>' .
-                    '<br>' .
-                    '<b>YForm-Tabelle</b><br>' .
-                    $this->i18n('markitup_profiles_buttons_yform_description1') . '<br>' .
-                    $this->i18n('markitup_profiles_buttons_yform_description2') . '<br>' .
-                    $this->i18n('markitup_profiles_buttons_yform_description3') . '<br>' .
-                    '
+					<div class="rex-docs">
+						<details>
+							<summary style="cursor: pointer; padding: 8px; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 4px;">
+								<strong>📚 ' . $this->i18n('profiles_buttons_help_title') . '</strong>
+							</summary>
+							<div style="margin-top: 10px; padding: 15px; background: #fff; border: 1px solid #dee2e6; border-radius: 4px;">
+								<div class="row">
+									<div class="col-md-6">
+										<h5>' . $this->i18n('profiles_buttons_basic_title') . '</h5>
+										<table class="table table-sm table-bordered">
+											<tr><td><code>bold</code></td><td>' . $this->i18n('profiles_buttons_bold_description') . '</td></tr>
+											<tr><td><code>italic</code></td><td>' . $this->i18n('profiles_buttons_italic_description') . '</td></tr>
+											<tr><td><code>underline</code></td><td>' . $this->i18n('profiles_buttons_underline_description') . '</td></tr>
+											<tr><td><code>deleted</code></td><td>' . $this->i18n('profiles_buttons_deleted_description') . '</td></tr>
+											<tr><td><code>code</code></td><td>' . $this->i18n('profiles_buttons_code_description') . '</td></tr>
+										</table>
+									</div>
+									<div class="col-md-6">
+										<h5>' . $this->i18n('profiles_buttons_links_title') . '</h5>
+										<table class="table table-sm table-bordered">
+											<tr><td><code>internallink</code></td><td>' . $this->i18n('profiles_buttons_internallink_description') . '</td></tr>
+											<tr><td><code>externallink</code></td><td>' . $this->i18n('profiles_buttons_externallink_description') . '</td></tr>
+											<tr><td><code>emaillink</code></td><td>' . $this->i18n('profiles_buttons_emaillink_description') . '</td></tr>
+											<tr><td><code>media</code></td><td>' . $this->i18n('profiles_buttons_media_description') . '</td></tr>
+										</table>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<h5>' . $this->i18n('profiles_buttons_advanced_title') . '</h5>
+										<table class="table table-sm table-bordered">
+											<tr><td><code>groupheading[1|2|3|4|5|6]</code></td><td>' . $this->i18n('profiles_buttons_groupheading_description') . '</td></tr>
+											<tr><td><code>clips[name1=text1|name2=text2]</code></td><td>' . $this->i18n('profiles_buttons_clips_description') . '</td></tr>
+											<tr><td><code>table</code></td><td>' . $this->i18n('profiles_buttons_table_description') . '</td></tr>
+											<tr><td><code>|</code></td><td>' . $this->i18n('profiles_buttons_separator_description') . '</td></tr>
+										</table>
+									</div>
+								</div>
+								<div class="alert alert-info">
+									<strong>' . $this->i18n('profiles_buttons_tip_title') . ':</strong>
+									' . $this->i18n('profiles_buttons_tip_description') . '
+								</div>
+							</div>
+						</details>
 					</div>
 				</dd>
 			</dl>
-		', );
-    // End - add markitup_buttons-field
-
+		');
     if ('edit' === $func) {
         $form->addParam('id', $id);
     }

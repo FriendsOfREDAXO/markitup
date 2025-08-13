@@ -31,77 +31,115 @@ class Cache
     {
         $message = '';
 
-        $profiles = rex_sql::factory()
-            ->setQuery('SELECT `name`, `type`, `minheight`, `maxheight`, `markitup_buttons` FROM `' . rex::getTable('markitup_profiles') . '` ORDER BY `name` ASC')
-            ->getArray();
+        try {
+            $profiles = rex_sql::factory()
+                ->setQuery('SELECT `name`, `type`, `minheight`, `maxheight`, `markitup_buttons` FROM `' . rex::getTable('markitup_profiles') . '` ORDER BY `name` ASC')
+                ->getArray();
 
-        /**
-         * Liste der Sprachen, die in "snippets" vorkommen plus '--' (=Fallback bzw. für alle anderen).
-         * @var array<string> $languages
-         */
-        $languages = rex_sql::factory()
-            ->setQuery('SELECT DISTINCT `lang` FROM `' . rex::getTable('markitup_snippets') . '`')
-            // REXSTAN: Parameter $fetchType of method rex_sql::getArray() expects 2|3|12, 7 given.
-            // Es liegt daran, dass in rex_sql nur wenige der PDO::Fetch... hinterlegt sind. Ignorierbar.
-            // @phpstan-ignore-next-line
-            ->getArray(fetchType: PDO::FETCH_COLUMN);
-        $languages = array_unique(array_merge(['--'], $languages));
-        $fallback = array_unique(
-            array_map(
-                static function ($l) { return substr($l, 0, 2); },
-                rex::getProperty('lang_fallback', []),
-            ),
-        );
-        // alte Dateien löschen
-        rex_dir::delete(rex_path::addonAssets('markitup', 'cache/'), false);
-
-        foreach ($languages as $language) {
-            $cssCode = [];
-            $jsCode = [];
-
-            if ('--' === $language) {
-                $languageSet = [$language];
-            } else {
-                $languageSet = array_unique(array_merge([$language, '--'], $fallback));
+            /**
+             * Liste der Sprachen, die in "snippets" vorkommen plus '--' (=Fallback bzw. für alle anderen).
+             * @var array<string> $languages
+             */
+            $languages = rex_sql::factory()
+                ->setQuery('SELECT DISTINCT `lang` FROM `' . rex::getTable('markitup_snippets') . '`')
+                // REXSTAN: Parameter $fetchType of method rex_sql::getArray() expects 2|3|12, 7 given.
+                // Es liegt daran, dass in rex_sql nur wenige der PDO::Fetch... hinterlegt sind. Ignorierbar.
+                // @phpstan-ignore-next-line
+                ->getArray(fetchType: PDO::FETCH_COLUMN);
+            
+            $languages = array_unique(array_merge(['--'], $languages));
+            $fallback = array_unique(
+                array_map(
+                    static function ($l) { return substr($l, 0, 2); },
+                    rex::getProperty('lang_fallback', []),
+                ),
+            );
+            
+            // Alte Dateien löschen mit verbesserter Fehlerbehandlung
+            $cacheDir = rex_path::addonAssets('markitup', 'cache/');
+            if (!rex_dir::delete($cacheDir, false)) {
+                $message .= rex_view::warning('Fehler beim Löschen des Cache-Verzeichnisses');
             }
 
-            $jsCode[] = 'function markitupInit() {';
-            foreach ($profiles as $profile) {
-                $cssCode[] = '  textarea.markitupEditor-' . $profile['name'] . ' { min-height: ' . $profile['minheight'] . 'px; max-height: ' . $profile['maxheight'] . 'px; }';
-                $jsCode[] = '  $(\'.markitupEditor-' . $profile['name'] . '\').not(\'.markitupActive\').markItUp({';
+            foreach ($languages as $language) {
+                $cssCode = [];
+                $jsCode = [];
 
-                $jsCode[] = '    nameSpace: "markitup_' . $profile['type'] . '",';
-                switch ($profile['type']) {
-                    case 'textile':
-                        $jsCode[] = '    onShiftEnter: {keepDefault:false, replaceWith:\'\n\n\'},';
-                        break;
+                if ('--' === $language) {
+                    $languageSet = [$language];
+                } else {
+                    $languageSet = array_unique(array_merge([$language, '--'], $fallback));
                 }
 
-                $jsCode[] = '    markupSet: [';
-                $jsCode[] = '      ' . self::defineButtons($profile['type'], $profile['markitup_buttons'], $languageSet);
-                $jsCode[] = '    ]';
-                $jsCode[] = '  }).addClass(\'markitupActive\');';
-            }
+                // Modernisierte JavaScript-Generierung
+                $jsCode[] = '// MarkItUp! Profile Cache - Generated ' . date('Y-m-d H:i:s');
+                $jsCode[] = '// Language: ' . $language;
+                $jsCode[] = '';
+                $jsCode[] = 'function markitupInit() {';
+                
+                foreach ($profiles as $profile) {
+                    // Verbesserte CSS-Generierung mit Validierung
+                    $minHeight = max(50, (int)$profile['minheight']); // Minimum 50px
+                    $maxHeight = max($minHeight, (int)$profile['maxheight']); // Max mind. so groß wie Min
+                    
+                    $cssCode[] = sprintf(
+                        'textarea.markitupEditor-%s { min-height: %dpx; max-height: %dpx; }',
+                        rex_escape($profile['name']),
+                        $minHeight,
+                        $maxHeight
+                    );
+                    
+                    // Modernisierte JS-Generierung mit besserer Fehlerbehandlung
+                    $jsCode[] = sprintf('  $(\'textarea.markitupEditor-%s\').not(\'.markitupActive\').markItUp({', rex_escape($profile['name']));
+                    $jsCode[] = sprintf('    nameSpace: "markitup_%s",', rex_escape($profile['type']));
+                    
+                    // Typ-spezifische Konfiguration
+                    switch ($profile['type']) {
+                        case 'textile':
+                            $jsCode[] = '    onShiftEnter: {keepDefault:false, replaceWith:\'\n\n\'},';
+                            break;
+                        case 'markdown':
+                            // Markdown-spezifische Einstellungen könnten hier hinzugefügt werden
+                            break;
+                    }
 
-            $jsCode[] = '}';
-            $jsCode[] = '$(document).on(\'rex:ready pjax:success\',function() {';
-            $jsCode[] = '  markitupInit();';
-            $jsCode[] = '  autosize($("textarea[class*=\'markitupEditor-\']"));';
-            $jsCode[] = '});';
+                    $jsCode[] = '    markupSet: [';
+                    $jsCode[] = '      ' . self::defineButtons($profile['type'], $profile['markitup_buttons'], $languageSet);
+                    $jsCode[] = '    ]';
+                    $jsCode[] = '  }).addClass(\'markitupActive\');';
+                }
 
-            $languageDir = rex_path::addonAssets('markitup', "cache/$language/");
-            if (!rex_file::put($languageDir . 'markitup_profiles.css', implode(PHP_EOL, $cssCode))) {
-                $message .= rex_view::error(rex_i18n::msg('markitup_cache', '<i>/assets/markitup/cache/$language/markitup_profiles.css</i>'));
-            }
-            unset($cssCode);
+                $jsCode[] = '}';
+                $jsCode[] = '';
+                $jsCode[] = '// Modernisierte Initialisierung mit besserer Event-Behandlung';
+                $jsCode[] = '$(document).on(\'rex:ready pjax:success\', function() {';
+                $jsCode[] = '  try {';
+                $jsCode[] = '    markitupInit();';
+                $jsCode[] = '    autosize($("textarea[class*=\'markitupEditor-\']"));';
+                $jsCode[] = '  } catch (error) {';
+                $jsCode[] = '    console.error(\'MarkItUp initialization error:\', error);';
+                $jsCode[] = '  }';
+                $jsCode[] = '});';
 
-            if (!rex_file::put($languageDir . 'markitup_profiles.js', implode(PHP_EOL, $jsCode))) {
-                $message .= rex_view::error(rex_i18n::msg('markitup_cache', '<i>/assets/markitup/cache/$language/markitup_profiles.js</i>'));
+                // Dateien mit verbesserter Fehlerbehandlung schreiben
+                $languageDir = rex_path::addonAssets('markitup', "cache/$language/");
+                
+                if (!rex_file::put($languageDir . 'markitup_profiles.css', implode(PHP_EOL, $cssCode))) {
+                    $message .= rex_view::error(rex_i18n::msg('markitup_cache', '<i>/assets/markitup/cache/' . $language . '/markitup_profiles.css</i>'));
+                }
+                unset($cssCode);
+
+                if (!rex_file::put($languageDir . 'markitup_profiles.js', implode(PHP_EOL, $jsCode))) {
+                    $message .= rex_view::error(rex_i18n::msg('markitup_cache', '<i>/assets/markitup/cache/' . $language . '/markitup_profiles.js</i>'));
+                }
+                unset($jsCode);
             }
-            unset($jsCode);
+        } catch (Exception $e) {
+            $message .= rex_view::error('Fehler beim Generieren der MarkItUp-Cache-Dateien: ' . $e->getMessage());
+            rex_logger::logException($e);
         }
 
-        if ('' < $message) {
+        if ('' !== $message) {
             rex_logger::logError(E_WARNING, $message, 'Function: ' . __FUNCTION__, __LINE__);
         }
 
