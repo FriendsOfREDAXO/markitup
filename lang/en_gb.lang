@@ -129,3 +129,27 @@ markitup_manual_textile = Textile
 markitup_manual_markdown = Markdown
 markitup_manual_faq = FAQ
 markitup_manual_developer = Integration
+
+# Help section translations
+markitup_help_title = Help
+markitup_help_intro_title = Introduction
+markitup_help_intro_description = Basics and overview of MarkItUp!
+markitup_help_markdown_title = Markdown Help
+markitup_help_markdown_description = Markdown syntax and usage
+markitup_help_textile_title = Textile Help
+markitup_help_textile_description = Textile syntax and usage
+markitup_help_faq_title = Frequently Asked Questions
+markitup_help_faq_description = Answers to frequently asked questions
+markitup_help_developer_title = Developer Integration
+markitup_help_developer_description = API documentation and integration guide
+markitup_help_api_title = JavaScript API
+markitup_help_api_description = New JavaScript API v2.0 documentation
+
+# JavaScript API help
+markitup_js_api_title = JavaScript API v2.0
+markitup_js_api_vanilla_title = Vanilla JavaScript API
+markitup_js_api_vanilla_description = Modern JavaScript API without jQuery dependency
+markitup_js_api_jquery_title = jQuery Compatibility
+markitup_js_api_jquery_description = jQuery-compatible wrapper functions
+markitup_js_api_redaxo_title = REDAXO Integration
+markitup_js_api_redaxo_description = Integration in REDAXO backend with rex:ready events
