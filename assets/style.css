@@ -106,7 +106,7 @@ body.rex-theme-light .markItUpContainer textarea {
 
 .markItUpContainer .markItUpHeader > ul > li > a:before {
 	color:#9ca5b2;
-	font-family: "Font Awesome 6 Free",FontAwesome;
+	font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", "FontAwesome", "Font Awesome";
 	font-size: 14px;
 	position:relative;
 	font-weight: 900;

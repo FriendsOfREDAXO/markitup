@@ -17,6 +17,14 @@ if (rex::isBackend()) {
     rex_view::addJsFile($this->getAssetsUrl('autosize.min.js'));
     rex_view::addJsFile($this->getAssetsUrl('scripts.js'));
     rex_view::addCssFile($this->getAssetsUrl('style.css'));
+    
+    // Ensure Font Awesome is available for markItUp icons
+    // Use CSS @import to avoid conflicts with existing Font Awesome loads
+    rex_view::addCssContent('
+        /* MarkItUp Font Awesome icons */
+        @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
+    ');
+    
     if (file_exists($this->getAssetsPath('skin.css'))) {
         rex_view::addCssFile($this->getAssetsUrl('skin.css'));
     }
