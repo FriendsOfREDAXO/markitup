@@ -8,46 +8,58 @@
 // http://markitup.jaysalvat.com/
 // ----------------------------------------------------------------------------
 
-// Load the main markItUp! implementation
-document.addEventListener('DOMContentLoaded', function() {
-	const script = document.createElement('script');
-	script.src = (function() {
-		const scripts = document.getElementsByTagName('script');
-		for (let script of scripts) {
-			const match = script.src.match(/(.*)jquery\.markitup(\.pack)?\.js$/);
-			if (match !== null) {
-				return match[1] + 'markitup.js';
-			}
-		}
-		return 'markitup.js'; // fallback
-	})();
+// jQuery compatibility layer - assumes markitup.js is already loaded
+(function($) {
+	'use strict';
 	
-	script.onload = function() {
-		// Ensure jQuery compatibility is available
-		if (typeof jQuery !== 'undefined' && typeof markItUp !== 'undefined') {
-			console.log('MarkItUp! v2.0.0 loaded with jQuery compatibility');
-		}
-	};
+	if (typeof $ === 'undefined') {
+		console.warn('MarkItUp jQuery compatibility layer: jQuery not found');
+		return;
+	}
 	
-	document.head.appendChild(script);
-});
-
-// Immediate jQuery compatibility for cases where it's needed before DOMContentLoaded
-if (typeof jQuery !== 'undefined') {
-	(function($) {
-		// Placeholder functions that will be replaced once the main script loads
+	// Wait for vanilla markItUp to be available
+	function waitForMarkItUp(callback) {
+		if (typeof markItUp !== 'undefined') {
+			callback();
+		} else {
+			setTimeout(() => waitForMarkItUp(callback), 10);
+		}
+	}
+	
+	waitForMarkItUp(function() {
+		// jQuery plugin implementation
 		$.fn.markItUp = function(settings, extraSettings) {
-			console.warn('MarkItUp! is still loading. Please use $(document).ready() or rex:ready event.');
-			return this;
+			return this.each(function() {
+				markItUp(this, settings, extraSettings);
+			});
 		};
 		
 		$.fn.markItUpRemove = function() {
-			console.warn('MarkItUp! is still loading. Please use $(document).ready() or rex:ready event.');
-			return this;
+			return this.each(function() {
+				markItUp(this, 'remove');
+			});
 		};
 		
 		$.markItUp = function(settings) {
-			console.warn('MarkItUp! is still loading. Please use $(document).ready() or rex:ready event.');
+			if (typeof MarkItUp !== 'undefined' && MarkItUp.callMarkup) {
+				MarkItUp.callMarkup(settings);
+			}
 		};
-	})(jQuery);
-}
+		
+		// REDAXO compatibility - auto-initialize on rex:ready
+		$(document).on('rex:ready', function() {
+			// Auto-initialize elements with markitupEditor classes
+			$('textarea[class*="markitupEditor-"]').each(function() {
+				if (!this._markItUp) {
+					// Extract profile from class name
+					const classMatch = this.className.match(/markitupEditor-(\w+)/);
+					if (classMatch) {
+						const profile = classMatch[1];
+						// Initialize with default settings - profile-specific settings come from backend
+						$(this).markItUp({});
+					}
+				}
+			});
+		});
+	});
+})(jQuery);
