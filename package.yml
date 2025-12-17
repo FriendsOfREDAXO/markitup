@@ -1,5 +1,5 @@
 package: markitup
-version: '4.0.1'
+version: '4.1.0'
 author: Friends Of REDAXO
 supportpage: github.com/FriendsOfREDAXO/markitup
 
@@ -8,13 +8,13 @@ page:
     perm: markitup[]
     pjax: true
     subpages:
-        profiles: 
+        profiles:
             title: 'translate:profiles'
             perm: 'markitup[profiles]'
-        snippets: 
+        snippets:
             title: 'translate:snippets'
             perm: 'markitup[snippets]'
-        manual: 
+        manual:
             title: 'translate:manual_a'
             icon: rex-icon fa-book
             perm: 'markitup[manual]'
@@ -31,7 +31,7 @@ page:
                     title: 'translate:manual_markdown'
                     icon: rex-icon rex-icon-article
                     subPath: docs/howto_markdown.md
-        developer: 
+        developer:
             title: 'translate:manual_b'
             icon: rex-icon fa-book
             perm: 'markitup[developer]'

@@ -1,5 +1,10 @@
 # MarkItUp Changelog
 
+## [4.1.0](https://github.com/FriendsOfREDAXO/markitup/releases/tag/4.1.0) - 17.12.2025
+
+- Die Resourcen für den Editor (JS, CSS) werden jetzt erst im EP PACKAGES_INCUDED und late geladen. Dadurch kann z.B. mform zuerst ausgeführt werden und die Markitup-Editor-CSS-Klassen schon schreiben, damit Markitup sie dann erkennt.
+
+
 ## [4.0.1](https://github.com/FriendsOfREDAXO/markitup/releases/tag/4.0.1) - 03.01.2024
 
 - Bugfix beim Einbinden von YForm-Links; Die Auswahlliste wurde nach einer YForm-Änderung nicht mehr angzeigt
