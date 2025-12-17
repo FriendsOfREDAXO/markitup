@@ -13,7 +13,7 @@ use rex_view;
 if (rex::isBackend()) {
     // Ressourcen einbinden
 
-    rex_extension::register('PACKAGES_INCLUDED', function () {
+    rex_extension::register('PACKAGES_INCLUDED', static function () {
 
         rex_view::addJsFile($this->getAssetsUrl('jquery.markitup.js'));
         rex_view::addJsFile($this->getAssetsUrl('autosize.min.js'));
